@@ -1,24 +1,26 @@
 # librelab::Big Dot
 
-__A SAML21-based board for your environmental sensing projects!__
+![These birds are chirping (CSS) with LoRa!](chirp.jpg)
+
+> A SAML21-based board for your environmental sensing projects!
 
 ## Description
 
-In this repository you will find the design and firmware source files for Big Dot, our libre hardware kit for low-energy LoRa applications. The content of this repo is organized in the follow way:
+In this repository you will find the design and firmware files for librelab::Big Dot, our libre hardware kit for low-energy LoRa applications. The content in this repo is organized in the following way:
 
 ```bash
-├── arduino-core
+├── arduino-core (support files)
 │   ├── bossa
 │   └── librelab
-├── board
+├── board (hardware design)
 │   ├── datasheets
 │   ├── lib
 │   └── output
-├── bootloader
+├── bootloader (firmware files)
 │   ├── bootloaders
 │   ├── openocd-conf
 │   └── sketches
-└── examples
+└── examples (applications)
     ├── fastled-ultrasonic
     └── ttn-pm-co2
 ```
@@ -39,11 +41,11 @@ If you need further instructions on how to install the Arduino core, [follow thi
 
 ### Micropython support
 
-__Coming up!__
+_Coming up!_
 
-## Prototyping and Testing
+## Prototyping
 
-If you do not have a Big Dot board at hand, you can use a SAML21 Xplained board for testing purposes. The information on how to flash the bootloader we use for Big Dot can be found in the [testing directory](testing/README.md). For your convenience, we included pre-compiled firmware files in this repo as well.
+If you do not have a Big Dot board at hand, you can use a SAML21 Xplained board for testing purposes. The information on how to flash the bootloader we use can be found in the [bootloader directory](bootloader/README.md). For your convenience, we also included pre-compiled firmware files in this repo as well.
 
 ## Project info
 
@@ -55,6 +57,6 @@ All the documentation is released as CC-BY-4.0-International.
 All the hardware code is released under CERN-OHL-v2 Strongly Reciprocal.
 All software code is released under GPL v3, unless marked otherwise on the source file headers. See LICENSE and AUTHORS files for further information.
 
-OSHW certification: pending.
+OSHW certification: _pending_.
 
 __Happy hw hacking!__
