@@ -1,0 +1,574 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"board_driver_usb.c"
+  14              		.section	.text.USB_IsConfigured,"ax",%progbits
+  15              		.align	1
+  16              		.global	USB_IsConfigured
+  17              		.code	16
+  18              		.thumb_func
+  20              	USB_IsConfigured:
+  21 0000 70B5     		push	{r4, r5, r6, lr}
+  22 0002 0368     		ldr	r3, [r0]
+  23 0004 041C     		mov	r4, r0
+  24 0006 988B     		ldrh	r0, [r3, #28]
+  25 0008 1A1C     		mov	r2, r3
+  26 000a 0821     		mov	r1, #8
+  27 000c FF32     		add	r2, r2, #255
+  28 000e 0842     		tst	r0, r1
+  29 0010 26D0     		beq	.L2
+  30 0012 8020     		mov	r0, #128
+  31 0014 9983     		strh	r1, [r3, #28]
+  32 0016 9872     		strb	r0, [r3, #10]
+  33 0018 1123     		mov	r3, #17
+  34 001a 5370     		strb	r3, [r2, #1]
+  35 001c 4021     		mov	r1, #64
+  36 001e 144B     		ldr	r3, .L8
+  37 0020 9171     		strb	r1, [r2, #6]
+  38 0022 5071     		strb	r0, [r2, #5]
+  39 0024 5E68     		ldr	r6, [r3, #4]
+  40 0026 134D     		ldr	r5, .L8+4
+  41 0028 C020     		mov	r0, #192
+  42 002a 2E40     		and	r6, r5
+  43 002c 8005     		lsl	r0, r0, #22
+  44 002e 0643     		orr	r6, r0
+  45 0030 5E60     		str	r6, [r3, #4]
+  46 0032 5E69     		ldr	r6, [r3, #20]
+  47 0034 3540     		and	r5, r6
+  48 0036 2843     		orr	r0, r5
+  49 0038 5861     		str	r0, [r3, #20]
+  50 003a 0F48     		ldr	r0, .L8+8
+  51 003c 1860     		str	r0, [r3]
+  52 003e 0F48     		ldr	r0, .L8+12
+  53 0040 1861     		str	r0, [r3, #16]
+  54 0042 5D68     		ldr	r5, [r3, #4]
+  55 0044 0E48     		ldr	r0, .L8+16
+  56 0046 2840     		and	r0, r5
+  57 0048 8025     		mov	r5, #128
+  58 004a AD02     		lsl	r5, r5, #10
+  59 004c 2843     		orr	r0, r5
+  60 004e 5860     		str	r0, [r3, #4]
+  61 0050 5868     		ldr	r0, [r3, #4]
+  62 0052 800B     		lsr	r0, r0, #14
+  63 0054 8003     		lsl	r0, r0, #14
+  64 0056 5860     		str	r0, [r3, #4]
+  65 0058 0023     		mov	r3, #0
+  66 005a 5171     		strb	r1, [r2, #5]
+  67 005c 2371     		strb	r3, [r4, #4]
+  68 005e 05E0     		b	.L3
+  69              	.L2:
+  70 0060 137A     		ldrb	r3, [r2, #8]
+  71 0062 DA06     		lsl	r2, r3, #27
+  72 0064 02D5     		bpl	.L3
+  73 0066 201C     		mov	r0, r4
+  74 0068 FFF7FEFF 		bl	sam_ba_usb_CDC_Enumerate
+  75              	.L3:
+  76 006c 2079     		ldrb	r0, [r4, #4]
+  77              		@ sp needed
+  78 006e 70BD     		pop	{r4, r5, r6, pc}
+  79              	.L9:
+  80              		.align	2
+  81              	.L8:
+  82 0070 00000000 		.word	usb_endpoint_table
+  83 0074 FFFFFF8F 		.word	-1879048193
+  84 0078 00000000 		.word	udd_ep_out_cache_buffer
+  85 007c 00000000 		.word	udd_ep_in_cache_buffer
+  86 0080 FF3F00F0 		.word	-268419073
+  88              		.section	.text.USB_Open,"ax",%progbits
+  89              		.align	1
+  90              		.global	USB_Open
+  91              		.code	16
+  92              		.thumb_func
+  94              	USB_Open:
+  95 0000 0023     		mov	r3, #0
+  96 0002 0371     		strb	r3, [r0, #4]
+  97 0004 4371     		strb	r3, [r0, #5]
+  98 0006 044B     		ldr	r3, .L11
+  99 0008 0160     		str	r1, [r0]
+ 100 000a 8360     		str	r3, [r0, #8]
+ 101 000c 0B78     		ldrb	r3, [r1]
+ 102 000e 0222     		mov	r2, #2
+ 103 0010 1343     		orr	r3, r2
+ 104 0012 0B70     		strb	r3, [r1]
+ 105              		@ sp needed
+ 106 0014 7047     		bx	lr
+ 107              	.L12:
+ 108 0016 C046     		.align	2
+ 109              	.L11:
+ 110 0018 00000000 		.word	USB_IsConfigured
+ 112              		.section	.text.USB_Init,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	USB_Init
+ 115              		.code	16
+ 116              		.thumb_func
+ 118              	USB_Init:
+ 119 0000 08B5     		push	{r3, lr}
+ 120 0002 254B     		ldr	r3, .L24
+ 121 0004 0121     		mov	r1, #1
+ 122 0006 9A69     		ldr	r2, [r3, #24]
+ 123 0008 2448     		ldr	r0, .L24+4
+ 124 000a 0A43     		orr	r2, r1
+ 125 000c 9A61     		str	r2, [r3, #24]
+ 126 000e FFF7FEFF 		bl	pinMux
+ 127 0012 2348     		ldr	r0, .L24+8
+ 128 0014 FFF7FEFF 		bl	pinMux
+ 129 0018 224B     		ldr	r3, .L24+12
+ 130 001a 4022     		mov	r2, #64
+ 131 001c 1A60     		str	r2, [r3]
+ 132              	.L15:
+ 133 001e 1A68     		ldr	r2, [r3]
+ 134 0020 5106     		lsl	r1, r2, #25
+ 135 0022 FCD5     		bpl	.L15
+ 136 0024 8223     		mov	r3, #130
+ 137 0026 DB05     		lsl	r3, r3, #23
+ 138 0028 1A78     		ldrb	r2, [r3]
+ 139 002a 0121     		mov	r1, #1
+ 140 002c 0A43     		orr	r2, r1
+ 141 002e 1A70     		strb	r2, [r3]
+ 142              	.L17:
+ 143 0030 9A78     		ldrb	r2, [r3, #2]
+ 144 0032 D107     		lsl	r1, r2, #31
+ 145 0034 FCD4     		bmi	.L17
+ 146 0036 1C4B     		ldr	r3, .L24+16
+ 147 0038 1F22     		mov	r2, #31
+ 148 003a 1B68     		ldr	r3, [r3]
+ 149 003c 590B     		lsr	r1, r3, #13
+ 150 003e 1140     		and	r1, r2
+ 151 0040 9142     		cmp	r1, r2
+ 152 0042 00D1     		bne	.L18
+ 153 0044 0521     		mov	r1, #5
+ 154              	.L18:
+ 155 0046 980C     		lsr	r0, r3, #18
+ 156 0048 0240     		and	r2, r0
+ 157 004a 1F2A     		cmp	r2, #31
+ 158 004c 00D1     		bne	.L19
+ 159 004e 1D22     		mov	r2, #29
+ 160              	.L19:
+ 161 0050 9B01     		lsl	r3, r3, #6
+ 162 0052 5B0F     		lsr	r3, r3, #29
+ 163 0054 072B     		cmp	r3, #7
+ 164 0056 00D1     		bne	.L20
+ 165 0058 0323     		mov	r3, #3
+ 166              	.L20:
+ 167 005a 8901     		lsl	r1, r1, #6
+ 168 005c 0A43     		orr	r2, r1
+ 169 005e 1B03     		lsl	r3, r3, #12
+ 170 0060 1A43     		orr	r2, r3
+ 171 0062 8223     		mov	r3, #130
+ 172 0064 DB05     		lsl	r3, r3, #23
+ 173 0066 1A85     		strh	r2, [r3, #40]
+ 174 0068 1978     		ldrb	r1, [r3]
+ 175 006a 7F22     		mov	r2, #127
+ 176 006c 0A40     		and	r2, r1
+ 177 006e 1A70     		strb	r2, [r3]
+ 178 0070 1A78     		ldrb	r2, [r3]
+ 179 0072 0421     		mov	r1, #4
+ 180 0074 0D48     		ldr	r0, .L24+20
+ 181 0076 0A43     		orr	r2, r1
+ 182 0078 1A70     		strb	r2, [r3]
+ 183 007a 5862     		str	r0, [r3, #36]
+ 184 007c 1A89     		ldrh	r2, [r3, #8]
+ 185 007e 0C21     		mov	r1, #12
+ 186 0080 8A43     		bic	r2, r1
+ 187 0082 1A81     		strh	r2, [r3, #8]
+ 188 0084 1A89     		ldrh	r2, [r3, #8]
+ 189 0086 0121     		mov	r1, #1
+ 190 0088 8A43     		bic	r2, r1
+ 191 008a 1A81     		strh	r2, [r3, #8]
+ 192 008c 0021     		mov	r1, #0
+ 193 008e 8022     		mov	r2, #128
+ 194 0090 FFF7FEFF 		bl	memset
+ 195              		@ sp needed
+ 196 0094 08BD     		pop	{r3, pc}
+ 197              	.L25:
+ 198 0096 C046     		.align	2
+ 199              	.L24:
+ 200 0098 00040040 		.word	1073742848
+ 201 009c 06001800 		.word	1572870
+ 202 00a0 06001900 		.word	1638406
+ 203 00a4 90180040 		.word	1073748112
+ 204 00a8 20608000 		.word	8413216
+ 205 00ac 00000000 		.word	usb_endpoint_table
+ 207              		.section	.text.USB_Write,"ax",%progbits
+ 208              		.align	1
+ 209              		.global	USB_Write
+ 210              		.code	16
+ 211              		.thumb_func
+ 213              	USB_Write:
+ 214 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 215 0002 141C     		mov	r4, r2
+ 216 0004 1F4A     		ldr	r2, .L31
+ 217 0006 5F01     		lsl	r7, r3, #5
+ 218 0008 0197     		str	r7, [sp, #4]
+ 219 000a 1D1C     		mov	r5, r3
+ 220 000c D319     		add	r3, r2, r7
+ 221 000e 061C     		mov	r6, r0
+ 222 0010 5869     		ldr	r0, [r3, #20]
+ 223 0012 271C     		mov	r7, r4
+ 224 0014 4000     		lsl	r0, r0, #1
+ 225 0016 400F     		lsr	r0, r0, #29
+ 226 0018 0330     		add	r0, r0, #3
+ 227 001a 1033     		add	r3, r3, #16
+ 228 001c C740     		lsr	r7, r7, r0
+ 229 001e 06D0     		beq	.L27
+ 230 0020 0F1C     		mov	r7, r1
+ 231 0022 8022     		mov	r2, #128
+ 232 0024 5968     		ldr	r1, [r3, #4]
+ 233 0026 1206     		lsl	r2, r2, #24
+ 234 0028 0A43     		orr	r2, r1
+ 235 002a 5A60     		str	r2, [r3, #4]
+ 236 002c 09E0     		b	.L28
+ 237              	.L27:
+ 238 002e 2F1C     		mov	r7, r5
+ 239 0030 7B1E     		sub	r3, r7, #1
+ 240 0032 9F41     		sbc	r7, r7, r3
+ 241 0034 144B     		ldr	r3, .L31+4
+ 242 0036 BF01     		lsl	r7, r7, #6
+ 243 0038 FF18     		add	r7, r7, r3
+ 244 003a 381C     		mov	r0, r7
+ 245 003c 221C     		mov	r2, r4
+ 246 003e FFF7FEFF 		bl	memcpy
+ 247              	.L28:
+ 248 0042 0199     		ldr	r1, [sp, #4]
+ 249 0044 0F48     		ldr	r0, .L31
+ 250 0046 0835     		add	r5, r5, #8
+ 251 0048 4218     		add	r2, r0, r1
+ 252 004a 1761     		str	r7, [r2, #16]
+ 253 004c 131C     		mov	r3, r2
+ 254 004e 5269     		ldr	r2, [r2, #20]
+ 255 0050 A104     		lsl	r1, r4, #18
+ 256 0052 920B     		lsr	r2, r2, #14
+ 257 0054 890C     		lsr	r1, r1, #18
+ 258 0056 9203     		lsl	r2, r2, #14
+ 259 0058 0A43     		orr	r2, r1
+ 260 005a 5A61     		str	r2, [r3, #20]
+ 261 005c 5969     		ldr	r1, [r3, #20]
+ 262 005e 0B4A     		ldr	r2, .L31+8
+ 263 0060 0A40     		and	r2, r1
+ 264 0062 5A61     		str	r2, [r3, #20]
+ 265 0064 6B01     		lsl	r3, r5, #5
+ 266 0066 F318     		add	r3, r6, r3
+ 267 0068 0222     		mov	r2, #2
+ 268 006a DA71     		strb	r2, [r3, #7]
+ 269 006c 5979     		ldrb	r1, [r3, #5]
+ 270 006e 8022     		mov	r2, #128
+ 271 0070 5242     		neg	r2, r2
+ 272 0072 0A43     		orr	r2, r1
+ 273 0074 5A71     		strb	r2, [r3, #5]
+ 274              	.L30:
+ 275 0076 6B01     		lsl	r3, r5, #5
+ 276 0078 F318     		add	r3, r6, r3
+ 277 007a DB79     		ldrb	r3, [r3, #7]
+ 278 007c 9A07     		lsl	r2, r3, #30
+ 279 007e FAD5     		bpl	.L30
+ 280 0080 201C     		mov	r0, r4
+ 281              		@ sp needed
+ 282 0082 FEBD     		pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+ 283              	.L32:
+ 284              		.align	2
+ 285              	.L31:
+ 286 0084 00000000 		.word	usb_endpoint_table
+ 287 0088 00000000 		.word	udd_ep_in_cache_buffer
+ 288 008c FF3F00F0 		.word	-268419073
+ 290              		.section	.text.USB_Read,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	USB_Read
+ 293              		.code	16
+ 294              		.thumb_func
+ 296              	USB_Read:
+ 297 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 298 0002 1A4E     		ldr	r6, .L38
+ 299 0004 051C     		mov	r5, r0
+ 300 0006 3378     		ldrb	r3, [r6]
+ 301 0008 141C     		mov	r4, r2
+ 302 000a 002B     		cmp	r3, #0
+ 303 000c 12D1     		bne	.L34
+ 304 000e 184B     		ldr	r3, .L38+4
+ 305 0010 184A     		ldr	r2, .L38+8
+ 306 0012 1A64     		str	r2, [r3, #64]
+ 307 0014 5A6C     		ldr	r2, [r3, #68]
+ 308 0016 920B     		lsr	r2, r2, #14
+ 309 0018 9203     		lsl	r2, r2, #14
+ 310 001a 5A64     		str	r2, [r3, #68]
+ 311 001c 586C     		ldr	r0, [r3, #68]
+ 312 001e 164A     		ldr	r2, .L38+12
+ 313 0020 0240     		and	r2, r0
+ 314 0022 5A64     		str	r2, [r3, #68]
+ 315 0024 A223     		mov	r3, #162
+ 316 0026 5B00     		lsl	r3, r3, #1
+ 317 0028 EA5C     		ldrb	r2, [r5, r3]
+ 318 002a 4020     		mov	r0, #64
+ 319 002c 0243     		orr	r2, r0
+ 320 002e EA54     		strb	r2, [r5, r3]
+ 321 0030 0123     		mov	r3, #1
+ 322 0032 3370     		strb	r3, [r6]
+ 323              	.L34:
+ 324 0034 4827     		mov	r7, #72
+ 325 0036 FF37     		add	r7, r7, #255
+ 326 0038 EA5D     		ldrb	r2, [r5, r7]
+ 327 003a 0123     		mov	r3, #1
+ 328 003c 1340     		and	r3, r2
+ 329 003e 12D0     		beq	.L37
+ 330 0040 0B4B     		ldr	r3, .L38+4
+ 331 0042 5A6C     		ldr	r2, [r3, #68]
+ 332 0044 9204     		lsl	r2, r2, #18
+ 333 0046 920C     		lsr	r2, r2, #18
+ 334 0048 A242     		cmp	r2, r4
+ 335 004a 02D2     		bcs	.L36
+ 336 004c 5C6C     		ldr	r4, [r3, #68]
+ 337 004e A404     		lsl	r4, r4, #18
+ 338 0050 A40C     		lsr	r4, r4, #18
+ 339              	.L36:
+ 340 0052 081C     		mov	r0, r1
+ 341 0054 221C     		mov	r2, r4
+ 342 0056 0749     		ldr	r1, .L38+8
+ 343 0058 FFF7FEFF 		bl	memcpy
+ 344 005c 0123     		mov	r3, #1
+ 345 005e EB55     		strb	r3, [r5, r7]
+ 346 0060 0023     		mov	r3, #0
+ 347 0062 3370     		strb	r3, [r6]
+ 348 0064 00E0     		b	.L35
+ 349              	.L37:
+ 350 0066 1C1C     		mov	r4, r3
+ 351              	.L35:
+ 352 0068 201C     		mov	r0, r4
+ 353              		@ sp needed
+ 354 006a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 355              	.L39:
+ 356              		.align	2
+ 357              	.L38:
+ 358 006c 00000000 		.word	.LANCHOR0
+ 359 0070 00000000 		.word	usb_endpoint_table
+ 360 0074 40000000 		.word	udd_ep_out_cache_buffer+64
+ 361 0078 FF3F00F0 		.word	-268419073
+ 363              		.section	.text.USB_Read_blocking,"ax",%progbits
+ 364              		.align	1
+ 365              		.global	USB_Read_blocking
+ 366              		.code	16
+ 367              		.thumb_func
+ 369              	USB_Read_blocking:
+ 370 0000 031C     		mov	r3, r0
+ 371 0002 1448     		ldr	r0, .L47
+ 372 0004 70B5     		push	{r4, r5, r6, lr}
+ 373 0006 0478     		ldrb	r4, [r0]
+ 374 0008 002C     		cmp	r4, #0
+ 375 000a 07D0     		beq	.L41
+ 376 000c 4624     		mov	r4, #70
+ 377 000e FF34     		add	r4, r4, #255
+ 378 0010 1D5D     		ldrb	r5, [r3, r4]
+ 379 0012 4026     		mov	r6, #64
+ 380 0014 3543     		orr	r5, r6
+ 381 0016 1D55     		strb	r5, [r3, r4]
+ 382 0018 0024     		mov	r4, #0
+ 383 001a 0470     		strb	r4, [r0]
+ 384              	.L41:
+ 385 001c 0E4C     		ldr	r4, .L47+4
+ 386 001e 9004     		lsl	r0, r2, #18
+ 387 0020 2164     		str	r1, [r4, #64]
+ 388 0022 616C     		ldr	r1, [r4, #68]
+ 389 0024 0009     		lsr	r0, r0, #4
+ 390 0026 890B     		lsr	r1, r1, #14
+ 391 0028 8903     		lsl	r1, r1, #14
+ 392 002a 6164     		str	r1, [r4, #68]
+ 393 002c 656C     		ldr	r5, [r4, #68]
+ 394 002e 0B49     		ldr	r1, .L47+8
+ 395 0030 2940     		and	r1, r5
+ 396 0032 0143     		orr	r1, r0
+ 397 0034 6164     		str	r1, [r4, #68]
+ 398 0036 A221     		mov	r1, #162
+ 399 0038 4900     		lsl	r1, r1, #1
+ 400 003a 585C     		ldrb	r0, [r3, r1]
+ 401 003c 4024     		mov	r4, #64
+ 402 003e 2043     		orr	r0, r4
+ 403 0040 5854     		strb	r0, [r3, r1]
+ 404              	.L43:
+ 405 0042 4821     		mov	r1, #72
+ 406 0044 FF31     		add	r1, r1, #255
+ 407 0046 5C5C     		ldrb	r4, [r3, r1]
+ 408 0048 0120     		mov	r0, #1
+ 409 004a 0442     		tst	r4, r0
+ 410 004c F9D0     		beq	.L43
+ 411 004e 5854     		strb	r0, [r3, r1]
+ 412              		@ sp needed
+ 413 0050 101C     		mov	r0, r2
+ 414 0052 70BD     		pop	{r4, r5, r6, pc}
+ 415              	.L48:
+ 416              		.align	2
+ 417              	.L47:
+ 418 0054 00000000 		.word	.LANCHOR0
+ 419 0058 00000000 		.word	usb_endpoint_table
+ 420 005c FF3F00F0 		.word	-268419073
+ 422              		.section	.text.USB_SendStall,"ax",%progbits
+ 423              		.align	1
+ 424              		.global	USB_SendStall
+ 425              		.code	16
+ 426              		.thumb_func
+ 428              	USB_SendStall:
+ 429 0000 FF30     		add	r0, r0, #255
+ 430 0002 8379     		ldrb	r3, [r0, #6]
+ 431 0004 2022     		mov	r2, #32
+ 432 0006 0029     		cmp	r1, #0
+ 433 0008 00D1     		bne	.L52
+ 434 000a 1022     		mov	r2, #16
+ 435              	.L52:
+ 436 000c 1343     		orr	r3, r2
+ 437 000e 8371     		strb	r3, [r0, #6]
+ 438              		@ sp needed
+ 439 0010 7047     		bx	lr
+ 441              		.section	.text.USB_SendZlp,"ax",%progbits
+ 442              		.align	1
+ 443              		.global	USB_SendZlp
+ 444              		.code	16
+ 445              		.thumb_func
+ 447              	USB_SendZlp:
+ 448 0000 084B     		ldr	r3, .L56
+ 449 0002 FF30     		add	r0, r0, #255
+ 450 0004 5A69     		ldr	r2, [r3, #20]
+ 451 0006 920B     		lsr	r2, r2, #14
+ 452 0008 9203     		lsl	r2, r2, #14
+ 453 000a 5A61     		str	r2, [r3, #20]
+ 454 000c 0223     		mov	r3, #2
+ 455 000e 0372     		strb	r3, [r0, #8]
+ 456 0010 8279     		ldrb	r2, [r0, #6]
+ 457 0012 8023     		mov	r3, #128
+ 458 0014 5B42     		neg	r3, r3
+ 459 0016 1343     		orr	r3, r2
+ 460 0018 8371     		strb	r3, [r0, #6]
+ 461              	.L55:
+ 462 001a 037A     		ldrb	r3, [r0, #8]
+ 463 001c 9A07     		lsl	r2, r3, #30
+ 464 001e FCD5     		bpl	.L55
+ 465              		@ sp needed
+ 466 0020 7047     		bx	lr
+ 467              	.L57:
+ 468 0022 C046     		.align	2
+ 469              	.L56:
+ 470 0024 00000000 		.word	usb_endpoint_table
+ 472              		.section	.text.USB_SetAddress,"ax",%progbits
+ 473              		.align	1
+ 474              		.global	USB_SetAddress
+ 475              		.code	16
+ 476              		.thumb_func
+ 478              	USB_SetAddress:
+ 479 0000 8023     		mov	r3, #128
+ 480 0002 5B42     		neg	r3, r3
+ 481 0004 1943     		orr	r1, r3
+ 482 0006 C9B2     		uxtb	r1, r1
+ 483 0008 8172     		strb	r1, [r0, #10]
+ 484              		@ sp needed
+ 485 000a 7047     		bx	lr
+ 487              		.section	.text.USB_Configure,"ax",%progbits
+ 488              		.align	1
+ 489              		.global	USB_Configure
+ 490              		.code	16
+ 491              		.thumb_func
+ 493              	USB_Configure:
+ 494 0000 70B5     		push	{r4, r5, r6, lr}
+ 495 0002 A023     		mov	r3, #160
+ 496 0004 0322     		mov	r2, #3
+ 497 0006 5B00     		lsl	r3, r3, #1
+ 498 0008 C254     		strb	r2, [r0, r3]
+ 499 000a 134B     		ldr	r3, .L60
+ 500 000c 134A     		ldr	r2, .L60+4
+ 501 000e 5C6C     		ldr	r4, [r3, #68]
+ 502 0010 C021     		mov	r1, #192
+ 503 0012 1440     		and	r4, r2
+ 504 0014 8905     		lsl	r1, r1, #22
+ 505 0016 0C43     		orr	r4, r1
+ 506 0018 4625     		mov	r5, #70
+ 507 001a 5C64     		str	r4, [r3, #68]
+ 508 001c FF35     		add	r5, r5, #255
+ 509 001e 4024     		mov	r4, #64
+ 510 0020 4455     		strb	r4, [r0, r5]
+ 511 0022 0F4D     		ldr	r5, .L60+8
+ 512 0024 3026     		mov	r6, #48
+ 513 0026 1D64     		str	r5, [r3, #64]
+ 514 0028 9025     		mov	r5, #144
+ 515 002a 6D00     		lsl	r5, r5, #1
+ 516 002c 4655     		strb	r6, [r0, r5]
+ 517 002e 5D6B     		ldr	r5, [r3, #52]
+ 518              		@ sp needed
+ 519 0030 1540     		and	r5, r2
+ 520 0032 2943     		orr	r1, r5
+ 521 0034 9225     		mov	r5, #146
+ 522 0036 5963     		str	r1, [r3, #52]
+ 523 0038 6D00     		lsl	r5, r5, #1
+ 524 003a 8021     		mov	r1, #128
+ 525 003c 4155     		strb	r1, [r0, r5]
+ 526 003e 094D     		ldr	r5, .L60+12
+ 527 0040 1D63     		str	r5, [r3, #48]
+ 528 0042 B025     		mov	r5, #176
+ 529 0044 6D00     		lsl	r5, r5, #1
+ 530 0046 4455     		strb	r4, [r0, r5]
+ 531 0048 5C6F     		ldr	r4, [r3, #116]
+ 532 004a 2240     		and	r2, r4
+ 533 004c 5A67     		str	r2, [r3, #116]
+ 534 004e B223     		mov	r3, #178
+ 535 0050 5B00     		lsl	r3, r3, #1
+ 536 0052 C154     		strb	r1, [r0, r3]
+ 537 0054 70BD     		pop	{r4, r5, r6, pc}
+ 538              	.L61:
+ 539 0056 C046     		.align	2
+ 540              	.L60:
+ 541 0058 00000000 		.word	usb_endpoint_table
+ 542 005c FFFFFF8F 		.word	-1879048193
+ 543 0060 40000000 		.word	udd_ep_out_cache_buffer+64
+ 544 0064 40000000 		.word	udd_ep_in_cache_buffer+64
+ 546              		.comm	udd_ep_in_cache_buffer,128,4
+ 547              		.comm	udd_ep_out_cache_buffer,128,4
+ 548              		.comm	usb_endpoint_table,128,4
+ 549              		.section	.bss.read_job,"aw",%nobits
+ 550              		.set	.LANCHOR0,. + 0
+ 553              	read_job:
+ 554 0000 00       		.space	1
+ 555              		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 board_driver_usb.c
+     /tmp/ccNQbbBg.s:15     .text.USB_IsConfigured:0000000000000000 $t
+     /tmp/ccNQbbBg.s:20     .text.USB_IsConfigured:0000000000000000 USB_IsConfigured
+     /tmp/ccNQbbBg.s:82     .text.USB_IsConfigured:0000000000000070 $d
+                            *COM*:0000000000000080 usb_endpoint_table
+                            *COM*:0000000000000080 udd_ep_out_cache_buffer
+                            *COM*:0000000000000080 udd_ep_in_cache_buffer
+     /tmp/ccNQbbBg.s:89     .text.USB_Open:0000000000000000 $t
+     /tmp/ccNQbbBg.s:94     .text.USB_Open:0000000000000000 USB_Open
+     /tmp/ccNQbbBg.s:110    .text.USB_Open:0000000000000018 $d
+     /tmp/ccNQbbBg.s:113    .text.USB_Init:0000000000000000 $t
+     /tmp/ccNQbbBg.s:118    .text.USB_Init:0000000000000000 USB_Init
+     /tmp/ccNQbbBg.s:200    .text.USB_Init:0000000000000098 $d
+     /tmp/ccNQbbBg.s:208    .text.USB_Write:0000000000000000 $t
+     /tmp/ccNQbbBg.s:213    .text.USB_Write:0000000000000000 USB_Write
+     /tmp/ccNQbbBg.s:286    .text.USB_Write:0000000000000084 $d
+     /tmp/ccNQbbBg.s:291    .text.USB_Read:0000000000000000 $t
+     /tmp/ccNQbbBg.s:296    .text.USB_Read:0000000000000000 USB_Read
+     /tmp/ccNQbbBg.s:358    .text.USB_Read:000000000000006c $d
+     /tmp/ccNQbbBg.s:364    .text.USB_Read_blocking:0000000000000000 $t
+     /tmp/ccNQbbBg.s:369    .text.USB_Read_blocking:0000000000000000 USB_Read_blocking
+     /tmp/ccNQbbBg.s:418    .text.USB_Read_blocking:0000000000000054 $d
+     /tmp/ccNQbbBg.s:423    .text.USB_SendStall:0000000000000000 $t
+     /tmp/ccNQbbBg.s:428    .text.USB_SendStall:0000000000000000 USB_SendStall
+     /tmp/ccNQbbBg.s:442    .text.USB_SendZlp:0000000000000000 $t
+     /tmp/ccNQbbBg.s:447    .text.USB_SendZlp:0000000000000000 USB_SendZlp
+     /tmp/ccNQbbBg.s:470    .text.USB_SendZlp:0000000000000024 $d
+     /tmp/ccNQbbBg.s:473    .text.USB_SetAddress:0000000000000000 $t
+     /tmp/ccNQbbBg.s:478    .text.USB_SetAddress:0000000000000000 USB_SetAddress
+     /tmp/ccNQbbBg.s:488    .text.USB_Configure:0000000000000000 $t
+     /tmp/ccNQbbBg.s:493    .text.USB_Configure:0000000000000000 USB_Configure
+     /tmp/ccNQbbBg.s:541    .text.USB_Configure:0000000000000058 $d
+     /tmp/ccNQbbBg.s:553    .bss.read_job:0000000000000000 read_job
+     /tmp/ccNQbbBg.s:554    .bss.read_job:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+sam_ba_usb_CDC_Enumerate
+pinMux
+memset
+memcpy

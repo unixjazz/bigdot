@@ -1,0 +1,229 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"board_driver_serial.c"
+  14              		.section	.text.uart_basic_init,"ax",%progbits
+  15              		.align	1
+  16              		.global	uart_basic_init
+  17              		.code	16
+  18              		.thumb_func
+  20              	uart_basic_init:
+  21 0000 10B5     		push	{r4, lr}
+  22              	.L3:
+  23 0002 C369     		ldr	r3, [r0, #28]
+  24 0004 002B     		cmp	r3, #0
+  25 0006 FCD1     		bne	.L3
+  26 0008 0368     		ldr	r3, [r0]
+  27 000a 0224     		mov	r4, #2
+  28 000c A343     		bic	r3, r4
+  29 000e 0360     		str	r3, [r0]
+  30              	.L5:
+  31 0010 C369     		ldr	r3, [r0, #28]
+  32 0012 002B     		cmp	r3, #0
+  33 0014 FCD1     		bne	.L5
+  34 0016 0368     		ldr	r3, [r0]
+  35 0018 0124     		mov	r4, #1
+  36 001a 2343     		orr	r3, r4
+  37 001c 0360     		str	r3, [r0]
+  38              	.L7:
+  39 001e 0368     		ldr	r3, [r0]
+  40 0020 DC07     		lsl	r4, r3, #31
+  41 0022 FCD4     		bmi	.L7
+  42              	.L9:
+  43 0024 C369     		ldr	r3, [r0, #28]
+  44 0026 002B     		cmp	r3, #0
+  45 0028 FCD1     		bne	.L9
+  46 002a 094B     		ldr	r3, .L15
+  47 002c 1A43     		orr	r2, r3
+  48 002e 0260     		str	r2, [r0]
+  49              	.L11:
+  50 0030 C369     		ldr	r3, [r0, #28]
+  51 0032 002B     		cmp	r3, #0
+  52 0034 FCD1     		bne	.L11
+  53 0036 C023     		mov	r3, #192
+  54 0038 9B02     		lsl	r3, r3, #10
+  55 003a 4360     		str	r3, [r0, #4]
+  56 003c 8181     		strh	r1, [r0, #12]
+  57              	.L13:
+  58 003e C369     		ldr	r3, [r0, #28]
+  59 0040 002B     		cmp	r3, #0
+  60 0042 FCD1     		bne	.L13
+  61 0044 0368     		ldr	r3, [r0]
+  62 0046 0222     		mov	r2, #2
+  63 0048 1343     		orr	r3, r2
+  64 004a 0360     		str	r3, [r0]
+  65              		@ sp needed
+  66 004c 10BD     		pop	{r4, pc}
+  67              	.L16:
+  68 004e C046     		.align	2
+  69              	.L15:
+  70 0050 04000040 		.word	1073741828
+  72              		.section	.text.uart_disable,"ax",%progbits
+  73              		.align	1
+  74              		.global	uart_disable
+  75              		.code	16
+  76              		.thumb_func
+  78              	uart_disable:
+  79              	.L19:
+  80 0000 C369     		ldr	r3, [r0, #28]
+  81 0002 002B     		cmp	r3, #0
+  82 0004 FCD1     		bne	.L19
+  83 0006 0368     		ldr	r3, [r0]
+  84 0008 0222     		mov	r2, #2
+  85 000a 9343     		bic	r3, r2
+  86 000c 0360     		str	r3, [r0]
+  87              		@ sp needed
+  88 000e 7047     		bx	lr
+  90              		.section	.text.uart_write_byte,"ax",%progbits
+  91              		.align	1
+  92              		.global	uart_write_byte
+  93              		.code	16
+  94              		.thumb_func
+  96              	uart_write_byte:
+  97              	.L22:
+  98 0000 037E     		ldrb	r3, [r0, #24]
+  99 0002 DA07     		lsl	r2, r3, #31
+ 100 0004 FCD5     		bpl	.L22
+ 101 0006 0185     		strh	r1, [r0, #40]
+ 102              		@ sp needed
+ 103 0008 7047     		bx	lr
+ 105              		.section	.text.uart_read_byte,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	uart_read_byte
+ 108              		.code	16
+ 109              		.thumb_func
+ 111              	uart_read_byte:
+ 112              	.L25:
+ 113 0000 027E     		ldrb	r2, [r0, #24]
+ 114 0002 0123     		mov	r3, #1
+ 115 0004 5107     		lsl	r1, r2, #29
+ 116 0006 FBD5     		bpl	.L25
+ 117 0008 428B     		ldrh	r2, [r0, #26]
+ 118 000a 1A42     		tst	r2, r3
+ 119 000c 07D1     		bne	.L26
+ 120 000e 428B     		ldrh	r2, [r0, #26]
+ 121 0010 DA40     		lsr	r2, r2, r3
+ 122 0012 1A42     		tst	r2, r3
+ 123 0014 03D1     		bne	.L26
+ 124 0016 428B     		ldrh	r2, [r0, #26]
+ 125 0018 9208     		lsr	r2, r2, #2
+ 126 001a 1A42     		tst	r2, r3
+ 127 001c 02D0     		beq	.L27
+ 128              	.L26:
+ 129 001e 034B     		ldr	r3, .L31
+ 130 0020 0122     		mov	r2, #1
+ 131 0022 1A70     		strb	r2, [r3]
+ 132              	.L27:
+ 133 0024 008D     		ldrh	r0, [r0, #40]
+ 134              		@ sp needed
+ 135 0026 C0B2     		uxtb	r0, r0
+ 136 0028 7047     		bx	lr
+ 137              	.L32:
+ 138 002a C046     		.align	2
+ 139              	.L31:
+ 140 002c 00000000 		.word	.LANCHOR0
+ 142              		.section	.text.uart_write_buffer_polled,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	uart_write_buffer_polled
+ 145              		.code	16
+ 146              		.thumb_func
+ 148              	uart_write_buffer_polled:
+ 149 0000 10B5     		push	{r4, lr}
+ 150              	.L35:
+ 151 0002 037E     		ldrb	r3, [r0, #24]
+ 152 0004 DC07     		lsl	r4, r3, #31
+ 153 0006 FCD5     		bpl	.L35
+ 154 0008 0B78     		ldrb	r3, [r1]
+ 155 000a 013A     		sub	r2, r2, #1
+ 156 000c 0385     		strh	r3, [r0, #40]
+ 157 000e 034B     		ldr	r3, .L38
+ 158 0010 92B2     		uxth	r2, r2
+ 159 0012 0131     		add	r1, r1, #1
+ 160 0014 9A42     		cmp	r2, r3
+ 161 0016 F4D1     		bne	.L35
+ 162              		@ sp needed
+ 163 0018 10BD     		pop	{r4, pc}
+ 164              	.L39:
+ 165 001a C046     		.align	2
+ 166              	.L38:
+ 167 001c FFFF0000 		.word	65535
+ 169              		.section	.text.uart_read_buffer_polled,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	uart_read_buffer_polled
+ 172              		.code	16
+ 173              		.thumb_func
+ 175              	uart_read_buffer_polled:
+ 176 0000 30B5     		push	{r4, r5, lr}
+ 177              	.L42:
+ 178 0002 047E     		ldrb	r4, [r0, #24]
+ 179 0004 0123     		mov	r3, #1
+ 180 0006 6507     		lsl	r5, r4, #29
+ 181 0008 FBD5     		bpl	.L42
+ 182 000a 448B     		ldrh	r4, [r0, #26]
+ 183 000c 1C42     		tst	r4, r3
+ 184 000e 07D1     		bne	.L43
+ 185 0010 448B     		ldrh	r4, [r0, #26]
+ 186 0012 DC40     		lsr	r4, r4, r3
+ 187 0014 1C42     		tst	r4, r3
+ 188 0016 03D1     		bne	.L43
+ 189 0018 448B     		ldrh	r4, [r0, #26]
+ 190 001a A408     		lsr	r4, r4, #2
+ 191 001c 1C42     		tst	r4, r3
+ 192 001e 02D0     		beq	.L44
+ 193              	.L43:
+ 194 0020 054B     		ldr	r3, .L50
+ 195 0022 0124     		mov	r4, #1
+ 196 0024 1C70     		strb	r4, [r3]
+ 197              	.L44:
+ 198 0026 038D     		ldrh	r3, [r0, #40]
+ 199 0028 013A     		sub	r2, r2, #1
+ 200 002a 0B70     		strb	r3, [r1]
+ 201 002c 034B     		ldr	r3, .L50+4
+ 202 002e 92B2     		uxth	r2, r2
+ 203 0030 0131     		add	r1, r1, #1
+ 204 0032 9A42     		cmp	r2, r3
+ 205 0034 E5D1     		bne	.L42
+ 206              		@ sp needed
+ 207 0036 30BD     		pop	{r4, r5, pc}
+ 208              	.L51:
+ 209              		.align	2
+ 210              	.L50:
+ 211 0038 00000000 		.word	.LANCHOR0
+ 212 003c FFFF0000 		.word	65535
+ 214              		.global	uart_drv_error_flag
+ 215              		.section	.bss.uart_drv_error_flag,"aw",%nobits
+ 216              		.set	.LANCHOR0,. + 0
+ 219              	uart_drv_error_flag:
+ 220 0000 00       		.space	1
+ 221              		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 board_driver_serial.c
+     /tmp/ccVOu7gg.s:15     .text.uart_basic_init:0000000000000000 $t
+     /tmp/ccVOu7gg.s:20     .text.uart_basic_init:0000000000000000 uart_basic_init
+     /tmp/ccVOu7gg.s:70     .text.uart_basic_init:0000000000000050 $d
+     /tmp/ccVOu7gg.s:73     .text.uart_disable:0000000000000000 $t
+     /tmp/ccVOu7gg.s:78     .text.uart_disable:0000000000000000 uart_disable
+     /tmp/ccVOu7gg.s:91     .text.uart_write_byte:0000000000000000 $t
+     /tmp/ccVOu7gg.s:96     .text.uart_write_byte:0000000000000000 uart_write_byte
+     /tmp/ccVOu7gg.s:106    .text.uart_read_byte:0000000000000000 $t
+     /tmp/ccVOu7gg.s:111    .text.uart_read_byte:0000000000000000 uart_read_byte
+     /tmp/ccVOu7gg.s:140    .text.uart_read_byte:000000000000002c $d
+     /tmp/ccVOu7gg.s:143    .text.uart_write_buffer_polled:0000000000000000 $t
+     /tmp/ccVOu7gg.s:148    .text.uart_write_buffer_polled:0000000000000000 uart_write_buffer_polled
+     /tmp/ccVOu7gg.s:167    .text.uart_write_buffer_polled:000000000000001c $d
+     /tmp/ccVOu7gg.s:170    .text.uart_read_buffer_polled:0000000000000000 $t
+     /tmp/ccVOu7gg.s:175    .text.uart_read_buffer_polled:0000000000000000 uart_read_buffer_polled
+     /tmp/ccVOu7gg.s:211    .text.uart_read_buffer_polled:0000000000000038 $d
+     /tmp/ccVOu7gg.s:219    .bss.uart_drv_error_flag:0000000000000000 uart_drv_error_flag
+     /tmp/ccVOu7gg.s:220    .bss.uart_drv_error_flag:0000000000000000 $d
+
+NO UNDEFINED SYMBOLS

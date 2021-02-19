@@ -1,0 +1,735 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"sam_ba_usb.c"
+  14              		.section	.text.usb_init,"ax",%progbits
+  15              		.align	1
+  16              		.global	usb_init
+  17              		.code	16
+  18              		.thumb_func
+  20              	usb_init:
+  21 0000 10B5     		push	{r4, lr}
+  22 0002 8223     		mov	r3, #130
+  23 0004 054C     		ldr	r4, .L2
+  24 0006 DB05     		lsl	r3, r3, #23
+  25 0008 2360     		str	r3, [r4]
+  26 000a FFF7FEFF 		bl	USB_Init
+  27 000e 201C     		mov	r0, r4
+  28 0010 2168     		ldr	r1, [r4]
+  29 0012 FFF7FEFF 		bl	USB_Open
+  30              		@ sp needed
+  31 0016 201C     		mov	r0, r4
+  32 0018 10BD     		pop	{r4, pc}
+  33              	.L3:
+  34 001a C046     		.align	2
+  35              	.L2:
+  36 001c 00000000 		.word	sam_ba_cdc
+  38              		.section	.text.USB_SendString,"ax",%progbits
+  39              		.align	1
+  40              		.global	USB_SendString
+  41              		.code	16
+  42              		.thumb_func
+  44              	USB_SendString:
+  45 0000 70B5     		push	{r4, r5, r6, lr}
+  46 0002 051C     		mov	r5, r0
+  47 0004 C0B0     		sub	sp, sp, #256
+  48 0006 081C     		mov	r0, r1
+  49 0008 161C     		mov	r6, r2
+  50 000a 0C1C     		mov	r4, r1
+  51 000c FFF7FEFF 		bl	strlen
+  52 0010 4000     		lsl	r0, r0, #1
+  53 0012 6A46     		mov	r2, sp
+  54 0014 0323     		mov	r3, #3
+  55 0016 0230     		add	r0, r0, #2
+  56 0018 5370     		strb	r3, [r2, #1]
+  57 001a 1070     		strb	r0, [r2]
+  58 001c 7608     		lsr	r6, r6, #1
+  59 001e 0123     		mov	r3, #1
+  60              	.L5:
+  61 0020 E218     		add	r2, r4, r3
+  62 0022 013A     		sub	r2, r2, #1
+  63 0024 1178     		ldrb	r1, [r2]
+  64 0026 5A00     		lsl	r2, r3, #1
+  65 0028 0029     		cmp	r1, #0
+  66 002a 06D1     		bne	.L6
+  67              	.L8:
+  68 002c 281C     		mov	r0, r5
+  69 002e 6946     		mov	r1, sp
+  70 0030 0023     		mov	r3, #0
+  71 0032 FFF7FEFF 		bl	USB_Write
+  72 0036 40B0     		add	sp, sp, #256
+  73              		@ sp needed
+  74 0038 70BD     		pop	{r4, r5, r6, pc}
+  75              	.L6:
+  76 003a B342     		cmp	r3, r6
+  77 003c F6DA     		bge	.L8
+  78 003e 6846     		mov	r0, sp
+  79 0040 8152     		strh	r1, [r0, r2]
+  80 0042 0133     		add	r3, r3, #1
+  81 0044 ECE7     		b	.L5
+  83              		.section	.text.sam_ba_usb_CDC_Enumerate,"ax",%progbits
+  84              		.align	1
+  85              		.global	sam_ba_usb_CDC_Enumerate
+  86              		.code	16
+  87              		.thumb_func
+  89              	sam_ba_usb_CDC_Enumerate:
+  90 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+  91 0002 BA4A     		ldr	r2, .L82
+  92 0004 0468     		ldr	r4, [r0]
+  93 0006 1378     		ldrb	r3, [r2]
+  94 0008 B949     		ldr	r1, .L82+4
+  95 000a 271C     		mov	r7, r4
+  96 000c FF37     		add	r7, r7, #255
+  97 000e 051C     		mov	r5, r0
+  98 0010 1020     		mov	r0, #16
+  99 0012 3872     		strb	r0, [r7, #8]
+ 100 0014 0B70     		strb	r3, [r1]
+ 101 0016 5378     		ldrb	r3, [r2, #1]
+ 102 0018 B648     		ldr	r0, .L82+8
+ 103 001a B74E     		ldr	r6, .L82+12
+ 104 001c 0370     		strb	r3, [r0]
+ 105 001e 9378     		ldrb	r3, [r2, #2]
+ 106 0020 3380     		strh	r3, [r6]
+ 107 0022 D178     		ldrb	r1, [r2, #3]
+ 108 0024 3388     		ldrh	r3, [r6]
+ 109 0026 0902     		lsl	r1, r1, #8
+ 110 0028 0B43     		orr	r3, r1
+ 111 002a 3380     		strh	r3, [r6]
+ 112 002c 1179     		ldrb	r1, [r2, #4]
+ 113 002e B34B     		ldr	r3, .L82+16
+ 114 0030 1980     		strh	r1, [r3]
+ 115 0032 5179     		ldrb	r1, [r2, #5]
+ 116 0034 1888     		ldrh	r0, [r3]
+ 117 0036 0902     		lsl	r1, r1, #8
+ 118 0038 0843     		orr	r0, r1
+ 119 003a 1880     		strh	r0, [r3]
+ 120 003c 9079     		ldrb	r0, [r2, #6]
+ 121 003e B049     		ldr	r1, .L82+20
+ 122 0040 0880     		strh	r0, [r1]
+ 123 0042 D279     		ldrb	r2, [r2, #7]
+ 124 0044 0888     		ldrh	r0, [r1]
+ 125 0046 1202     		lsl	r2, r2, #8
+ 126 0048 0243     		orr	r2, r0
+ 127 004a 0A80     		strh	r2, [r1]
+ 128 004c 4022     		mov	r2, #64
+ 129 004e 7A71     		strb	r2, [r7, #5]
+ 130 0050 A84F     		ldr	r7, .L82+8
+ 131 0052 3A78     		ldrb	r2, [r7]
+ 132 0054 A64F     		ldr	r7, .L82+4
+ 133 0056 1202     		lsl	r2, r2, #8
+ 134 0058 3878     		ldrb	r0, [r7]
+ 135 005a 0F1C     		mov	r7, r1
+ 136 005c 0243     		orr	r2, r0
+ 137 005e A948     		ldr	r0, .L82+24
+ 138 0060 8446     		mov	ip, r0
+ 139 0062 181C     		mov	r0, r3
+ 140 0064 6245     		cmp	r2, ip
+ 141 0066 00D1     		bne	.LCB151
+ 142 0068 C2E0     		b	.L13	@long jump
+ 143              	.LCB151:
+ 144 006a 20DC     		bgt	.L14
+ 145 006c 8021     		mov	r1, #128
+ 146 006e 4900     		lsl	r1, r1, #1
+ 147 0070 8A42     		cmp	r2, r1
+ 148 0072 00D1     		bne	.LCB157
+ 149 0074 6EE1     		b	.L12	@long jump
+ 150              	.LCB157:
+ 151 0076 09DC     		bgt	.L16
+ 152 0078 812A     		cmp	r2, #129
+ 153 007a 00D1     		bne	.LCB161
+ 154 007c 92E0     		b	.L17	@long jump
+ 155              	.LCB161:
+ 156 007e 822A     		cmp	r2, #130
+ 157 0080 00D1     		bne	.LCB163
+ 158 0082 95E0     		b	.L18	@long jump
+ 159              	.LCB163:
+ 160 0084 802A     		cmp	r2, #128
+ 161 0086 00D0     		beq	.LCB165
+ 162 0088 64E1     		b	.L12	@long jump
+ 163              	.LCB165:
+ 164 008a 8BE0     		b	.L17
+ 165              	.L16:
+ 166 008c 8123     		mov	r3, #129
+ 167 008e 5B00     		lsl	r3, r3, #1
+ 168 0090 9A42     		cmp	r2, r3
+ 169 0092 00D1     		bne	.LCB173
+ 170 0094 CFE0     		b	.L20	@long jump
+ 171              	.LCB173:
+ 172 0096 00DA     		bge	.LCB175
+ 173 0098 58E1     		b	.L79	@long jump
+ 174              	.LCB175:
+ 175 009a C023     		mov	r3, #192
+ 176 009c 9B00     		lsl	r3, r3, #2
+ 177 009e 9A42     		cmp	r2, r3
+ 178 00a0 00D1     		bne	.LCB179
+ 179 00a2 57E1     		b	.L12	@long jump
+ 180              	.LCB179:
+ 181 00a4 984B     		ldr	r3, .L82+28
+ 182 00a6 9A42     		cmp	r2, r3
+ 183 00a8 00D1     		bne	.LCB182
+ 184 00aa 4FE1     		b	.L79	@long jump
+ 185              	.LCB182:
+ 186 00ac 52E1     		b	.L12
+ 187              	.L14:
+ 188 00ae 9023     		mov	r3, #144
+ 189 00b0 1B01     		lsl	r3, r3, #4
+ 190 00b2 9A42     		cmp	r2, r3
+ 191 00b4 69D0     		beq	.L24
+ 192 00b6 15DC     		bgt	.L25
+ 193 00b8 D023     		mov	r3, #208
+ 194 00ba DB00     		lsl	r3, r3, #3
+ 195 00bc 9A42     		cmp	r2, r3
+ 196 00be 22D0     		beq	.L26
+ 197 00c0 8823     		mov	r3, #136
+ 198 00c2 1B01     		lsl	r3, r3, #4
+ 199 00c4 9A42     		cmp	r2, r3
+ 200 00c6 69D0     		beq	.L27
+ 201 00c8 A023     		mov	r3, #160
+ 202 00ca DB00     		lsl	r3, r3, #3
+ 203 00cc 9A42     		cmp	r2, r3
+ 204 00ce 00D0     		beq	.LCB204
+ 205 00d0 40E1     		b	.L12	@long jump
+ 206              	.LCB204:
+ 207 00d2 201C     		mov	r0, r4
+ 208 00d4 FFF7FEFF 		bl	USB_SendZlp
+ 209 00d8 3188     		ldrh	r1, [r6]
+ 210 00da 2868     		ldr	r0, [r5]
+ 211 00dc 89B2     		uxth	r1, r1
+ 212 00de FFF7FEFF 		bl	USB_SetAddress
+ 213 00e2 3BE1     		b	.L11
+ 214              	.L25:
+ 215 00e4 894B     		ldr	r3, .L82+32
+ 216 00e6 9A42     		cmp	r2, r3
+ 217 00e8 00D1     		bne	.LCB217
+ 218 00ea 2FE1     		b	.L79	@long jump
+ 219              	.LCB217:
+ 220 00ec 00DC     		bgt	.LCB219
+ 221 00ee 31E1     		b	.L12	@long jump
+ 222              	.LCB219:
+ 223 00f0 874B     		ldr	r3, .L82+36
+ 224 00f2 9A42     		cmp	r2, r3
+ 225 00f4 00D1     		bne	.LCB222
+ 226 00f6 1DE1     		b	.L31	@long jump
+ 227              	.LCB222:
+ 228 00f8 864B     		ldr	r3, .L82+40
+ 229 00fa 9A42     		cmp	r2, r3
+ 230 00fc 00D0     		beq	.LCB225
+ 231 00fe 29E1     		b	.L12	@long jump
+ 232              	.LCB225:
+ 233 0100 3388     		ldrh	r3, [r6]
+ 234 0102 6B71     		strb	r3, [r5, #5]
+ 235 0104 22E1     		b	.L79
+ 236              	.L26:
+ 237 0106 3388     		ldrh	r3, [r6]
+ 238 0108 1B0A     		lsr	r3, r3, #8
+ 239 010a 012B     		cmp	r3, #1
+ 240 010c 08D1     		bne	.L33
+ 241 010e 0B88     		ldrh	r3, [r1]
+ 242 0110 1222     		mov	r2, #18
+ 243 0112 2868     		ldr	r0, [r5]
+ 244 0114 9342     		cmp	r3, r2
+ 245 0116 01D8     		bhi	.L34
+ 246 0118 0A88     		ldrh	r2, [r1]
+ 247 011a 92B2     		uxth	r2, r2
+ 248              	.L34:
+ 249 011c 7E49     		ldr	r1, .L82+44
+ 250 011e 11E1     		b	.L78
+ 251              	.L33:
+ 252 0120 3388     		ldrh	r3, [r6]
+ 253 0122 1B0A     		lsr	r3, r3, #8
+ 254 0124 022B     		cmp	r3, #2
+ 255 0126 08D1     		bne	.L36
+ 256 0128 0B88     		ldrh	r3, [r1]
+ 257 012a 4322     		mov	r2, #67
+ 258 012c 2868     		ldr	r0, [r5]
+ 259 012e 9342     		cmp	r3, r2
+ 260 0130 01D8     		bhi	.L37
+ 261 0132 0A88     		ldrh	r2, [r1]
+ 262 0134 92B2     		uxth	r2, r2
+ 263              	.L37:
+ 264 0136 7949     		ldr	r1, .L82+48
+ 265 0138 04E1     		b	.L78
+ 266              	.L36:
+ 267 013a 3388     		ldrh	r3, [r6]
+ 268 013c 1B0A     		lsr	r3, r3, #8
+ 269 013e 032B     		cmp	r3, #3
+ 270 0140 00D0     		beq	.LCB280
+ 271 0142 07E1     		b	.L12	@long jump
+ 272              	.LCB280:
+ 273 0144 3388     		ldrh	r3, [r6]
+ 274 0146 DBB2     		uxtb	r3, r3
+ 275 0148 012B     		cmp	r3, #1
+ 276 014a 17D0     		beq	.L40
+ 277 014c 002B     		cmp	r3, #0
+ 278 014e 07D0     		beq	.L41
+ 279 0150 022B     		cmp	r3, #2
+ 280 0152 00D0     		beq	.LCB291
+ 281 0154 FEE0     		b	.L12	@long jump
+ 282              	.LCB291:
+ 283 0156 0A88     		ldrh	r2, [r1]
+ 284 0158 2868     		ldr	r0, [r5]
+ 285 015a D2B2     		uxtb	r2, r2
+ 286 015c 7049     		ldr	r1, .L82+52
+ 287 015e 11E0     		b	.L81
+ 288              	.L41:
+ 289 0160 0422     		mov	r2, #4
+ 290 0162 01A8     		add	r0, sp, #4
+ 291 0164 6F49     		ldr	r1, .L82+56
+ 292 0166 FFF7FEFF 		bl	memcpy
+ 293 016a 3B88     		ldrh	r3, [r7]
+ 294 016c 0422     		mov	r2, #4
+ 295 016e 2868     		ldr	r0, [r5]
+ 296 0170 9342     		cmp	r3, r2
+ 297 0172 01D8     		bhi	.L43
+ 298 0174 3A88     		ldrh	r2, [r7]
+ 299 0176 92B2     		uxth	r2, r2
+ 300              	.L43:
+ 301 0178 01A9     		add	r1, sp, #4
+ 302 017a E3E0     		b	.L78
+ 303              	.L40:
+ 304 017c 0A88     		ldrh	r2, [r1]
+ 305 017e 2868     		ldr	r0, [r5]
+ 306 0180 6949     		ldr	r1, .L82+60
+ 307 0182 D2B2     		uxtb	r2, r2
+ 308              	.L81:
+ 309 0184 FFF7FEFF 		bl	USB_SendString
+ 310 0188 E8E0     		b	.L11
+ 311              	.L24:
+ 312 018a 3388     		ldrh	r3, [r6]
+ 313 018c 201C     		mov	r0, r4
+ 314 018e 2B71     		strb	r3, [r5, #4]
+ 315 0190 FFF7FEFF 		bl	USB_SendZlp
+ 316 0194 201C     		mov	r0, r4
+ 317 0196 FFF7FEFF 		bl	USB_Configure
+ 318 019a DFE0     		b	.L11
+ 319              	.L27:
+ 320 019c 291C     		mov	r1, r5
+ 321 019e 01C9     		ldmia	r1!, {r0}
+ 322 01a0 0122     		mov	r2, #1
+ 323 01a2 CFE0     		b	.L78
+ 324              	.L17:
+ 325 01a4 6149     		ldr	r1, .L82+64
+ 326 01a6 0023     		mov	r3, #0
+ 327 01a8 0B80     		strh	r3, [r1]
+ 328 01aa 2868     		ldr	r0, [r5]
+ 329 01ac 0222     		mov	r2, #2
+ 330 01ae CAE0     		b	.L80
+ 331              	.L18:
+ 332 01b0 5E49     		ldr	r1, .L82+64
+ 333 01b2 0022     		mov	r2, #0
+ 334 01b4 0A80     		strh	r2, [r1]
+ 335 01b6 1888     		ldrh	r0, [r3]
+ 336 01b8 5022     		mov	r2, #80
+ 337 01ba 1040     		and	r0, r2
+ 338 01bc 5C4A     		ldr	r2, .L82+68
+ 339 01be 1070     		strb	r0, [r2]
+ 340 01c0 1E88     		ldrh	r6, [r3]
+ 341 01c2 0F20     		mov	r0, #15
+ 342 01c4 3040     		and	r0, r6
+ 343 01c6 1880     		strh	r0, [r3]
+ 344 01c8 1888     		ldrh	r0, [r3]
+ 345 01ca 0328     		cmp	r0, #3
+ 346 01cc 00D9     		bls	.LCB379
+ 347 01ce C1E0     		b	.L12	@long jump
+ 348              	.LCB379:
+ 349 01d0 1278     		ldrb	r2, [r2]
+ 350 01d2 1B88     		ldrh	r3, [r3]
+ 351 01d4 0833     		add	r3, r3, #8
+ 352 01d6 5B01     		lsl	r3, r3, #5
+ 353 01d8 E418     		add	r4, r4, r3
+ 354 01da A379     		ldrb	r3, [r4, #6]
+ 355 01dc 002A     		cmp	r2, #0
+ 356 01de 01D0     		beq	.L45
+ 357 01e0 9B06     		lsl	r3, r3, #26
+ 358 01e2 00E0     		b	.L76
+ 359              	.L45:
+ 360 01e4 DB06     		lsl	r3, r3, #27
+ 361              	.L76:
+ 362 01e6 DB0F     		lsr	r3, r3, #31
+ 363 01e8 0B80     		strh	r3, [r1]
+ 364 01ea 2868     		ldr	r0, [r5]
+ 365 01ec 0222     		mov	r2, #2
+ 366 01ee A9E0     		b	.L78
+ 367              	.L13:
+ 368 01f0 1988     		ldrh	r1, [r3]
+ 369 01f2 7F22     		mov	r2, #127
+ 370 01f4 9143     		bic	r1, r2
+ 371 01f6 4E4A     		ldr	r2, .L82+68
+ 372 01f8 C9B2     		uxtb	r1, r1
+ 373 01fa 1170     		strb	r1, [r2]
+ 374 01fc 1888     		ldrh	r0, [r3]
+ 375 01fe 0F21     		mov	r1, #15
+ 376 0200 0140     		and	r1, r0
+ 377 0202 1980     		strh	r1, [r3]
+ 378 0204 3188     		ldrh	r1, [r6]
+ 379 0206 0029     		cmp	r1, #0
+ 380 0208 00D0     		beq	.LCB429
+ 381 020a A3E0     		b	.L12	@long jump
+ 382              	.LCB429:
+ 383 020c 1988     		ldrh	r1, [r3]
+ 384 020e 0029     		cmp	r1, #0
+ 385 0210 00D1     		bne	.LCB433
+ 386 0212 9FE0     		b	.L12	@long jump
+ 387              	.LCB433:
+ 388 0214 1988     		ldrh	r1, [r3]
+ 389 0216 0329     		cmp	r1, #3
+ 390 0218 00D9     		bls	.LCB437
+ 391 021a 9BE0     		b	.L12	@long jump
+ 392              	.LCB437:
+ 393 021c 1278     		ldrb	r2, [r2]
+ 394 021e 1B88     		ldrh	r3, [r3]
+ 395 0220 0833     		add	r3, r3, #8
+ 396 0222 5B01     		lsl	r3, r3, #5
+ 397 0224 E318     		add	r3, r4, r3
+ 398 0226 002A     		cmp	r2, #0
+ 399 0228 02D0     		beq	.L48
+ 400 022a 2022     		mov	r2, #32
+ 401 022c 5A71     		strb	r2, [r3, #5]
+ 402 022e 8DE0     		b	.L79
+ 403              	.L48:
+ 404 0230 1021     		mov	r1, #16
+ 405 0232 5971     		strb	r1, [r3, #5]
+ 406 0234 8AE0     		b	.L79
+ 407              	.L20:
+ 408 0236 0288     		ldrh	r2, [r0]
+ 409 0238 7F23     		mov	r3, #127
+ 410 023a 9A43     		bic	r2, r3
+ 411 023c 3C4B     		ldr	r3, .L82+68
+ 412 023e D2B2     		uxtb	r2, r2
+ 413 0240 1A70     		strb	r2, [r3]
+ 414 0242 0188     		ldrh	r1, [r0]
+ 415 0244 0F22     		mov	r2, #15
+ 416 0246 0A40     		and	r2, r1
+ 417 0248 0280     		strh	r2, [r0]
+ 418 024a 3288     		ldrh	r2, [r6]
+ 419 024c 002A     		cmp	r2, #0
+ 420 024e 00D0     		beq	.LCB475
+ 421 0250 80E0     		b	.L12	@long jump
+ 422              	.LCB475:
+ 423 0252 0288     		ldrh	r2, [r0]
+ 424 0254 002A     		cmp	r2, #0
+ 425 0256 00D1     		bne	.LCB479
+ 426 0258 7CE0     		b	.L12	@long jump
+ 427              	.LCB479:
+ 428 025a 0288     		ldrh	r2, [r0]
+ 429 025c 032A     		cmp	r2, #3
+ 430 025e 00D9     		bls	.LCB483
+ 431 0260 78E0     		b	.L12	@long jump
+ 432              	.LCB483:
+ 433 0262 1B78     		ldrb	r3, [r3]
+ 434 0264 002B     		cmp	r3, #0
+ 435 0266 1FD0     		beq	.L51
+ 436 0268 0388     		ldrh	r3, [r0]
+ 437 026a 0833     		add	r3, r3, #8
+ 438 026c 5B01     		lsl	r3, r3, #5
+ 439 026e E318     		add	r3, r4, r3
+ 440 0270 9B79     		ldrb	r3, [r3, #6]
+ 441 0272 9A06     		lsl	r2, r3, #26
+ 442 0274 6AD5     		bpl	.L79
+ 443 0276 0388     		ldrh	r3, [r0]
+ 444 0278 2022     		mov	r2, #32
+ 445 027a 0833     		add	r3, r3, #8
+ 446 027c 5B01     		lsl	r3, r3, #5
+ 447 027e E318     		add	r3, r4, r3
+ 448 0280 1A71     		strb	r2, [r3, #4]
+ 449 0282 0388     		ldrh	r3, [r0]
+ 450 0284 0833     		add	r3, r3, #8
+ 451 0286 5B01     		lsl	r3, r3, #5
+ 452 0288 E318     		add	r3, r4, r3
+ 453 028a DB79     		ldrb	r3, [r3, #7]
+ 454 028c 5F06     		lsl	r7, r3, #25
+ 455 028e 5DD5     		bpl	.L79
+ 456 0290 0388     		ldrh	r3, [r0]
+ 457 0292 4022     		mov	r2, #64
+ 458 0294 0833     		add	r3, r3, #8
+ 459 0296 5B01     		lsl	r3, r3, #5
+ 460 0298 E318     		add	r3, r4, r3
+ 461 029a DA71     		strb	r2, [r3, #7]
+ 462 029c 0388     		ldrh	r3, [r0]
+ 463 029e 0222     		mov	r2, #2
+ 464 02a0 0833     		add	r3, r3, #8
+ 465 02a2 5B01     		lsl	r3, r3, #5
+ 466 02a4 E318     		add	r3, r4, r3
+ 467 02a6 1EE0     		b	.L77
+ 468              	.L51:
+ 469 02a8 0388     		ldrh	r3, [r0]
+ 470 02aa 0833     		add	r3, r3, #8
+ 471 02ac 5B01     		lsl	r3, r3, #5
+ 472 02ae E318     		add	r3, r4, r3
+ 473 02b0 9B79     		ldrb	r3, [r3, #6]
+ 474 02b2 D906     		lsl	r1, r3, #27
+ 475 02b4 4AD5     		bpl	.L79
+ 476 02b6 0388     		ldrh	r3, [r0]
+ 477 02b8 1022     		mov	r2, #16
+ 478 02ba 0833     		add	r3, r3, #8
+ 479 02bc 5B01     		lsl	r3, r3, #5
+ 480 02be E318     		add	r3, r4, r3
+ 481 02c0 1A71     		strb	r2, [r3, #4]
+ 482 02c2 0388     		ldrh	r3, [r0]
+ 483 02c4 0833     		add	r3, r3, #8
+ 484 02c6 5B01     		lsl	r3, r3, #5
+ 485 02c8 E318     		add	r3, r4, r3
+ 486 02ca DB79     		ldrb	r3, [r3, #7]
+ 487 02cc 9A06     		lsl	r2, r3, #26
+ 488 02ce 3DD5     		bpl	.L79
+ 489 02d0 0388     		ldrh	r3, [r0]
+ 490 02d2 2022     		mov	r2, #32
+ 491 02d4 0833     		add	r3, r3, #8
+ 492 02d6 5B01     		lsl	r3, r3, #5
+ 493 02d8 E318     		add	r3, r4, r3
+ 494 02da DA71     		strb	r2, [r3, #7]
+ 495 02dc 0388     		ldrh	r3, [r0]
+ 496 02de 0122     		mov	r2, #1
+ 497 02e0 0833     		add	r3, r3, #8
+ 498 02e2 5B01     		lsl	r3, r3, #5
+ 499 02e4 E318     		add	r3, r4, r3
+ 500              	.L77:
+ 501 02e6 1A71     		strb	r2, [r3, #4]
+ 502 02e8 30E0     		b	.L79
+ 503              	.L83:
+ 504 02ea C046     		.align	2
+ 505              	.L82:
+ 506 02ec 00000000 		.word	udd_ep_out_cache_buffer
+ 507 02f0 00000000 		.word	.LANCHOR0
+ 508 02f4 00000000 		.word	.LANCHOR1
+ 509 02f8 00000000 		.word	.LANCHOR2
+ 510 02fc 00000000 		.word	.LANCHOR3
+ 511 0300 00000000 		.word	.LANCHOR4
+ 512 0304 02030000 		.word	770
+ 513 0308 01030000 		.word	769
+ 514 030c 21200000 		.word	8225
+ 515 0310 A1210000 		.word	8609
+ 516 0314 21220000 		.word	8737
+ 517 0318 00000000 		.word	.LANCHOR5
+ 518 031c 00000000 		.word	.LANCHOR6
+ 519 0320 0D000000 		.word	.LC16
+ 520 0324 00000000 		.word	.LANCHOR7
+ 521 0328 00000000 		.word	.LC14
+ 522 032c 00000000 		.word	.LANCHOR8
+ 523 0330 00000000 		.word	.LANCHOR9
+ 524              	.L31:
+ 525 0334 0B88     		ldrh	r3, [r1]
+ 526 0336 0822     		mov	r2, #8
+ 527 0338 2868     		ldr	r0, [r5]
+ 528 033a 9342     		cmp	r3, r2
+ 529 033c 01D8     		bhi	.L55
+ 530 033e 0A88     		ldrh	r2, [r1]
+ 531 0340 92B2     		uxth	r2, r2
+ 532              	.L55:
+ 533 0342 0749     		ldr	r1, .L84
+ 534              	.L78:
+ 535 0344 0023     		mov	r3, #0
+ 536              	.L80:
+ 537 0346 FFF7FEFF 		bl	USB_Write
+ 538 034a 07E0     		b	.L11
+ 539              	.L79:
+ 540 034c 201C     		mov	r0, r4
+ 541 034e FFF7FEFF 		bl	USB_SendZlp
+ 542 0352 03E0     		b	.L11
+ 543              	.L12:
+ 544 0354 201C     		mov	r0, r4
+ 545 0356 0121     		mov	r1, #1
+ 546 0358 FFF7FEFF 		bl	USB_SendStall
+ 547              	.L11:
+ 548              		@ sp needed
+ 549 035c F7BD     		pop	{r0, r1, r2, r4, r5, r6, r7, pc}
+ 550              	.L85:
+ 551 035e C046     		.align	2
+ 552              	.L84:
+ 553 0360 00000000 		.word	line_coding
+ 555              		.comm	sam_ba_cdc,12,4
+ 556              		.section	.rodata
+ 557              		.align	1
+ 558              		.set	.LANCHOR7,. + 0
+ 559              	.LC0:
+ 560 0000 0403     		.short	772
+ 561 0002 0904     		.short	1033
+ 562              		.section	.bss.wLength.11555,"aw",%nobits
+ 563              		.align	1
+ 564              		.set	.LANCHOR4,. + 0
+ 567              	wLength.11555:
+ 568 0000 0000     		.space	2
+ 569              		.section	.bss.bmRequestType.11550,"aw",%nobits
+ 570              		.set	.LANCHOR0,. + 0
+ 573              	bmRequestType.11550:
+ 574 0000 00       		.space	1
+ 575              		.section	.bss.bRequest.11551,"aw",%nobits
+ 576              		.set	.LANCHOR1,. + 0
+ 579              	bRequest.11551:
+ 580 0000 00       		.space	1
+ 581              		.section	.bss.wValue.11553,"aw",%nobits
+ 582              		.align	1
+ 583              		.set	.LANCHOR2,. + 0
+ 586              	wValue.11553:
+ 587 0000 0000     		.space	2
+ 588              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 589              	.LC14:
+ 590 0000 53445320 		.ascii	"SDS librelab\000"
+ 590      6C696272 
+ 590      656C6162 
+ 590      00
+ 591              	.LC16:
+ 592 000d 42696720 		.ascii	"Big Dot\000"
+ 592      446F7400 
+ 593              		.section	.data.cfgDescriptor,"aw",%progbits
+ 594              		.align	2
+ 595              		.set	.LANCHOR6,. + 0
+ 598              	cfgDescriptor:
+ 599 0000 09       		.byte	9
+ 600 0001 02       		.byte	2
+ 601 0002 43       		.byte	67
+ 602 0003 00       		.byte	0
+ 603 0004 02       		.byte	2
+ 604 0005 01       		.byte	1
+ 605 0006 00       		.byte	0
+ 606 0007 80       		.byte	-128
+ 607 0008 32       		.byte	50
+ 608 0009 09       		.byte	9
+ 609 000a 04       		.byte	4
+ 610 000b 00       		.byte	0
+ 611 000c 00       		.byte	0
+ 612 000d 01       		.byte	1
+ 613 000e 02       		.byte	2
+ 614 000f 02       		.byte	2
+ 615 0010 00       		.byte	0
+ 616 0011 00       		.byte	0
+ 617 0012 05       		.byte	5
+ 618 0013 24       		.byte	36
+ 619 0014 00       		.byte	0
+ 620 0015 10       		.byte	16
+ 621 0016 01       		.byte	1
+ 622 0017 04       		.byte	4
+ 623 0018 24       		.byte	36
+ 624 0019 02       		.byte	2
+ 625 001a 00       		.byte	0
+ 626 001b 05       		.byte	5
+ 627 001c 24       		.byte	36
+ 628 001d 06       		.byte	6
+ 629 001e 00       		.byte	0
+ 630 001f 01       		.byte	1
+ 631 0020 05       		.byte	5
+ 632 0021 24       		.byte	36
+ 633 0022 01       		.byte	1
+ 634 0023 00       		.byte	0
+ 635 0024 01       		.byte	1
+ 636 0025 07       		.byte	7
+ 637 0026 05       		.byte	5
+ 638 0027 83       		.byte	-125
+ 639 0028 03       		.byte	3
+ 640 0029 08       		.byte	8
+ 641 002a 00       		.byte	0
+ 642 002b FF       		.byte	-1
+ 643 002c 09       		.byte	9
+ 644 002d 04       		.byte	4
+ 645 002e 01       		.byte	1
+ 646 002f 00       		.byte	0
+ 647 0030 02       		.byte	2
+ 648 0031 0A       		.byte	10
+ 649 0032 00       		.byte	0
+ 650 0033 00       		.byte	0
+ 651 0034 00       		.byte	0
+ 652 0035 07       		.byte	7
+ 653 0036 05       		.byte	5
+ 654 0037 81       		.byte	-127
+ 655 0038 02       		.byte	2
+ 656 0039 40       		.byte	64
+ 657 003a 00       		.byte	0
+ 658 003b 00       		.byte	0
+ 659 003c 07       		.byte	7
+ 660 003d 05       		.byte	5
+ 661 003e 02       		.byte	2
+ 662 003f 02       		.byte	2
+ 663 0040 40       		.byte	64
+ 664 0041 00       		.byte	0
+ 665 0042 00       		.byte	0
+ 666 0043 00       		.section	.bss.wIndex.11554,"aw",%nobits
+ 667              		.align	1
+ 668              		.set	.LANCHOR3,. + 0
+ 671              	wIndex.11554:
+ 672 0000 0000     		.space	2
+ 673              		.section	.bss.wStatus.11556,"aw",%nobits
+ 674              		.align	1
+ 675              		.set	.LANCHOR8,. + 0
+ 678              	wStatus.11556:
+ 679 0000 0000     		.space	2
+ 680              		.section	.bss.dir.11552,"aw",%nobits
+ 681              		.set	.LANCHOR9,. + 0
+ 684              	dir.11552:
+ 685 0000 00       		.space	1
+ 686              		.section	.rodata.devDescriptor,"a",%progbits
+ 687              		.align	2
+ 688              		.set	.LANCHOR5,. + 0
+ 691              	devDescriptor:
+ 692 0000 12       		.byte	18
+ 693 0001 01       		.byte	1
+ 694 0002 00       		.byte	0
+ 695 0003 02       		.byte	2
+ 696 0004 02       		.byte	2
+ 697 0005 00       		.byte	0
+ 698 0006 00       		.byte	0
+ 699 0007 40       		.byte	64
+ 700 0008 11       		.byte	17
+ 701 0009 11       		.byte	17
+ 702 000a 22       		.byte	34
+ 703 000b 22       		.byte	34
+ 704 000c 00       		.byte	0
+ 705 000d 02       		.byte	2
+ 706 000e 01       		.byte	1
+ 707 000f 02       		.byte	2
+ 708 0010 00       		.byte	0
+ 709 0011 01       		.byte	1
+ 710 0012 0000     		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sam_ba_usb.c
+     /tmp/ccNk0UzK.s:15     .text.usb_init:0000000000000000 $t
+     /tmp/ccNk0UzK.s:20     .text.usb_init:0000000000000000 usb_init
+     /tmp/ccNk0UzK.s:36     .text.usb_init:000000000000001c $d
+                            *COM*:000000000000000c sam_ba_cdc
+     /tmp/ccNk0UzK.s:39     .text.USB_SendString:0000000000000000 $t
+     /tmp/ccNk0UzK.s:44     .text.USB_SendString:0000000000000000 USB_SendString
+     /tmp/ccNk0UzK.s:84     .text.sam_ba_usb_CDC_Enumerate:0000000000000000 $t
+     /tmp/ccNk0UzK.s:89     .text.sam_ba_usb_CDC_Enumerate:0000000000000000 sam_ba_usb_CDC_Enumerate
+     /tmp/ccNk0UzK.s:506    .text.sam_ba_usb_CDC_Enumerate:00000000000002ec $d
+     /tmp/ccNk0UzK.s:525    .text.sam_ba_usb_CDC_Enumerate:0000000000000334 $t
+     /tmp/ccNk0UzK.s:553    .text.sam_ba_usb_CDC_Enumerate:0000000000000360 $d
+     /tmp/ccNk0UzK.s:557    .rodata:0000000000000000 $d
+     /tmp/ccNk0UzK.s:563    .bss.wLength.11555:0000000000000000 $d
+     /tmp/ccNk0UzK.s:567    .bss.wLength.11555:0000000000000000 wLength.11555
+     /tmp/ccNk0UzK.s:573    .bss.bmRequestType.11550:0000000000000000 bmRequestType.11550
+     /tmp/ccNk0UzK.s:574    .bss.bmRequestType.11550:0000000000000000 $d
+     /tmp/ccNk0UzK.s:579    .bss.bRequest.11551:0000000000000000 bRequest.11551
+     /tmp/ccNk0UzK.s:580    .bss.bRequest.11551:0000000000000000 $d
+     /tmp/ccNk0UzK.s:582    .bss.wValue.11553:0000000000000000 $d
+     /tmp/ccNk0UzK.s:586    .bss.wValue.11553:0000000000000000 wValue.11553
+     /tmp/ccNk0UzK.s:594    .data.cfgDescriptor:0000000000000000 $d
+     /tmp/ccNk0UzK.s:598    .data.cfgDescriptor:0000000000000000 cfgDescriptor
+     /tmp/ccNk0UzK.s:667    .bss.wIndex.11554:0000000000000000 $d
+     /tmp/ccNk0UzK.s:671    .bss.wIndex.11554:0000000000000000 wIndex.11554
+     /tmp/ccNk0UzK.s:674    .bss.wStatus.11556:0000000000000000 $d
+     /tmp/ccNk0UzK.s:678    .bss.wStatus.11556:0000000000000000 wStatus.11556
+     /tmp/ccNk0UzK.s:684    .bss.dir.11552:0000000000000000 dir.11552
+     /tmp/ccNk0UzK.s:685    .bss.dir.11552:0000000000000000 $d
+     /tmp/ccNk0UzK.s:687    .rodata.devDescriptor:0000000000000000 $d
+     /tmp/ccNk0UzK.s:691    .rodata.devDescriptor:0000000000000000 devDescriptor
+
+UNDEFINED SYMBOLS
+USB_Init
+USB_Open
+strlen
+USB_Write
+USB_SendZlp
+USB_SetAddress
+memcpy
+USB_Configure
+udd_ep_out_cache_buffer
+USB_SendStall
+line_coding

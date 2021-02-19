@@ -1,0 +1,132 @@
+{
+	"packages": [
+	{
+		"name": "librelab",
+		"maintainer": "SDS librelab",
+		"websiteURL": "https://github.com/UVA-DSI/bigdot",
+		"email": "lfr6d@virginia.edu",
+		"help": {
+			"online": "https://github.com/UVA-DSI/bigdot"
+		},
+		"platforms": [
+		{
+			"name": "librelab::Big Dot",
+			"architecture": "samd",
+			"version": "1.8.13",
+			"category": "Contributed",
+			"help": {
+				"online": "https://github.com/UVA-DSI/bigdot"
+			},
+			"url": "https://unixjazz.org/pub/software/bigdot-1.0.zip",
+			"archiveFileName": "bigdot-1.0.zip",
+			"checksum": "SHA-256:4fc2b8e2f818df6cd8892987d555687983726bc4739bba1a47d9e44083891c2e",
+			"size": "471937",
+			"boards": [
+			{"name": "librelab::Big Dot"}
+			],
+			"toolsDependencies": [
+			{
+				"packager": "arduino",
+				"name": "arm-none-eabi-gcc",
+				"version": "4.8.3-2014q1"
+			},
+			{
+				"packager": "librelab",
+				"name": "bossac",
+				"version": "1.9.1"
+			},
+			{
+				"packager": "arduino",
+				"name": "openocd",
+				"version": "0.9.0-arduino"
+			},
+			{
+				"packager": "arduino",
+				"name": "CMSIS",
+				"version": "4.5.0"
+			},
+			{
+		                "packager": "librelab",
+            			"name": "CMSIS-Atmel",
+            			"version": "1.0.0-mattairtech-2"
+          		},
+          		{
+            			"packager": "arduino",
+            			"name": "arduinoOTA",
+            			"version": "1.2.0"
+          		}
+			]
+		}],
+		"tools":[
+                {
+                        "name": "bossac",
+                        "version": "1.9.1",
+                        "systems": [
+                  	{
+                    		"host": "i686-mingw32",
+                    		"url": "https://unixjazz.org/pub/software/BOSSA-1.9.1.tar.gz",
+                    		"archiveFileName": "BOSSA-1.9.1.tar.gz",
+                    		"checksum": "SHA-256:97ac3109b1b467024da3081454202f867815a2bbf0b86b06fb3509eff97dc7ad",
+                    		"size": "537988"
+                  	},
+                  	{
+                    		"host": "x86_64-pc-linux-gnu",
+                    		"url": "https://unixjazz.org/pub/software/BOSSA-1.9.1.tar.gz",
+                    		"archiveFileName": "BOSSA-1.9.1.tar.gz",
+                    		"checksum": "SHA-256:97ac3109b1b467024da3081454202f867815a2bbf0b86b06fb3509eff97dc7ad",
+                    		"size": "537988"
+                	 },
+                 	 {
+                 	        "host": "i686-pc-linux-gnu",
+                 	        "url": "https://unixjazz.org/pub/software/BOSSA-1.9.1.tar.gz",
+                 	        "archiveFileName": "BOSSA-1.9.1.tar.gz",
+                 	        "checksum": "SHA-256:97ac3109b1b467024da3081454202f867815a2bbf0b86b06fb3509eff97dc7ad",
+                 	        "size": "537988"
+                 	 },
+                 	 {
+                 	        "host": "x86_64-apple-darwin",
+                 	        "url": "https://unixjazz.org/pub/software/BOSSA-1.9.1-MacOS-64bits.tar.gz",
+                 	        "archiveFileName": "BOSSA-1.9.1-MacOS-64bits.tar.gz",
+                 	        "checksum": "SHA-256:fa1f68b2dc588199b9aed83ada9e16dbdba00ec468cb9dc1e363662dac697c4a",
+                 	        "size": "34844"
+                 	 }
+                 	 ]
+		},
+		{
+                  	"name": "CMSIS-Atmel",
+                  	"version": "1.0.0-mattairtech-2",
+                  	"systems": [
+                  	{
+                    		"host": "i686-mingw32",
+                    		"url": "https://unixjazz.org/pub/software/CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"archiveFileName": "CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"checksum": "SHA-256:d10ca2a14c8db5757d2b1b4c1e52473ae5337f0762c6617a6074373f2f44540d",
+                    		"size": "2008479"
+                  	},
+                  	{
+                    		"host": "x86_64-pc-linux-gnu",
+                    		"url": "https://unixjazz.org/pub/software/CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"archiveFileName": "CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"checksum": "SHA-256:d10ca2a14c8db5757d2b1b4c1e52473ae5337f0762c6617a6074373f2f44540d",
+                    		"size": "2008479"
+                  	},
+                  	{
+                    		"host": "i686-pc-linux-gnu",
+                    		"url": "https://unixjazz.org/pub/software/CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"archiveFileName": "CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"checksum": "SHA-256:d10ca2a14c8db5757d2b1b4c1e52473ae5337f0762c6617a6074373f2f44540d",
+                    		"size": "2008479"
+                  	},
+                  	{
+                    		"host": "x86_64-apple-darwin",
+                    		"url": "https://unixjazz.org/pub/software/CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"archiveFileName": "CMSIS-Atmel-1.0.0-mattairtech-2.tar.gz",
+                    		"checksum": "SHA-256:d10ca2a14c8db5757d2b1b4c1e52473ae5337f0762c6617a6074373f2f44540d",
+                    		"size": "2008479"
+                  	}
+                  	]
+                }
+		]
+	}
+	]
+}

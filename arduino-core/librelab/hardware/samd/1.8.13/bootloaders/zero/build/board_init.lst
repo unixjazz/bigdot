@@ -1,0 +1,171 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"board_init.c"
+  14              		.section	.text.waitForDFLL,"ax",%progbits
+  15              		.align	1
+  16              		.global	waitForDFLL
+  17              		.code	16
+  18              		.thumb_func
+  20              	waitForDFLL:
+  21              	.L3:
+  22 0000 024B     		ldr	r3, .L5
+  23 0002 DB68     		ldr	r3, [r3, #12]
+  24 0004 DA05     		lsl	r2, r3, #23
+  25 0006 FBD5     		bpl	.L3
+  26              		@ sp needed
+  27 0008 7047     		bx	lr
+  28              	.L6:
+  29 000a C046     		.align	2
+  30              	.L5:
+  31 000c 000C0040 		.word	1073744896
+  33              		.section	.text.waitForPLL,"ax",%progbits
+  34              		.align	1
+  35              		.global	waitForPLL
+  36              		.code	16
+  37              		.thumb_func
+  39              	waitForPLL:
+  40              	.L9:
+  41 0000 024B     		ldr	r3, .L10
+  42 0002 1A78     		ldrb	r2, [r3]
+  43 0004 0E23     		mov	r3, #14
+  44 0006 1A42     		tst	r2, r3
+  45 0008 FAD1     		bne	.L9
+  46              		@ sp needed
+  47 000a 7047     		bx	lr
+  48              	.L11:
+  49              		.align	2
+  50              	.L10:
+  51 000c 380C0040 		.word	1073744952
+  53              		.section	.text.board_init,"ax",%progbits
+  54              		.align	1
+  55              		.global	board_init
+  56              		.code	16
+  57              		.thumb_func
+  59              	board_init:
+  60 0000 70B5     		push	{r4, r5, r6, lr}
+  61 0002 2B4B     		ldr	r3, .L23
+  62 0004 8021     		mov	r1, #128
+  63 0006 5A68     		ldr	r2, [r3, #4]
+  64 0008 2A4E     		ldr	r6, .L23+4
+  65 000a 0A43     		orr	r2, r1
+  66 000c 5A60     		str	r2, [r3, #4]
+  67 000e 5A68     		ldr	r2, [r3, #4]
+  68 0010 0421     		mov	r1, #4
+  69 0012 0A43     		orr	r2, r1
+  70 0014 5A60     		str	r2, [r3, #4]
+  71 0016 7369     		ldr	r3, [r6, #20]
+  72 0018 4022     		mov	r2, #64
+  73 001a 1343     		orr	r3, r2
+  74 001c 7361     		str	r3, [r6, #20]
+  75 001e 8023     		mov	r3, #128
+  76 0020 DB05     		lsl	r3, r3, #23
+  77 0022 0122     		mov	r2, #1
+  78 0024 9A71     		strb	r2, [r3, #6]
+  79 0026 9A78     		ldrb	r2, [r3, #2]
+  80 0028 0221     		mov	r1, #2
+  81 002a 0A43     		orr	r2, r1
+  82 002c 9A70     		strb	r2, [r3, #2]
+  83              	.L14:
+  84 002e 9979     		ldrb	r1, [r3, #6]
+  85 0030 0122     		mov	r2, #1
+  86 0032 1142     		tst	r1, r2
+  87 0034 FBD0     		beq	.L14
+  88 0036 8023     		mov	r3, #128
+  89 0038 1F4D     		ldr	r5, .L23+8
+  90 003a DB05     		lsl	r3, r3, #23
+  91 003c 9A71     		strb	r2, [r3, #6]
+  92 003e 2A70     		strb	r2, [r5]
+  93              	.L16:
+  94 0040 2B78     		ldrb	r3, [r5]
+  95 0042 DA07     		lsl	r2, r3, #31
+  96 0044 04D5     		bpl	.L15
+  97 0046 1C4B     		ldr	r3, .L23+8
+  98 0048 5A68     		ldr	r2, [r3, #4]
+  99 004a 1C4B     		ldr	r3, .L23+12
+ 100 004c 1A42     		tst	r2, r3
+ 101 004e F7D1     		bne	.L16
+ 102              	.L15:
+ 103 0050 1B4C     		ldr	r4, .L23+16
+ 104 0052 8022     		mov	r2, #128
+ 105 0054 238B     		ldrh	r3, [r4, #24]
+ 106              		@ sp needed
+ 107 0056 9343     		bic	r3, r2
+ 108 0058 2383     		strh	r3, [r4, #24]
+ 109 005a FFF7FEFF 		bl	waitForDFLL
+ 110 005e 194B     		ldr	r3, .L23+20
+ 111 0060 1A68     		ldr	r2, [r3]
+ 112 0062 8023     		mov	r3, #128
+ 113 0064 920E     		lsr	r2, r2, #26
+ 114 0066 9202     		lsl	r2, r2, #10
+ 115 0068 9B00     		lsl	r3, r3, #2
+ 116 006a 1343     		orr	r3, r2
+ 117 006c E361     		str	r3, [r4, #28]
+ 118 006e 164B     		ldr	r3, .L23+24
+ 119 0070 2362     		str	r3, [r4, #32]
+ 120 0072 9223     		mov	r3, #146
+ 121 0074 5B00     		lsl	r3, r3, #1
+ 122 0076 2383     		strh	r3, [r4, #24]
+ 123 0078 FFF7FEFF 		bl	waitForDFLL
+ 124 007c 238B     		ldrh	r3, [r4, #24]
+ 125 007e 0222     		mov	r2, #2
+ 126 0080 1343     		orr	r3, r2
+ 127 0082 2383     		strh	r3, [r4, #24]
+ 128 0084 FFF7FEFF 		bl	waitForDFLL
+ 129 0088 104B     		ldr	r3, .L23+28
+ 130 008a 2B62     		str	r3, [r5, #32]
+ 131 008c FFF7FEFF 		bl	waitForSync
+ 132 0090 237D     		ldrb	r3, [r4, #20]
+ 133 0092 0C22     		mov	r2, #12
+ 134 0094 9343     		bic	r3, r2
+ 135 0096 0422     		mov	r2, #4
+ 136 0098 1343     		orr	r3, r2
+ 137 009a 2375     		strb	r3, [r4, #20]
+ 138 009c 0C4B     		ldr	r3, .L23+32
+ 139 009e EB62     		str	r3, [r5, #44]
+ 140 00a0 FFF7FEFF 		bl	waitForSync
+ 141 00a4 0B4B     		ldr	r3, .L23+36
+ 142 00a6 0C4A     		ldr	r2, .L23+40
+ 143 00a8 1A60     		str	r2, [r3]
+ 144 00aa 0123     		mov	r3, #1
+ 145 00ac 3371     		strb	r3, [r6, #4]
+ 146 00ae 70BD     		pop	{r4, r5, r6, pc}
+ 147              	.L24:
+ 148              		.align	2
+ 149              	.L23:
+ 150 00b0 00400041 		.word	1090535424
+ 151 00b4 00040040 		.word	1073742848
+ 152 00b8 00180040 		.word	1073747968
+ 153 00bc FD070000 		.word	2045
+ 154 00c0 000C0040 		.word	1073744896
+ 155 00c4 20608000 		.word	8413216
+ 156 00c8 80BB0A7C 		.word	2081078144
+ 157 00cc 07030100 		.word	66311
+ 158 00d0 06010100 		.word	65798
+ 159 00d4 00000000 		.word	SystemCoreClock
+ 160 00d8 006CDC02 		.word	48000000
+ 162              		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 board_init.c
+     /tmp/ccAHzDrm.s:15     .text.waitForDFLL:0000000000000000 $t
+     /tmp/ccAHzDrm.s:20     .text.waitForDFLL:0000000000000000 waitForDFLL
+     /tmp/ccAHzDrm.s:31     .text.waitForDFLL:000000000000000c $d
+     /tmp/ccAHzDrm.s:34     .text.waitForPLL:0000000000000000 $t
+     /tmp/ccAHzDrm.s:39     .text.waitForPLL:0000000000000000 waitForPLL
+     /tmp/ccAHzDrm.s:51     .text.waitForPLL:000000000000000c $d
+     /tmp/ccAHzDrm.s:54     .text.board_init:0000000000000000 $t
+     /tmp/ccAHzDrm.s:59     .text.board_init:0000000000000000 board_init
+     /tmp/ccAHzDrm.s:150    .text.board_init:00000000000000b0 $d
+
+UNDEFINED SYMBOLS
+waitForSync
+SystemCoreClock

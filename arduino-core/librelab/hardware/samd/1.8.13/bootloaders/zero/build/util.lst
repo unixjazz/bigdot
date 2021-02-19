@@ -1,0 +1,351 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"util.c"
+  14              		.section	.text.flashErase,"ax",%progbits
+  15              		.align	1
+  16              		.global	flashErase
+  17              		.code	16
+  18              		.thumb_func
+  20              	flashErase:
+  21              	.L2:
+  22 0000 074B     		ldr	r3, .L8
+  23 0002 9842     		cmp	r0, r3
+  24 0004 0AD8     		bhi	.L7
+  25 0006 074B     		ldr	r3, .L8+4
+  26 0008 4208     		lsr	r2, r0, #1
+  27 000a DA61     		str	r2, [r3, #28]
+  28 000c 064A     		ldr	r2, .L8+8
+  29 000e 1A80     		strh	r2, [r3]
+  30              	.L4:
+  31 0010 1A7D     		ldrb	r2, [r3, #20]
+  32 0012 D107     		lsl	r1, r2, #31
+  33 0014 FCD5     		bpl	.L4
+  34 0016 0130     		add	r0, r0, #1
+  35 0018 FF30     		add	r0, r0, #255
+  36 001a F1E7     		b	.L2
+  37              	.L7:
+  38              		@ sp needed
+  39 001c 7047     		bx	lr
+  40              	.L9:
+  41 001e C046     		.align	2
+  42              	.L8:
+  43 0020 FFFF0300 		.word	262143
+  44 0024 00400041 		.word	1090535424
+  45 0028 02A5FFFF 		.word	-23294
+  47              		.section	.text.flashWrite,"ax",%progbits
+  48              		.align	1
+  49              		.global	flashWrite
+  50              		.code	16
+  51              		.thumb_func
+  53              	flashWrite:
+  54 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  55 0002 8008     		lsr	r0, r0, #2
+  56              	.L11:
+  57 0004 0028     		cmp	r0, #0
+  58 0006 19D0     		beq	.L24
+  59 0008 0D4C     		ldr	r4, .L25
+  60 000a 0E4B     		ldr	r3, .L25+4
+  61 000c 251C     		mov	r5, r4
+  62 000e 2380     		strh	r3, [r4]
+  63              	.L13:
+  64 0010 2B7D     		ldrb	r3, [r5, #20]
+  65 0012 DE07     		lsl	r6, r3, #31
+  66 0014 FCD5     		bpl	.L13
+  67 0016 0023     		mov	r3, #0
+  68              	.L19:
+  69 0018 9E00     		lsl	r6, r3, #2
+  70 001a 8F59     		ldr	r7, [r1, r6]
+  71 001c 0133     		add	r3, r3, #1
+  72 001e 9751     		str	r7, [r2, r6]
+  73 0020 102B     		cmp	r3, #16
+  74 0022 01D0     		beq	.L14
+  75 0024 8342     		cmp	r3, r0
+  76 0026 F7D1     		bne	.L19
+  77              	.L14:
+  78 0028 074E     		ldr	r6, .L25+8
+  79 002a 2680     		strh	r6, [r4]
+  80              	.L17:
+  81 002c 2C7D     		ldrb	r4, [r5, #20]
+  82 002e E607     		lsl	r6, r4, #31
+  83 0030 FCD5     		bpl	.L17
+  84 0032 9C00     		lsl	r4, r3, #2
+  85 0034 1219     		add	r2, r2, r4
+  86 0036 0919     		add	r1, r1, r4
+  87 0038 C01A     		sub	r0, r0, r3
+  88 003a E3E7     		b	.L11
+  89              	.L24:
+  90              		@ sp needed
+  91 003c F0BD     		pop	{r4, r5, r6, r7, pc}
+  92              	.L26:
+  93 003e C046     		.align	2
+  94              	.L25:
+  95 0040 00400041 		.word	1090535424
+  96 0044 44A5FFFF 		.word	-23228
+  97 0048 04A5FFFF 		.word	-23292
+  99              		.section	.text.pinMux,"ax",%progbits
+ 100              		.align	1
+ 101              		.global	pinMux
+ 102              		.code	16
+ 103              		.thumb_func
+ 105              	pinMux:
+ 106 0000 70B5     		push	{r4, r5, r6, lr}
+ 107 0002 431C     		add	r3, r0, #1
+ 108 0004 1ED0     		beq	.L27
+ 109 0006 8402     		lsl	r4, r0, #10
+ 110 0008 E40F     		lsr	r4, r4, #31
+ 111 000a 0F4B     		ldr	r3, .L32
+ 112 000c 010C     		lsr	r1, r0, #16
+ 113 000e 6501     		lsl	r5, r4, #5
+ 114 0010 E401     		lsl	r4, r4, #7
+ 115 0012 4D1B     		sub	r5, r1, r5
+ 116 0014 E418     		add	r4, r4, r3
+ 117 0016 6319     		add	r3, r4, r5
+ 118 0018 4033     		add	r3, r3, #64
+ 119 001a 1E78     		ldrb	r6, [r3]
+ 120 001c 0122     		mov	r2, #1
+ 121 001e 1643     		orr	r6, r2
+ 122 0020 1E70     		strb	r6, [r3]
+ 123 0022 6B08     		lsr	r3, r5, #1
+ 124 0024 E318     		add	r3, r4, r3
+ 125 0026 3033     		add	r3, r3, #48
+ 126 0028 0A40     		and	r2, r1
+ 127 002a 1C78     		ldrb	r4, [r3]
+ 128 002c 9200     		lsl	r2, r2, #2
+ 129 002e 0F21     		mov	r1, #15
+ 130 0030 9140     		lsl	r1, r1, r2
+ 131 0032 8C43     		bic	r4, r1
+ 132 0034 1C70     		strb	r4, [r3]
+ 133 0036 C0B2     		uxtb	r0, r0
+ 134 0038 1978     		ldrb	r1, [r3]
+ 135 003a 9040     		lsl	r0, r0, r2
+ 136 003c 021C     		mov	r2, r0
+ 137 003e 0A43     		orr	r2, r1
+ 138 0040 D2B2     		uxtb	r2, r2
+ 139 0042 1A70     		strb	r2, [r3]
+ 140              	.L27:
+ 141              		@ sp needed
+ 142 0044 70BD     		pop	{r4, r5, r6, pc}
+ 143              	.L33:
+ 144 0046 C046     		.align	2
+ 145              	.L32:
+ 146 0048 00280040 		.word	1073752064
+ 148              		.section	.text.pinConfig,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	pinConfig
+ 151              		.code	16
+ 152              		.thumb_func
+ 154              	pinConfig:
+ 155 0000 30B5     		push	{r4, r5, lr}
+ 156 0002 0123     		mov	r3, #1
+ 157 0004 941E     		sub	r4, r2, #2
+ 158 0006 C001     		lsl	r0, r0, #7
+ 159 0008 9C42     		cmp	r4, r3
+ 160 000a 01D9     		bls	.L35
+ 161 000c 002A     		cmp	r2, #0
+ 162 000e 10D1     		bne	.L36
+ 163              	.L35:
+ 164 0010 144D     		ldr	r5, .L43
+ 165 0012 1C1C     		mov	r4, r3
+ 166 0014 8C40     		lsl	r4, r4, r1
+ 167 0016 4319     		add	r3, r0, r5
+ 168 0018 5C60     		str	r4, [r3, #4]
+ 169 001a 022A     		cmp	r2, #2
+ 170 001c 01D1     		bne	.L37
+ 171 001e 9C61     		str	r4, [r3, #24]
+ 172 0020 05E0     		b	.L42
+ 173              	.L37:
+ 174 0022 0223     		mov	r3, #2
+ 175 0024 032A     		cmp	r2, #3
+ 176 0026 17D1     		bne	.L38
+ 177 0028 0F4A     		ldr	r2, .L43+4
+ 178 002a 8318     		add	r3, r0, r2
+ 179 002c 5C60     		str	r4, [r3, #4]
+ 180              	.L42:
+ 181 002e 0623     		mov	r3, #6
+ 182 0030 12E0     		b	.L38
+ 183              	.L36:
+ 184 0032 042A     		cmp	r2, #4
+ 185 0034 04D1     		bne	.L39
+ 186 0036 0B4C     		ldr	r4, .L43
+ 187 0038 8B40     		lsl	r3, r3, r1
+ 188 003a 0219     		add	r2, r0, r4
+ 189 003c 9361     		str	r3, [r2, #24]
+ 190 003e 05E0     		b	.L40
+ 191              	.L39:
+ 192 0040 052A     		cmp	r2, #5
+ 193 0042 03D1     		bne	.L40
+ 194 0044 084D     		ldr	r5, .L43+4
+ 195 0046 8B40     		lsl	r3, r3, r1
+ 196 0048 4219     		add	r2, r0, r5
+ 197 004a 5360     		str	r3, [r2, #4]
+ 198              	.L40:
+ 199 004c 054C     		ldr	r4, .L43
+ 200 004e 0122     		mov	r2, #1
+ 201 0050 0319     		add	r3, r0, r4
+ 202 0052 8A40     		lsl	r2, r2, r1
+ 203 0054 9A60     		str	r2, [r3, #8]
+ 204 0056 0223     		mov	r3, #2
+ 205              	.L38:
+ 206 0058 044D     		ldr	r5, .L43+8
+ 207 005a 0918     		add	r1, r1, r0
+ 208 005c 4919     		add	r1, r1, r5
+ 209 005e 0B70     		strb	r3, [r1]
+ 210              		@ sp needed
+ 211 0060 30BD     		pop	{r4, r5, pc}
+ 212              	.L44:
+ 213 0062 C046     		.align	2
+ 214              	.L43:
+ 215 0064 00280040 		.word	1073752064
+ 216 0068 10280040 		.word	1073752080
+ 217 006c 40280040 		.word	1073752128
+ 219              		.section	.text.isPinActive,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	isPinActive
+ 222              		.code	16
+ 223              		.thumb_func
+ 225              	isPinActive:
+ 226 0000 074B     		ldr	r3, .L49
+ 227 0002 C001     		lsl	r0, r0, #7
+ 228 0004 C018     		add	r0, r0, r3
+ 229 0006 006A     		ldr	r0, [r0, #32]
+ 230 0008 0123     		mov	r3, #1
+ 231 000a 8B40     		lsl	r3, r3, r1
+ 232 000c 1840     		and	r0, r3
+ 233 000e 002A     		cmp	r2, #0
+ 234 0010 02D1     		bne	.L46
+ 235 0012 4342     		neg	r3, r0
+ 236 0014 5841     		adc	r0, r0, r3
+ 237 0016 01E0     		b	.L48
+ 238              	.L46:
+ 239 0018 431E     		sub	r3, r0, #1
+ 240 001a 9841     		sbc	r0, r0, r3
+ 241              	.L48:
+ 242 001c C0B2     		uxtb	r0, r0
+ 243              		@ sp needed
+ 244 001e 7047     		bx	lr
+ 245              	.L50:
+ 246              		.align	2
+ 247              	.L49:
+ 248 0020 00280040 		.word	1073752064
+ 250              		.section	.text.delayUs,"ax",%progbits
+ 251              		.align	1
+ 252              		.global	delayUs
+ 253              		.code	16
+ 254              		.thumb_func
+ 256              	delayUs:
+ 257 0000 064B     		ldr	r3, .L56
+ 258 0002 1A68     		ldr	r2, [r3]
+ 259 0004 064B     		ldr	r3, .L56+4
+ 260 0006 9A42     		cmp	r2, r3
+ 261 0008 01D1     		bne	.L52
+ 262 000a 0C23     		mov	r3, #12
+ 263 000c 5843     		mul	r0, r3
+ 264              	.L52:
+ 265 000e 0023     		mov	r3, #0
+ 266              	.L53:
+ 267 0010 8342     		cmp	r3, r0
+ 268 0012 01D0     		beq	.L55
+ 269 0014 0133     		add	r3, r3, #1
+ 270 0016 FBE7     		b	.L53
+ 271              	.L55:
+ 272              		@ sp needed
+ 273 0018 7047     		bx	lr
+ 274              	.L57:
+ 275 001a C046     		.align	2
+ 276              	.L56:
+ 277 001c 00000000 		.word	.LANCHOR0
+ 278 0020 006CDC02 		.word	48000000
+ 280              		.section	.text.systemReset,"ax",%progbits
+ 281              		.align	1
+ 282              		.global	systemReset
+ 283              		.code	16
+ 284              		.thumb_func
+ 286              	systemReset:
+ 287              	@ 429 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 288 0000 BFF34F8F 		dsb 0xF
+ 289              	@ 0 "" 2
+ 290              		.code	16
+ 291 0004 034A     		ldr	r2, .L60
+ 292 0006 044B     		ldr	r3, .L60+4
+ 293 0008 DA60     		str	r2, [r3, #12]
+ 294              	@ 429 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 295 000a BFF34F8F 		dsb 0xF
+ 296              	@ 0 "" 2
+ 297              		.code	16
+ 298              	.L59:
+ 299              	@ 375 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 300 000e C046     		nop
+ 301              	@ 0 "" 2
+ 302              		.code	16
+ 303 0010 FDE7     		b	.L59
+ 304              	.L61:
+ 305 0012 C046     		.align	2
+ 306              	.L60:
+ 307 0014 0400FA05 		.word	100270084
+ 308 0018 00ED00E0 		.word	-536810240
+ 310              		.section	.text.waitForSync,"ax",%progbits
+ 311              		.align	1
+ 312              		.global	waitForSync
+ 313              		.code	16
+ 314              		.thumb_func
+ 316              	waitForSync:
+ 317              	.L64:
+ 318 0000 024B     		ldr	r3, .L65
+ 319 0002 5A68     		ldr	r2, [r3, #4]
+ 320 0004 024B     		ldr	r3, .L65+4
+ 321 0006 1A42     		tst	r2, r3
+ 322 0008 FAD1     		bne	.L64
+ 323              		@ sp needed
+ 324 000a 7047     		bx	lr
+ 325              	.L66:
+ 326              		.align	2
+ 327              	.L65:
+ 328 000c 00180040 		.word	1073747968
+ 329 0010 FD070000 		.word	2045
+ 331              		.global	SystemCoreClock
+ 332              		.section	.data.SystemCoreClock,"aw",%progbits
+ 333              		.align	2
+ 334              		.set	.LANCHOR0,. + 0
+ 337              	SystemCoreClock:
+ 338 0000 00093D00 		.word	4000000
+ 339              		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 util.c
+     /tmp/ccRrpG5y.s:15     .text.flashErase:0000000000000000 $t
+     /tmp/ccRrpG5y.s:20     .text.flashErase:0000000000000000 flashErase
+     /tmp/ccRrpG5y.s:43     .text.flashErase:0000000000000020 $d
+     /tmp/ccRrpG5y.s:48     .text.flashWrite:0000000000000000 $t
+     /tmp/ccRrpG5y.s:53     .text.flashWrite:0000000000000000 flashWrite
+     /tmp/ccRrpG5y.s:95     .text.flashWrite:0000000000000040 $d
+     /tmp/ccRrpG5y.s:100    .text.pinMux:0000000000000000 $t
+     /tmp/ccRrpG5y.s:105    .text.pinMux:0000000000000000 pinMux
+     /tmp/ccRrpG5y.s:146    .text.pinMux:0000000000000048 $d
+     /tmp/ccRrpG5y.s:149    .text.pinConfig:0000000000000000 $t
+     /tmp/ccRrpG5y.s:154    .text.pinConfig:0000000000000000 pinConfig
+     /tmp/ccRrpG5y.s:215    .text.pinConfig:0000000000000064 $d
+     /tmp/ccRrpG5y.s:220    .text.isPinActive:0000000000000000 $t
+     /tmp/ccRrpG5y.s:225    .text.isPinActive:0000000000000000 isPinActive
+     /tmp/ccRrpG5y.s:248    .text.isPinActive:0000000000000020 $d
+     /tmp/ccRrpG5y.s:251    .text.delayUs:0000000000000000 $t
+     /tmp/ccRrpG5y.s:256    .text.delayUs:0000000000000000 delayUs
+     /tmp/ccRrpG5y.s:277    .text.delayUs:000000000000001c $d
+     /tmp/ccRrpG5y.s:281    .text.systemReset:0000000000000000 $t
+     /tmp/ccRrpG5y.s:286    .text.systemReset:0000000000000000 systemReset
+     /tmp/ccRrpG5y.s:307    .text.systemReset:0000000000000014 $d
+     /tmp/ccRrpG5y.s:311    .text.waitForSync:0000000000000000 $t
+     /tmp/ccRrpG5y.s:316    .text.waitForSync:0000000000000000 waitForSync
+     /tmp/ccRrpG5y.s:328    .text.waitForSync:000000000000000c $d
+     /tmp/ccRrpG5y.s:337    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccRrpG5y.s:333    .data.SystemCoreClock:0000000000000000 $d
+
+NO UNDEFINED SYMBOLS

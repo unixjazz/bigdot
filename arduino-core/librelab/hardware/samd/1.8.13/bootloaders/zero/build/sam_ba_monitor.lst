@@ -1,0 +1,817 @@
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"sam_ba_monitor.c"
+  14              		.section	.text.sam_ba_putdata.isra.0,"ax",%progbits
+  15              		.align	1
+  16              		.code	16
+  17              		.thumb_func
+  19              	sam_ba_putdata.isra.0:
+  20 0000 08B5     		push	{r3, lr}
+  21 0002 031C     		mov	r3, r0
+  22 0004 081C     		mov	r0, r1
+  23 0006 111C     		mov	r1, r2
+  24 0008 9847     		blx	r3
+  25              		@ sp needed
+  26 000a 08BD     		pop	{r3, pc}
+  28              		.section	.text.sam_ba_monitor_init,"ax",%progbits
+  29              		.align	1
+  30              		.global	sam_ba_monitor_init
+  31              		.code	16
+  32              		.thumb_func
+  34              	sam_ba_monitor_init:
+  35 0000 0028     		cmp	r0, #0
+  36 0002 02D1     		bne	.L2
+  37 0004 014A     		ldr	r2, .L5
+  38 0006 024B     		ldr	r3, .L5+4
+  39 0008 1A60     		str	r2, [r3]
+  40              	.L2:
+  41              		@ sp needed
+  42 000a 7047     		bx	lr
+  43              	.L6:
+  44              		.align	2
+  45              	.L5:
+  46 000c 00000000 		.word	.LANCHOR0
+  47 0010 00000000 		.word	ptr_monitor_if
+  49              		.section	.text.sam_ba_putdata_term,"ax",%progbits
+  50              		.align	1
+  51              		.global	sam_ba_putdata_term
+  52              		.code	16
+  53              		.thumb_func
+  55              	sam_ba_putdata_term:
+  56 0000 30B5     		push	{r4, r5, lr}
+  57 0002 0A1C     		mov	r2, r1
+  58 0004 1C49     		ldr	r1, .L20
+  59 0006 85B0     		sub	sp, sp, #20
+  60 0008 0978     		ldrb	r1, [r1]
+  61 000a 031C     		mov	r3, r0
+  62 000c 0029     		cmp	r1, #0
+  63 000e 2AD0     		beq	.L8
+  64 0010 042A     		cmp	r2, #4
+  65 0012 01D1     		bne	.L9
+  66 0014 0068     		ldr	r0, [r0]
+  67 0016 04E0     		b	.L10
+  68              	.L9:
+  69 0018 022A     		cmp	r2, #2
+  70 001a 01D1     		bne	.L11
+  71 001c 0088     		ldrh	r0, [r0]
+  72 001e 00E0     		b	.L10
+  73              	.L11:
+  74 0020 0078     		ldrb	r0, [r0]
+  75              	.L10:
+  76 0022 5200     		lsl	r2, r2, #1
+  77 0024 04A9     		add	r1, sp, #16
+  78 0026 8B18     		add	r3, r1, r2
+  79 0028 0B3B     		sub	r3, r3, #11
+  80 002a 9C1A     		sub	r4, r3, r2
+  81              	.L12:
+  82 002c A342     		cmp	r3, r4
+  83 002e 0BD0     		beq	.L19
+  84 0030 0F21     		mov	r1, #15
+  85 0032 0140     		and	r1, r0
+  86 0034 0929     		cmp	r1, #9
+  87 0036 02D8     		bhi	.L13
+  88 0038 3025     		mov	r5, #48
+  89 003a 2943     		orr	r1, r5
+  90 003c 00E0     		b	.L17
+  91              	.L13:
+  92 003e 3731     		add	r1, r1, #55
+  93              	.L17:
+  94 0040 1970     		strb	r1, [r3]
+  95 0042 0009     		lsr	r0, r0, #4
+  96 0044 013B     		sub	r3, r3, #1
+  97 0046 F1E7     		b	.L12
+  98              	.L19:
+  99 0048 01A9     		add	r1, sp, #4
+ 100 004a 3023     		mov	r3, #48
+ 101 004c 0B70     		strb	r3, [r1]
+ 102 004e 7823     		mov	r3, #120
+ 103 0050 4B70     		strb	r3, [r1, #1]
+ 104 0052 0A20     		mov	r0, #10
+ 105 0054 8B18     		add	r3, r1, r2
+ 106 0056 9870     		strb	r0, [r3, #2]
+ 107 0058 0D20     		mov	r0, #13
+ 108 005a D870     		strb	r0, [r3, #3]
+ 109 005c 074B     		ldr	r3, .L20+4
+ 110 005e 0432     		add	r2, r2, #4
+ 111 0060 1B68     		ldr	r3, [r3]
+ 112 0062 D868     		ldr	r0, [r3, #12]
+ 113 0064 03E0     		b	.L18
+ 114              	.L8:
+ 115 0066 0549     		ldr	r1, .L20+4
+ 116 0068 0968     		ldr	r1, [r1]
+ 117 006a C868     		ldr	r0, [r1, #12]
+ 118 006c 191C     		mov	r1, r3
+ 119              	.L18:
+ 120 006e FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 121 0072 05B0     		add	sp, sp, #20
+ 122              		@ sp needed
+ 123 0074 30BD     		pop	{r4, r5, pc}
+ 124              	.L21:
+ 125 0076 C046     		.align	2
+ 126              	.L20:
+ 127 0078 00000000 		.word	.LANCHOR1
+ 128 007c 00000000 		.word	ptr_monitor_if
+ 130              		.section	.text.call_applet,"ax",%progbits
+ 131              		.align	1
+ 132              		.global	call_applet
+ 133              		.code	16
+ 134              		.thumb_func
+ 136              	call_applet:
+ 137              	@ 71 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 138 0000 72B6     		cpsid i
+ 139              	@ 0 "" 2
+ 140              	@ 177 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 141 0002 EFF30883 		MRS r3, msp
+ 142              	
+ 143              	@ 0 "" 2
+ 144              		.code	16
+ 145 0006 044A     		ldr	r2, .L23
+ 146 0008 1360     		str	r3, [r2]
+ 147 000a 0368     		ldr	r3, [r0]
+ 148              	@ 190 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 149 000c 83F30888 		MSR msp, r3
+ 150              	
+ 151              	@ 0 "" 2
+ 152              		.code	16
+ 153 0010 4368     		ldr	r3, [r0, #4]
+ 154              	@ 260 "sam_ba_monitor.c" 1
+ 155 0012 1847     		bx r3
+ 156              	@ 0 "" 2
+ 157              		.code	16
+ 158              		@ sp needed
+ 159 0014 7047     		bx	lr
+ 160              	.L24:
+ 161 0016 C046     		.align	2
+ 162              	.L23:
+ 163 0018 00000000 		.word	sp
+ 165              		.section	.text.sam_ba_monitor_sys_tick,"ax",%progbits
+ 166              		.align	1
+ 167              		.global	sam_ba_monitor_sys_tick
+ 168              		.code	16
+ 169              		.thumb_func
+ 171              	sam_ba_monitor_sys_tick:
+ 172              		@ sp needed
+ 173 0000 7047     		bx	lr
+ 175              		.section	.text.sam_ba_monitor_run,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	sam_ba_monitor_run
+ 178              		.code	16
+ 179              		.thumb_func
+ 181              	sam_ba_monitor_run:
+ 182 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 183 0002 D04C     		ldr	r4, .L89
+ 184 0004 0023     		mov	r3, #0
+ 185 0006 2360     		str	r3, [r4]
+ 186 0008 CF4B     		ldr	r3, .L89+4
+ 187 000a 7A22     		mov	r2, #122
+ 188 000c 87B0     		sub	sp, sp, #28
+ 189 000e 1A70     		strb	r2, [r3]
+ 190              	.L72:
+ 191 0010 CE4D     		ldr	r5, .L89+8
+ 192 0012 CF4E     		ldr	r6, .L89+12
+ 193 0014 2B68     		ldr	r3, [r5]
+ 194 0016 301C     		mov	r0, r6
+ 195 0018 1B69     		ldr	r3, [r3, #16]
+ 196 001a 4021     		mov	r1, #64
+ 197 001c 9847     		blx	r3
+ 198 001e CD4B     		ldr	r3, .L89+16
+ 199 0020 0022     		mov	r2, #0
+ 200 0022 1860     		str	r0, [r3]
+ 201 0024 CC4B     		ldr	r3, .L89+20
+ 202 0026 2F1C     		mov	r7, r5
+ 203 0028 1E60     		str	r6, [r3]
+ 204 002a CC4B     		ldr	r3, .L89+24
+ 205 002c 1A60     		str	r2, [r3]
+ 206              	.L27:
+ 207 002e CB4D     		ldr	r5, .L89+24
+ 208 0030 C849     		ldr	r1, .L89+16
+ 209 0032 2A68     		ldr	r2, [r5]
+ 210 0034 0968     		ldr	r1, [r1]
+ 211 0036 8A42     		cmp	r2, r1
+ 212 0038 EAD2     		bcs	.L72
+ 213 003a C74B     		ldr	r3, .L89+20
+ 214 003c 1B68     		ldr	r3, [r3]
+ 215 003e 1A78     		ldrb	r2, [r3]
+ 216 0040 FF2A     		cmp	r2, #255
+ 217 0042 00D1     		bne	.LCB220
+ 218 0044 C4E1     		b	.L29	@long jump
+ 219              	.LCB220:
+ 220 0046 232A     		cmp	r2, #35
+ 221 0048 00D0     		beq	.LCB222
+ 222 004a 6AE1     		b	.L30	@long jump
+ 223              	.LCB222:
+ 224 004c C44E     		ldr	r6, .L89+28
+ 225 004e 3378     		ldrb	r3, [r6]
+ 226 0050 002B     		cmp	r3, #0
+ 227 0052 06D0     		beq	.L31
+ 228 0054 BD4B     		ldr	r3, .L89+8
+ 229 0056 C349     		ldr	r1, .L89+32
+ 230 0058 1B68     		ldr	r3, [r3]
+ 231 005a 0222     		mov	r2, #2
+ 232 005c D868     		ldr	r0, [r3, #12]
+ 233 005e FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 234              	.L31:
+ 235 0062 B948     		ldr	r0, .L89+4
+ 236 0064 0378     		ldrb	r3, [r0]
+ 237 0066 532B     		cmp	r3, #83
+ 238 0068 39D1     		bne	.L32
+ 239 006a BA49     		ldr	r1, .L89+16
+ 240 006c 2A68     		ldr	r2, [r5]
+ 241 006e 0B68     		ldr	r3, [r1]
+ 242 0070 9342     		cmp	r3, r2
+ 243 0072 1CD9     		bls	.L33
+ 244 0074 B848     		ldr	r0, .L89+20
+ 245 0076 0132     		add	r2, r2, #1
+ 246 0078 2A60     		str	r2, [r5]
+ 247 007a 9A1A     		sub	r2, r3, r2
+ 248 007c BA4B     		ldr	r3, .L89+36
+ 249 007e 0168     		ldr	r1, [r0]
+ 250 0080 1B68     		ldr	r3, [r3]
+ 251 0082 0131     		add	r1, r1, #1
+ 252 0084 0160     		str	r1, [r0]
+ 253 0086 B94E     		ldr	r6, .L89+40
+ 254 0088 9A42     		cmp	r2, r3
+ 255 008a 01D2     		bcs	.L34
+ 256 008c 3260     		str	r2, [r6]
+ 257 008e 00E0     		b	.L35
+ 258              	.L34:
+ 259 0090 3360     		str	r3, [r6]
+ 260              	.L35:
+ 261 0092 3268     		ldr	r2, [r6]
+ 262 0094 2068     		ldr	r0, [r4]
+ 263 0096 FFF7FEFF 		bl	memcpy
+ 264 009a 3368     		ldr	r3, [r6]
+ 265 009c 2868     		ldr	r0, [r5]
+ 266 009e 1A18     		add	r2, r3, r0
+ 267 00a0 2A60     		str	r2, [r5]
+ 268 00a2 AD4A     		ldr	r2, .L89+20
+ 269 00a4 1068     		ldr	r0, [r2]
+ 270 00a6 C118     		add	r1, r0, r3
+ 271 00a8 1160     		str	r1, [r2]
+ 272 00aa B14A     		ldr	r2, .L89+44
+ 273 00ac 1370     		strb	r3, [r2]
+ 274              	.L33:
+ 275 00ae AB49     		ldr	r1, .L89+24
+ 276 00b0 AA4A     		ldr	r2, .L89+24
+ 277 00b2 0968     		ldr	r1, [r1]
+ 278 00b4 0B1C     		mov	r3, r1
+ 279 00b6 013B     		sub	r3, r3, #1
+ 280 00b8 1360     		str	r3, [r2]
+ 281 00ba A74B     		ldr	r3, .L89+20
+ 282 00bc 1A68     		ldr	r2, [r3]
+ 283 00be 013A     		sub	r2, r2, #1
+ 284 00c0 1A60     		str	r2, [r3]
+ 285 00c2 AB4B     		ldr	r3, .L89+44
+ 286 00c4 A84A     		ldr	r2, .L89+36
+ 287 00c6 1B78     		ldrb	r3, [r3]
+ 288 00c8 1168     		ldr	r1, [r2]
+ 289 00ca 8B42     		cmp	r3, r1
+ 290 00cc 05D2     		bcs	.L36
+ 291 00ce 9F4A     		ldr	r2, .L89+8
+ 292 00d0 C91A     		sub	r1, r1, r3
+ 293 00d2 1268     		ldr	r2, [r2]
+ 294 00d4 2068     		ldr	r0, [r4]
+ 295 00d6 9269     		ldr	r2, [r2, #24]
+ 296 00d8 9047     		blx	r2
+ 297              	.L36:
+ 298              	@ 335 "sam_ba_monitor.c" 1
+ 299 00da C046     		nop
+ 300              	@ 0 "" 2
+ 301              		.code	16
+ 302 00dc 0FE1     		b	.L37
+ 303              	.L32:
+ 304 00de 522B     		cmp	r3, #82
+ 305 00e0 07D1     		bne	.L38
+ 306 00e2 9A4B     		ldr	r3, .L89+8
+ 307 00e4 A04A     		ldr	r2, .L89+36
+ 308 00e6 1B68     		ldr	r3, [r3]
+ 309 00e8 1168     		ldr	r1, [r2]
+ 310 00ea 5B69     		ldr	r3, [r3, #20]
+ 311 00ec 2068     		ldr	r0, [r4]
+ 312 00ee 9847     		blx	r3
+ 313 00f0 05E1     		b	.L37
+ 314              	.L38:
+ 315 00f2 4F2B     		cmp	r3, #79
+ 316 00f4 04D1     		bne	.L39
+ 317 00f6 9C4B     		ldr	r3, .L89+36
+ 318 00f8 2068     		ldr	r0, [r4]
+ 319 00fa 1B68     		ldr	r3, [r3]
+ 320 00fc 0370     		strb	r3, [r0]
+ 321 00fe FEE0     		b	.L37
+ 322              	.L39:
+ 323 0100 482B     		cmp	r3, #72
+ 324 0102 04D1     		bne	.L40
+ 325 0104 984B     		ldr	r3, .L89+36
+ 326 0106 2168     		ldr	r1, [r4]
+ 327 0108 1B68     		ldr	r3, [r3]
+ 328 010a 0B80     		strh	r3, [r1]
+ 329 010c F7E0     		b	.L37
+ 330              	.L40:
+ 331 010e 572B     		cmp	r3, #87
+ 332 0110 04D1     		bne	.L41
+ 333 0112 954A     		ldr	r2, .L89+36
+ 334 0114 2368     		ldr	r3, [r4]
+ 335 0116 1268     		ldr	r2, [r2]
+ 336 0118 1A60     		str	r2, [r3]
+ 337 011a F0E0     		b	.L37
+ 338              	.L41:
+ 339 011c 6F2B     		cmp	r3, #111
+ 340 011e 02D1     		bne	.L42
+ 341 0120 2068     		ldr	r0, [r4]
+ 342 0122 0121     		mov	r1, #1
+ 343 0124 06E0     		b	.L79
+ 344              	.L42:
+ 345 0126 682B     		cmp	r3, #104
+ 346 0128 07D1     		bne	.L43
+ 347 012a 2268     		ldr	r2, [r4]
+ 348 012c 8E48     		ldr	r0, .L89+36
+ 349 012e 1388     		ldrh	r3, [r2]
+ 350 0130 0221     		mov	r1, #2
+ 351 0132 0360     		str	r3, [r0]
+ 352              	.L79:
+ 353 0134 FFF7FEFF 		bl	sam_ba_putdata_term
+ 354 0138 E1E0     		b	.L37
+ 355              	.L43:
+ 356 013a 772B     		cmp	r3, #119
+ 357 013c 05D1     		bne	.L44
+ 358 013e 2368     		ldr	r3, [r4]
+ 359 0140 8948     		ldr	r0, .L89+36
+ 360 0142 1B68     		ldr	r3, [r3]
+ 361 0144 0421     		mov	r1, #4
+ 362 0146 0360     		str	r3, [r0]
+ 363 0148 F4E7     		b	.L79
+ 364              	.L44:
+ 365 014a 472B     		cmp	r3, #71
+ 366 014c 13D1     		bne	.L45
+ 367 014e 864B     		ldr	r3, .L89+36
+ 368 0150 1868     		ldr	r0, [r3]
+ 369 0152 FFF7FEFF 		bl	call_applet
+ 370 0156 874B     		ldr	r3, .L89+48
+ 371 0158 1B68     		ldr	r3, [r3]
+ 372              	@ 190 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 373 015a 83F30888 		MSR msp, r3
+ 374              	
+ 375              	@ 0 "" 2
+ 376              	@ 60 "/home/fido/.arduino15/packages/arduino/tools/CMSIS/4.5.0/CMSIS/Include/cmsis_gcc.h" 1
+ 377 015e 62B6     		cpsie i
+ 378              	@ 0 "" 2
+ 379              		.code	16
+ 380 0160 854B     		ldr	r3, .L89+52
+ 381 0162 1B78     		ldrb	r3, [r3]
+ 382 0164 002B     		cmp	r3, #0
+ 383 0166 00D1     		bne	.LCB411
+ 384 0168 C9E0     		b	.L37	@long jump
+ 385              	.LCB411:
+ 386 016a 784B     		ldr	r3, .L89+8
+ 387 016c 0620     		mov	r0, #6
+ 388 016e 1B68     		ldr	r3, [r3]
+ 389 0170 1B68     		ldr	r3, [r3]
+ 390 0172 9847     		blx	r3
+ 391 0174 C3E0     		b	.L37
+ 392              	.L45:
+ 393 0176 542B     		cmp	r3, #84
+ 394 0178 04D1     		bne	.L47
+ 395 017a 0123     		mov	r3, #1
+ 396 017c 3370     		strb	r3, [r6]
+ 397 017e 734B     		ldr	r3, .L89+8
+ 398 0180 1B68     		ldr	r3, [r3]
+ 399 0182 68E0     		b	.L84
+ 400              	.L47:
+ 401 0184 4E2B     		cmp	r3, #78
+ 402 0186 0CD1     		bne	.L48
+ 403 0188 3378     		ldrb	r3, [r6]
+ 404 018a 002B     		cmp	r3, #0
+ 405 018c 06D1     		bne	.L49
+ 406 018e 6F4B     		ldr	r3, .L89+8
+ 407 0190 7449     		ldr	r1, .L89+32
+ 408 0192 1B68     		ldr	r3, [r3]
+ 409 0194 0222     		mov	r2, #2
+ 410 0196 D868     		ldr	r0, [r3, #12]
+ 411 0198 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 412              	.L49:
+ 413 019c 0023     		mov	r3, #0
+ 414 019e 3370     		strb	r3, [r6]
+ 415 01a0 ADE0     		b	.L37
+ 416              	.L48:
+ 417 01a2 562B     		cmp	r3, #86
+ 418 01a4 5BD1     		bne	.L50
+ 419 01a6 3B68     		ldr	r3, [r7]
+ 420 01a8 7449     		ldr	r1, .L89+56
+ 421 01aa D868     		ldr	r0, [r3, #12]
+ 422 01ac 0122     		mov	r2, #1
+ 423 01ae FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 424 01b2 3B68     		ldr	r3, [r7]
+ 425 01b4 7249     		ldr	r1, .L89+60
+ 426 01b6 D868     		ldr	r0, [r3, #12]
+ 427 01b8 0322     		mov	r2, #3
+ 428 01ba FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 429 01be 3B68     		ldr	r3, [r7]
+ 430 01c0 704D     		ldr	r5, .L89+64
+ 431 01c2 D868     		ldr	r0, [r3, #12]
+ 432 01c4 291C     		mov	r1, r5
+ 433 01c6 0122     		mov	r2, #1
+ 434 01c8 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 435 01cc 3B68     		ldr	r3, [r7]
+ 436 01ce 6E49     		ldr	r1, .L89+68
+ 437 01d0 D868     		ldr	r0, [r3, #12]
+ 438 01d2 0D22     		mov	r2, #13
+ 439 01d4 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 440 01d8 3B68     		ldr	r3, [r7]
+ 441 01da 291C     		mov	r1, r5
+ 442 01dc D868     		ldr	r0, [r3, #12]
+ 443 01de 0122     		mov	r2, #1
+ 444 01e0 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 445 01e4 5C4B     		ldr	r3, .L89+20
+ 446 01e6 6949     		ldr	r1, .L89+72
+ 447 01e8 5C4E     		ldr	r6, .L89+24
+ 448 01ea 1960     		str	r1, [r3]
+ 449 01ec 5A4A     		ldr	r2, .L89+20
+ 450 01ee 0023     		mov	r3, #0
+ 451 01f0 3360     		str	r3, [r6]
+ 452 01f2 301C     		mov	r0, r6
+ 453              	.L51:
+ 454 01f4 1368     		ldr	r3, [r2]
+ 455 01f6 5D1C     		add	r5, r3, #1
+ 456 01f8 1560     		str	r5, [r2]
+ 457 01fa 1B78     		ldrb	r3, [r3]
+ 458 01fc 0393     		str	r3, [sp, #12]
+ 459 01fe 002B     		cmp	r3, #0
+ 460 0200 03D0     		beq	.L86
+ 461 0202 0368     		ldr	r3, [r0]
+ 462 0204 0133     		add	r3, r3, #1
+ 463 0206 0360     		str	r3, [r0]
+ 464 0208 F4E7     		b	.L51
+ 465              	.L86:
+ 466 020a 504D     		ldr	r5, .L89+8
+ 467 020c 3268     		ldr	r2, [r6]
+ 468 020e 2B68     		ldr	r3, [r5]
+ 469 0210 D868     		ldr	r0, [r3, #12]
+ 470 0212 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 471 0216 2B68     		ldr	r3, [r5]
+ 472 0218 5A49     		ldr	r1, .L89+64
+ 473 021a 0122     		mov	r2, #1
+ 474 021c D868     		ldr	r0, [r3, #12]
+ 475 021e FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 476 0222 0398     		ldr	r0, [sp, #12]
+ 477 0224 5A49     		ldr	r1, .L89+76
+ 478 0226 4C4A     		ldr	r2, .L89+20
+ 479 0228 3060     		str	r0, [r6]
+ 480 022a 1160     		str	r1, [r2]
+ 481              	.L53:
+ 482 022c 4A4A     		ldr	r2, .L89+20
+ 483 022e 1368     		ldr	r3, [r2]
+ 484 0230 581C     		add	r0, r3, #1
+ 485 0232 1060     		str	r0, [r2]
+ 486 0234 1B78     		ldrb	r3, [r3]
+ 487 0236 002B     		cmp	r3, #0
+ 488 0238 04D0     		beq	.L87
+ 489 023a 484B     		ldr	r3, .L89+24
+ 490 023c 1A68     		ldr	r2, [r3]
+ 491 023e 0132     		add	r2, r2, #1
+ 492 0240 1A60     		str	r2, [r3]
+ 493 0242 F3E7     		b	.L53
+ 494              	.L87:
+ 495 0244 3B68     		ldr	r3, [r7]
+ 496 0246 D868     		ldr	r0, [r3, #12]
+ 497 0248 444B     		ldr	r3, .L89+24
+ 498 024a 1B68     		ldr	r3, [r3]
+ 499 024c 1A1C     		mov	r2, r3
+ 500 024e 0193     		str	r3, [sp, #4]
+ 501 0250 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 502 0254 3B68     		ldr	r3, [r7]
+ 503              	.L84:
+ 504 0256 D868     		ldr	r0, [r3, #12]
+ 505 0258 4249     		ldr	r1, .L89+32
+ 506 025a 0222     		mov	r2, #2
+ 507 025c 4DE0     		b	.L81
+ 508              	.L50:
+ 509 025e 424A     		ldr	r2, .L89+36
+ 510 0260 582B     		cmp	r3, #88
+ 511 0262 07D1     		bne	.L55
+ 512 0264 1068     		ldr	r0, [r2]
+ 513 0266 FFF7FEFF 		bl	flashErase
+ 514 026a 384B     		ldr	r3, .L89+8
+ 515 026c 4949     		ldr	r1, .L89+80
+ 516 026e 1B68     		ldr	r3, [r3]
+ 517 0270 D868     		ldr	r0, [r3, #12]
+ 518 0272 41E0     		b	.L80
+ 519              	.L55:
+ 520 0274 592B     		cmp	r3, #89
+ 521 0276 0FD1     		bne	.L56
+ 522 0278 1068     		ldr	r0, [r2]
+ 523 027a 474B     		ldr	r3, .L89+84
+ 524 027c 0028     		cmp	r0, #0
+ 525 027e 02D1     		bne	.L57
+ 526 0280 2068     		ldr	r0, [r4]
+ 527 0282 1860     		str	r0, [r3]
+ 528 0284 03E0     		b	.L58
+ 529              	.L57:
+ 530 0286 1968     		ldr	r1, [r3]
+ 531 0288 2268     		ldr	r2, [r4]
+ 532 028a FFF7FEFF 		bl	flashWrite
+ 533              	.L58:
+ 534 028e 2F4B     		ldr	r3, .L89+8
+ 535 0290 4249     		ldr	r1, .L89+88
+ 536 0292 1B68     		ldr	r3, [r3]
+ 537 0294 D868     		ldr	r0, [r3, #12]
+ 538 0296 2FE0     		b	.L80
+ 539              	.L56:
+ 540 0298 5A2B     		cmp	r3, #90
+ 541 029a 30D1     		bne	.L37
+ 542 029c 2568     		ldr	r5, [r4]
+ 543 029e 1368     		ldr	r3, [r2]
+ 544 02a0 0026     		mov	r6, #0
+ 545 02a2 EB18     		add	r3, r5, r3
+ 546 02a4 0393     		str	r3, [sp, #12]
+ 547              	.L60:
+ 548 02a6 0399     		ldr	r1, [sp, #12]
+ 549 02a8 8D42     		cmp	r5, r1
+ 550 02aa 06D0     		beq	.L88
+ 551 02ac 2878     		ldrb	r0, [r5]
+ 552 02ae 311C     		mov	r1, r6
+ 553 02b0 FFF7FEFF 		bl	serial_add_crc
+ 554 02b4 0135     		add	r5, r5, #1
+ 555 02b6 061C     		mov	r6, r0
+ 556 02b8 F5E7     		b	.L60
+ 557              	.L88:
+ 558 02ba 244B     		ldr	r3, .L89+8
+ 559 02bc 3849     		ldr	r1, .L89+92
+ 560 02be 1B68     		ldr	r3, [r3]
+ 561 02c0 0122     		mov	r2, #1
+ 562 02c2 D868     		ldr	r0, [r3, #12]
+ 563 02c4 FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 564 02c8 0723     		mov	r3, #7
+ 565              	.L65:
+ 566 02ca 0F22     		mov	r2, #15
+ 567 02cc 3240     		and	r2, r6
+ 568 02ce 111C     		mov	r1, r2
+ 569 02d0 3609     		lsr	r6, r6, #4
+ 570 02d2 3031     		add	r1, r1, #48
+ 571 02d4 092A     		cmp	r2, #9
+ 572 02d6 00DD     		ble	.L63
+ 573 02d8 0731     		add	r1, r1, #7
+ 574              	.L63:
+ 575 02da 1022     		mov	r2, #16
+ 576 02dc D218     		add	r2, r2, r3
+ 577 02de 6846     		mov	r0, sp
+ 578 02e0 1154     		strb	r1, [r2, r0]
+ 579 02e2 013B     		sub	r3, r3, #1
+ 580 02e4 F1D2     		bcs	.L65
+ 581 02e6 3B68     		ldr	r3, [r7]
+ 582 02e8 04A9     		add	r1, sp, #16
+ 583 02ea D868     		ldr	r0, [r3, #12]
+ 584 02ec 0822     		mov	r2, #8
+ 585 02ee FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 586 02f2 3B68     		ldr	r3, [r7]
+ 587 02f4 2B49     		ldr	r1, .L89+96
+ 588 02f6 D868     		ldr	r0, [r3, #12]
+ 589              	.L80:
+ 590 02f8 0322     		mov	r2, #3
+ 591              	.L81:
+ 592 02fa FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 593              	.L37:
+ 594 02fe 1249     		ldr	r1, .L89+4
+ 595 0300 7A23     		mov	r3, #122
+ 596 0302 0B70     		strb	r3, [r1]
+ 597 0304 184B     		ldr	r3, .L89+36
+ 598 0306 0022     		mov	r2, #0
+ 599 0308 1A60     		str	r2, [r3]
+ 600 030a 154B     		ldr	r3, .L89+28
+ 601 030c 1B78     		ldrb	r3, [r3]
+ 602 030e 9342     		cmp	r3, r2
+ 603 0310 5ED0     		beq	.L29
+ 604 0312 0E4B     		ldr	r3, .L89+8
+ 605 0314 2449     		ldr	r1, .L89+100
+ 606 0316 1B68     		ldr	r3, [r3]
+ 607 0318 0122     		mov	r2, #1
+ 608 031a D868     		ldr	r0, [r3, #12]
+ 609 031c FFF7FEFF 		bl	sam_ba_putdata.isra.0
+ 610 0320 56E0     		b	.L29
+ 611              	.L30:
+ 612 0322 111C     		mov	r1, r2
+ 613 0324 3039     		sub	r1, r1, #48
+ 614 0326 C8B2     		uxtb	r0, r1
+ 615 0328 0F4B     		ldr	r3, .L89+36
+ 616 032a 0928     		cmp	r0, #9
+ 617 032c 04D8     		bhi	.L67
+ 618 032e 1868     		ldr	r0, [r3]
+ 619 0330 0201     		lsl	r2, r0, #4
+ 620 0332 1143     		orr	r1, r2
+ 621 0334 1960     		str	r1, [r3]
+ 622 0336 4BE0     		b	.L29
+ 623              	.L67:
+ 624 0338 111C     		mov	r1, r2
+ 625 033a 4139     		sub	r1, r1, #65
+ 626 033c 0529     		cmp	r1, #5
+ 627 033e 35D8     		bhi	.L68
+ 628 0340 373A     		sub	r2, r2, #55
+ 629 0342 38E0     		b	.L85
+ 630              	.L90:
+ 631              		.align	2
+ 632              	.L89:
+ 633 0344 00000000 		.word	ptr_data
+ 634 0348 00000000 		.word	command
+ 635 034c 00000000 		.word	ptr_monitor_if
+ 636 0350 00000000 		.word	data
+ 637 0354 00000000 		.word	length
+ 638 0358 00000000 		.word	ptr
+ 639 035c 00000000 		.word	i
+ 640 0360 00000000 		.word	.LANCHOR1
+ 641 0364 00000000 		.word	.LC15
+ 642 0368 00000000 		.word	current_number
+ 643 036c 00000000 		.word	u32tmp
+ 644 0370 00000000 		.word	j
+ 645 0374 00000000 		.word	sp
+ 646 0378 00000000 		.word	.LANCHOR2
+ 647 037c 03000000 		.word	.LC22
+ 648 0380 00000000 		.word	.LANCHOR3
+ 649 0384 05000000 		.word	.LC25
+ 650 0388 00000000 		.word	.LANCHOR4
+ 651 038c 07000000 		.word	.LC28
+ 652 0390 13000000 		.word	.LC30
+ 653 0394 1C000000 		.word	.LC32
+ 654 0398 00000000 		.word	.LANCHOR5
+ 655 039c 20000000 		.word	.LC35
+ 656 03a0 24000000 		.word	.LC37
+ 657 03a4 26000000 		.word	.LC39
+ 658 03a8 2A000000 		.word	.LC41
+ 659              	.L68:
+ 660 03ac 111C     		mov	r1, r2
+ 661 03ae 6139     		sub	r1, r1, #97
+ 662 03b0 0529     		cmp	r1, #5
+ 663 03b2 04D8     		bhi	.L69
+ 664 03b4 573A     		sub	r2, r2, #87
+ 665              	.L85:
+ 666 03b6 1868     		ldr	r0, [r3]
+ 667 03b8 0101     		lsl	r1, r0, #4
+ 668 03ba 0A43     		orr	r2, r1
+ 669 03bc 07E0     		b	.L82
+ 670              	.L69:
+ 671 03be 2C2A     		cmp	r2, #44
+ 672 03c0 02D1     		bne	.L70
+ 673 03c2 1968     		ldr	r1, [r3]
+ 674 03c4 2160     		str	r1, [r4]
+ 675 03c6 01E0     		b	.L83
+ 676              	.L70:
+ 677 03c8 0648     		ldr	r0, .L91
+ 678 03ca 0270     		strb	r2, [r0]
+ 679              	.L83:
+ 680 03cc 0022     		mov	r2, #0
+ 681              	.L82:
+ 682 03ce 1A60     		str	r2, [r3]
+ 683              	.L29:
+ 684 03d0 054B     		ldr	r3, .L91+4
+ 685 03d2 1A68     		ldr	r2, [r3]
+ 686 03d4 0132     		add	r2, r2, #1
+ 687 03d6 1A60     		str	r2, [r3]
+ 688 03d8 044B     		ldr	r3, .L91+8
+ 689 03da 1A68     		ldr	r2, [r3]
+ 690 03dc 0132     		add	r2, r2, #1
+ 691 03de 1A60     		str	r2, [r3]
+ 692 03e0 25E6     		b	.L27
+ 693              	.L92:
+ 694 03e2 C046     		.align	2
+ 695              	.L91:
+ 696 03e4 00000000 		.word	command
+ 697 03e8 00000000 		.word	i
+ 698 03ec 00000000 		.word	ptr
+ 700              		.comm	u32tmp,4,4
+ 701              		.comm	j,1,1
+ 702              		.comm	data,64,1
+ 703              		.comm	ptr,4,4
+ 704              		.comm	ptr_data,4,4
+ 705              		.comm	command,1,1
+ 706              		.comm	length,4,4
+ 707              		.comm	i,4,4
+ 708              		.comm	current_number,4,4
+ 709              		.comm	sp,4,4
+ 710              		.global	b_sam_ba_interface_usart
+ 711              		.global	b_terminal_mode
+ 712              		.comm	ptr_monitor_if,4,4
+ 713              		.global	usbcdc_if
+ 714              		.global	RomBOOT_ExtendedCapabilities
+ 715              		.global	RomBOOT_Version
+ 716              		.section	.rodata.usbcdc_if,"a",%progbits
+ 717              		.align	2
+ 718              		.set	.LANCHOR0,. + 0
+ 721              	usbcdc_if:
+ 722 0000 00000000 		.word	cdc_putc
+ 723 0004 00000000 		.word	cdc_getc
+ 724 0008 00000000 		.word	cdc_is_rx_ready
+ 725 000c 00000000 		.word	cdc_write_buf
+ 726 0010 00000000 		.word	cdc_read_buf
+ 727 0014 00000000 		.word	cdc_write_buf
+ 728 0018 00000000 		.word	cdc_read_buf_xmd
+ 729              		.section	.bss.src_buff_addr.12471,"aw",%nobits
+ 730              		.align	2
+ 731              		.set	.LANCHOR5,. + 0
+ 734              	src_buff_addr.12471:
+ 735 0000 00000000 		.space	4
+ 736              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 737              	.LC15:
+ 738 0000 0A0D00   		.ascii	"\012\015\000"
+ 739              	.LC22:
+ 740 0003 7600     		.ascii	"v\000"
+ 741              	.LC25:
+ 742 0005 2000     		.ascii	" \000"
+ 743              	.LC28:
+ 744 0007 44656320 		.ascii	"Dec 14 2020\000"
+ 744      31342032 
+ 744      30323000 
+ 745              	.LC30:
+ 746 0013 30303A34 		.ascii	"00:49:37\000"
+ 746      393A3337 
+ 746      00
+ 747              	.LC32:
+ 748 001c 580A0D00 		.ascii	"X\012\015\000"
+ 749              	.LC35:
+ 750 0020 590A0D00 		.ascii	"Y\012\015\000"
+ 751              	.LC37:
+ 752 0024 5A00     		.ascii	"Z\000"
+ 753              	.LC39:
+ 754 0026 230A0D00 		.ascii	"#\012\015\000"
+ 755              	.LC41:
+ 756 002a 3E00     		.ascii	">\000"
+ 757              		.section	.bss.b_terminal_mode,"aw",%nobits
+ 758              		.set	.LANCHOR1,. + 0
+ 761              	b_terminal_mode:
+ 762 0000 00       		.space	1
+ 763              		.section	.rodata.RomBOOT_Version,"a",%progbits
+ 764              		.set	.LANCHOR3,. + 0
+ 767              	RomBOOT_Version:
+ 768 0000 322E3000 		.ascii	"2.0\000"
+ 769              		.section	.bss.b_sam_ba_interface_usart,"aw",%nobits
+ 770              		.set	.LANCHOR2,. + 0
+ 773              	b_sam_ba_interface_usart:
+ 774 0000 00       		.space	1
+ 775              		.section	.rodata.RomBOOT_ExtendedCapabilities,"a",%progbits
+ 776              		.set	.LANCHOR4,. + 0
+ 779              	RomBOOT_ExtendedCapabilities:
+ 780 0000 5B417264 		.ascii	"[Arduino:XYZ]\000"
+ 780      75696E6F 
+ 780      3A58595A 
+ 780      5D00
+ 781              		.ident	"GCC: (GNU Tools for ARM Embedded Processors (Arduino build)) 4.8.3 20140228 (release) [ARM
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sam_ba_monitor.c
+     /tmp/ccx1ruCZ.s:15     .text.sam_ba_putdata.isra.0:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:19     .text.sam_ba_putdata.isra.0:0000000000000000 sam_ba_putdata.isra.0
+     /tmp/ccx1ruCZ.s:29     .text.sam_ba_monitor_init:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:34     .text.sam_ba_monitor_init:0000000000000000 sam_ba_monitor_init
+     /tmp/ccx1ruCZ.s:46     .text.sam_ba_monitor_init:000000000000000c $d
+                            *COM*:0000000000000004 ptr_monitor_if
+     /tmp/ccx1ruCZ.s:50     .text.sam_ba_putdata_term:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:55     .text.sam_ba_putdata_term:0000000000000000 sam_ba_putdata_term
+     /tmp/ccx1ruCZ.s:127    .text.sam_ba_putdata_term:0000000000000078 $d
+     /tmp/ccx1ruCZ.s:131    .text.call_applet:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:136    .text.call_applet:0000000000000000 call_applet
+     /tmp/ccx1ruCZ.s:163    .text.call_applet:0000000000000018 $d
+                            *COM*:0000000000000004 sp
+     /tmp/ccx1ruCZ.s:166    .text.sam_ba_monitor_sys_tick:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:171    .text.sam_ba_monitor_sys_tick:0000000000000000 sam_ba_monitor_sys_tick
+     /tmp/ccx1ruCZ.s:176    .text.sam_ba_monitor_run:0000000000000000 $t
+     /tmp/ccx1ruCZ.s:181    .text.sam_ba_monitor_run:0000000000000000 sam_ba_monitor_run
+     /tmp/ccx1ruCZ.s:633    .text.sam_ba_monitor_run:0000000000000344 $d
+                            *COM*:0000000000000004 ptr_data
+                            *COM*:0000000000000001 command
+                            *COM*:0000000000000040 data
+                            *COM*:0000000000000004 length
+                            *COM*:0000000000000004 ptr
+                            *COM*:0000000000000004 i
+                            *COM*:0000000000000004 current_number
+                            *COM*:0000000000000004 u32tmp
+                            *COM*:0000000000000001 j
+     /tmp/ccx1ruCZ.s:660    .text.sam_ba_monitor_run:00000000000003ac $t
+     /tmp/ccx1ruCZ.s:696    .text.sam_ba_monitor_run:00000000000003e4 $d
+     /tmp/ccx1ruCZ.s:773    .bss.b_sam_ba_interface_usart:0000000000000000 b_sam_ba_interface_usart
+     /tmp/ccx1ruCZ.s:761    .bss.b_terminal_mode:0000000000000000 b_terminal_mode
+     /tmp/ccx1ruCZ.s:721    .rodata.usbcdc_if:0000000000000000 usbcdc_if
+     /tmp/ccx1ruCZ.s:779    .rodata.RomBOOT_ExtendedCapabilities:0000000000000000 RomBOOT_ExtendedCapabilities
+     /tmp/ccx1ruCZ.s:767    .rodata.RomBOOT_Version:0000000000000000 RomBOOT_Version
+     /tmp/ccx1ruCZ.s:717    .rodata.usbcdc_if:0000000000000000 $d
+     /tmp/ccx1ruCZ.s:730    .bss.src_buff_addr.12471:0000000000000000 $d
+     /tmp/ccx1ruCZ.s:734    .bss.src_buff_addr.12471:0000000000000000 src_buff_addr.12471
+     /tmp/ccx1ruCZ.s:762    .bss.b_terminal_mode:0000000000000000 $d
+     /tmp/ccx1ruCZ.s:774    .bss.b_sam_ba_interface_usart:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+memcpy
+flashErase
+flashWrite
+serial_add_crc
+cdc_putc
+cdc_getc
+cdc_is_rx_ready
+cdc_write_buf
+cdc_read_buf
+cdc_read_buf_xmd
