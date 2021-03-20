@@ -17,7 +17,7 @@
 # For more info:
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5---3rd-party-Hardware-specification
 
-name=librelab's Big Dot, build1 2021-01-21
+name=librelab::Big Dot, build2 2021-03-21
 version=1.8.13
 
 # Compile variables
@@ -56,7 +56,7 @@ compiler.readelf.cmd=arm-none-eabi-readelf
 # this can be overriden in boards.txt
 build.clockconfig=CLOCKCONFIG_INTERNAL_USB
 build.usbcom=CDC_ONLY
-build.pid=0x2244
+build.pid=0xBD00
 build.serialcom_uart=ONE_UART
 build.serialcom_wire=ONE_WIRE
 build.serialcom_spi=ONE_SPI

@@ -20,8 +20,8 @@ menu.config=Build Options
 
 # Big Dot
 bigdot.name=Big Dot
-bigdot.vid.0=0x1111
-bigdot.pid.0=0x2222
+bigdot.vid.0=0x1209
+bigdot.pid.0=0xBD00
 bigdot.build.mcu=cortex-m0plus
 bigdot.build.mathlib=arm_cortexM0l_math
 bigdot.build.f_cpu=48000000L
@@ -31,7 +31,7 @@ bigdot.build.board=SAMD_ZERO
 bigdot.build.core=arduino
 bigdot.build.variant=bigdot
 bigdot.build.variant_system_lib=
-bigdot.build.vid=0x2233
+bigdot.build.vid=0x1209
 bigdot.upload.tool=librelab:bossac
 bigdot.upload.protocol=sam-ba
 bigdot.bootloader.tool=arduino:openocd
