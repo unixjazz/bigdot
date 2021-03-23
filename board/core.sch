@@ -140,8 +140,6 @@ Wire Wire Line
 Wire Wire Line
 	7150 4100 8000 4100
 Wire Wire Line
-	7150 4600 7400 4600
-Wire Wire Line
 	7150 4200 8000 4200
 Wire Wire Line
 	7150 4300 8000 4300
@@ -377,7 +375,7 @@ Text HLabel 7400 4400 2    50   BiDi ~ 0
 DM
 Text HLabel 7400 4500 2    50   BiDi ~ 0
 DP
-Text HLabel 7400 4600 2    50   BiDi ~ 0
+Text HLabel 7990 4600 2    50   BiDi ~ 0
 D13
 Wire Wire Line
 	5150 4800 4900 4800
@@ -395,10 +393,8 @@ Text Label 5150 4700 2    50   ~ 0
 SERIAL1_RX
 Text Label 5150 4600 2    50   ~ 0
 SERIAL1_TX
-Text Label 5150 4500 2    50   ~ 0
-SPI1_SS
-Text Label 5150 4400 2    50   ~ 0
-SPI1_MISO
+Text Label 7521 4600 2    50   ~ 0
+RFM_DIO1
 Text Label 7150 4100 0    50   ~ 0
 SPI_CLK
 Text Label 7150 4000 0    50   ~ 0
@@ -490,91 +486,95 @@ Text Label 8921 3773 2    50   ~ 0
 D8
 Text HLabel 8340 3373 0    50   Input ~ 0
 VDDIN
-Text Label 3400 3150 0    50   ~ 0
+Text Label 3641 3574 0    50   ~ 0
 XOUT32
 Wire Wire Line
-	2800 3150 2900 3150
+	3041 3574 3141 3574
 Wire Wire Line
-	2800 3250 2800 3150
+	3041 3674 3041 3574
 Wire Wire Line
-	3300 3150 3200 3150
+	3541 3574 3441 3574
 Wire Wire Line
-	3300 3250 3300 3150
+	3541 3674 3541 3574
 $Comp
 L Device:C C?
 U 1 1 5F3C031F
-P 2800 3400
+P 3041 3824
 AR Path="/5F3C031F" Ref="C?"  Part="1" 
 AR Path="/5F3BBDAE/5F3C031F" Ref="C6"  Part="1" 
-F 0 "C6" H 2686 3354 50  0000 R CNN
-F 1 "22pF NPO" H 2686 3445 50  0000 R CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 2838 3250 50  0001 C CNN
-F 3 "~" H 2800 3400 50  0001 C CNN
-	1    2800 3400
+F 0 "C6" H 2927 3778 50  0000 R CNN
+F 1 "12pF NPO" H 2927 3869 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 3079 3674 50  0001 C CNN
+F 3 "~" H 3041 3824 50  0001 C CNN
+	1    3041 3824
 	1    0    0    1   
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5F3C0319
-P 3300 3400
+P 3541 3824
 AR Path="/5F3C0319" Ref="C?"  Part="1" 
 AR Path="/5F3BBDAE/5F3C0319" Ref="C9"  Part="1" 
-F 0 "C9" H 3185 3354 50  0000 R CNN
-F 1 "22pF NPO" H 3185 3445 50  0000 R CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 3338 3250 50  0001 C CNN
-F 3 "~" H 3300 3400 50  0001 C CNN
-	1    3300 3400
+F 0 "C9" H 3426 3778 50  0000 R CNN
+F 1 "12pF NPO" H 3426 3869 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 3579 3674 50  0001 C CNN
+F 3 "~" H 3541 3824 50  0001 C CNN
+	1    3541 3824
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:Crystal Y?
 U 1 1 5F3C0313
-P 3050 3150
+P 3291 3574
 AR Path="/5F3C0313" Ref="Y?"  Part="1" 
 AR Path="/5F3BBDAE/5F3C0313" Ref="Y1"  Part="1" 
-F 0 "Y1" H 3050 3418 50  0000 C CNN
-F 1 "HC49S" H 3050 3327 50  0000 C CNN
-F 2 "Crystal:Crystal_HC49-U_Vertical" H 3050 3150 50  0001 C CNN
-F 3 "~" H 3050 3150 50  0001 C CNN
-	1    3050 3150
+F 0 "Y1" H 3291 3842 50  0000 C CNN
+F 1 "32.768kHz" H 3291 3751 50  0000 C CNN
+F 2 "Crystal:Crystal_SMD_MicroCrystal_CC4V-T1A-2Pin_5.0x1.9mm_HandSoldering" H 3291 3574 50  0001 C CNN
+F 3 "~" H 3291 3574 50  0001 C CNN
+	1    3291 3574
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3300 3150 3450 3150
-Connection ~ 3300 3150
+	3541 3574 3691 3574
+Connection ~ 3541 3574
 $Comp
 L power:GND #PWR?
 U 1 1 5F3C0329
-P 2800 3650
+P 3041 4074
 AR Path="/5F3C0329" Ref="#PWR?"  Part="1" 
 AR Path="/5F3BBDAE/5F3C0329" Ref="#PWR026"  Part="1" 
-F 0 "#PWR026" H 2800 3400 50  0001 C CNN
-F 1 "GND" H 2805 3477 50  0000 C CNN
-F 2 "" H 2800 3650 50  0001 C CNN
-F 3 "" H 2800 3650 50  0001 C CNN
-	1    2800 3650
+F 0 "#PWR026" H 3041 3824 50  0001 C CNN
+F 1 "GND" H 3046 3901 50  0000 C CNN
+F 2 "" H 3041 4074 50  0001 C CNN
+F 3 "" H 3041 4074 50  0001 C CNN
+	1    3041 4074
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 3650 2800 3550
+	3041 4074 3041 3974
 $Comp
 L power:GND #PWR?
 U 1 1 5F3C0337
-P 3300 3650
+P 3541 4074
 AR Path="/5F3C0337" Ref="#PWR?"  Part="1" 
 AR Path="/5F3BBDAE/5F3C0337" Ref="#PWR030"  Part="1" 
-F 0 "#PWR030" H 3300 3400 50  0001 C CNN
-F 1 "GND" H 3305 3477 50  0000 C CNN
-F 2 "" H 3300 3650 50  0001 C CNN
-F 3 "" H 3300 3650 50  0001 C CNN
-	1    3300 3650
+F 0 "#PWR030" H 3541 3824 50  0001 C CNN
+F 1 "GND" H 3546 3901 50  0000 C CNN
+F 2 "" H 3541 4074 50  0001 C CNN
+F 3 "" H 3541 4074 50  0001 C CNN
+	1    3541 4074
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3300 3650 3300 3550
-Text Label 2750 3150 2    50   ~ 0
+	3541 4074 3541 3974
+Text Label 2991 3574 2    50   ~ 0
 XIN32
-Connection ~ 2800 3150
+Connection ~ 3041 3574
 Wire Wire Line
-	2800 3150 2650 3150
+	3041 3574 2891 3574
+Wire Wire Line
+	7150 4600 7990 4600
+Text Notes 2261 3259 0    50   ~ 0
+XTAL load capacitors (Cext):\nCext = 2 * ( C.crystal - C.mcu - C.straypcb )\nCext = 2 * ( 9pF - 3.15pF - 0.5pF )\nCext = 10.7pF\n[Source: Atmel]
 $EndSCHEMATC
