@@ -100,10 +100,10 @@
 #define STRING_PRODUCT "Big Dot"
 
 /* If USB CDC is used, then the USB vendor ID (VID) and product ID (PID) must be set. */
-#define USB_VID_HIGH   0x11
-#define USB_VID_LOW    0x11
-#define USB_PID_HIGH   0x22
-#define USB_PID_LOW    0x22
+#define USB_VID_HIGH   0x12
+#define USB_VID_LOW    0x09
+#define USB_PID_HIGH   0xBD
+#define USB_PID_LOW    0x00
 
 /* BOOT_USART_SERCOM_INSTANCE must be a single digit representing the SERCOM number.
  * See board_driver_serial.h for BOOT_USART_PAD_SETTINGS values. When setting
