@@ -68,4 +68,6 @@ class Uart : public HardwareSerial
     SercomNumberStopBit extractNbStopBit(uint16_t config);
     SercomUartCharSize extractCharSize(uint16_t config);
     SercomParityMode extractParity(uint16_t config);
+
+    friend class ArduinoLowPowerClass;
 };
