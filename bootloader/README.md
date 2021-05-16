@@ -25,6 +25,17 @@ $ BOARD_ID=XPLAINED_SAML21 MCU=SAML21J18B make all mostly_clean
 
 After a few moments, you will have the bootloader (8K) with USB terminal support ready in the file `sam_ba_XPLAINED_SAML21_SAML21J18B.bin`.
 
+
+## Bootloader alternatives
+
+For your convenience, we built 3 different bootloaders:
+
+* 'bigdot.bin': the standard arduino bootloader for the SAM platform
+* 'bigdot-uf2.bin': the UF2 alternative bootloader w/ USB mass storage support (our choice!)
+* 'sam_ba_XPLAINED_SAML21_SAML21J18B.bin': the standard arduino bootloader for the XPLAINED_SAML21 board 
+
+Our example below uses the bootloader for the XPLAINED dev board, but you should use the 'bigdot' alternatives above if you are prototyping with librelab::Big Dot. All the bootloader files mentioned above can be found under the directory 'bootloaders'.
+
 ### Runing OpenOCD
 
 #### Using Atmel EDBG
