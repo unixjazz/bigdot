@@ -2,4 +2,5 @@
   (lib (name sensenet_board_part_subs)(type Legacy)(uri ${KIPRJMOD}/sensenet_board_part_subs.lib)(options "")(descr ""))
   (lib (name rfm95w-868s2)(type Legacy)(uri ${KIPRJMOD}/lib/sch_symbol/rfm95w-868s2.lib)(options "")(descr ""))
   (lib (name board-rescue)(type Legacy)(uri ${KIPRJMOD}/board-rescue.lib)(options "")(descr "")(disabled))
+  (lib (name wifi_module_esp8266)(type Legacy)(uri ${KIPRJMOD}/lib/sch_symbol/ESP8266.lib)(options "")(descr ""))
 )
