@@ -375,7 +375,7 @@ Text HLabel 7400 4400 2    50   BiDi ~ 0
 DM
 Text HLabel 7400 4500 2    50   BiDi ~ 0
 DP
-Text HLabel 7990 4600 2    50   BiDi ~ 0
+Text HLabel 7397 4600 2    50   BiDi ~ 0
 D13
 Wire Wire Line
 	5150 4800 4900 4800
@@ -393,7 +393,7 @@ Text Label 5150 4700 2    50   ~ 0
 SERIAL1_RX
 Text Label 5150 4600 2    50   ~ 0
 SERIAL1_TX
-Text Label 7521 4600 2    50   ~ 0
+Text Label 5149 4400 2    50   ~ 0
 RFM_DIO1
 Text Label 7150 4100 0    50   ~ 0
 SPI_CLK
@@ -448,43 +448,43 @@ Wire Wire Line
 $Comp
 L Device:R R8
 U 1 1 60EA4304
-P 8584 3542
-F 0 "R8" H 8654 3588 50  0000 L CNN
-F 1 "4.7k" H 8654 3497 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder" V 8514 3542 50  0001 C CNN
-F 3 "~" H 8584 3542 50  0001 C CNN
-	1    8584 3542
+P 8466 3410
+F 0 "R8" H 8536 3456 50  0000 L CNN
+F 1 "4.7k" H 8536 3365 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder" V 8396 3410 50  0001 C CNN
+F 3 "~" H 8466 3410 50  0001 C CNN
+	1    8466 3410
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R9
 U 1 1 60EA4845
-P 8921 3540
-F 0 "R9" H 8991 3586 50  0000 L CNN
-F 1 "4.7k" H 8991 3495 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder" V 8851 3540 50  0001 C CNN
-F 3 "~" H 8921 3540 50  0001 C CNN
-	1    8921 3540
+P 8803 3408
+F 0 "R9" H 8873 3454 50  0000 L CNN
+F 1 "4.7k" H 8873 3363 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder" V 8733 3408 50  0001 C CNN
+F 3 "~" H 8803 3408 50  0001 C CNN
+	1    8803 3408
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8921 3373 8921 3390
+	8803 3241 8803 3258
 Wire Wire Line
-	8340 3373 8584 3373
+	8222 3241 8466 3241
 Wire Wire Line
-	8584 3392 8584 3373
-Connection ~ 8584 3373
+	8466 3260 8466 3241
+Connection ~ 8466 3241
 Wire Wire Line
-	8584 3373 8921 3373
+	8466 3241 8803 3241
 Wire Wire Line
-	8584 3692 8584 3771
+	8466 3560 8466 3639
 Wire Wire Line
-	8921 3690 8921 3773
-Text Label 8584 3771 2    50   ~ 0
+	8803 3558 8803 3641
+Text Label 8466 3639 2    50   ~ 0
 D7
-Text Label 8921 3773 2    50   ~ 0
+Text Label 8803 3641 2    50   ~ 0
 D8
-Text HLabel 8340 3373 0    50   Input ~ 0
+Text HLabel 8222 3241 0    50   Input ~ 0
 VDDIN
 Text Label 3641 3574 0    50   ~ 0
 XOUT32
@@ -573,8 +573,8 @@ XIN32
 Connection ~ 3041 3574
 Wire Wire Line
 	3041 3574 2891 3574
-Wire Wire Line
-	7150 4600 7990 4600
-Text Notes 2261 3259 0    50   ~ 0
+Text Notes 2332 3266 0    50   ~ 0
 XTAL load capacitors (Cext):\nCext = 2 * ( C.crystal - C.mcu - C.straypcb )\nCext = 2 * ( 9pF - 3.15pF - 0.5pF )\nCext = 10.7pF\n[Source: Atmel]
+Wire Wire Line
+	7150 4600 7397 4600
 $EndSCHEMATC

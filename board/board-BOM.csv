@@ -1,0 +1,43 @@
+Source:,/home/unixjazz/code/hardware/bigdot/board/board.sch,,,,,
+Date:,Sat 03 Jul 2021 04:25:41 PM EDT,,,,,
+Tool:,Eeschema 5.1.9+dfsg1-1~bpo10+1,,,,,
+Generator:,/usr/share/kicad/plugins/bom_csv_grouped_by_value.py,,,,,
+Components total,44,,,,,
+SMD pads total,146,,,,,
+SMD pads front,141,,,,,
+SMD pads back,5,,,,,
+TH pads,45,,,,,
+,,,,,,
+,,,,,,
+Item,Qty,Reference(s),Value,Datasheet,Description,Manufacturer_part_number
+1,3,"C1, C10, C14",10u,~,CAP CER 10UF 10V X7R 1206,C1206C106K8RAC7210
+2,1,C2,2.2u,~,CAP CER 2.2UF 10V X7R 1206,C1206C225K8RACAUTO
+3,5,"C3, C5, C12, C13, C15",100n,~,CAP CER 0.1UF 10V X7R 1206,C1206C104K8RAC7800
+4,3,"C4, C7, C8",10uF,~,CAP CER 10UF 10V X7R 1206,C1206C106K8RAC7210
+5,2,"C6, C9",12pF NPO,~,CAP CER 12PF 50V C0G/NPO 1206,CC1206JRNPO9BN120
+6,1,C11,1u,~,CAP CER 1UF 10V X7R 1206,C1206C105K8RAC7800
+7,1,D1,D_Schottky,https://www.diodes.com/assets/Datasheets/ds13002.pdf,DIODE SCHOTTKY 20V 1A SOD123FL,MBR120VLSFT3GOSCT-ND
+8,1,D2,LED,~,GREEN LED 1206 SMD,
+,1,D3,LED,~,RED LED 1206 SMD,
+9,1,FB1,FBMH3216HM221NT,https://ds.yuden.co.jp/TYCOMPAS/ut/detail?pn=FBMH3216HM221NT%20&u=M,FERRITE BEAD 220 OHM 1206 1LN,FBMH3216HM221NT
+10,1,J1,Conn_ARM_JTAG_SWD_10,https://media.digikey.com/pdf/Data%20Sheets/Sullins%20PDFs/Female_Headers.100_DS.pdf,Conn_ARM_JTAG_SWD_10,PPPC052LFBN-RC
+11,1,J2,USB_B_Micro,https://www.hirose.com/product/document?clcode=CL0242-0056-3-30&productname=ZX62D-B-5PA8(30)&series=ZX&documenttype=Catalog&lang=en&documentid=D31704_en,CONN RCPT USB2.0 MICRO B SMD R/A,ZX62D-B-5P8(30)
+12,1,J3,Conn_01x02,https://www.jst-mfg.com/product/pdf/eng/ePH.pdf,CONN HEADER R/A 2POS 2MM,S2B-PH-K-S(LF)(SN)
+13,1,J4,Conn_01x14,~,"CONN HEADER 14POS -.100” [2.54 mm] Contact Centers, Female Headers,Straight/Right Angle/SMT",
+14,1,J6,Conn_01x14,~,"CONN HEADER 14POS -.100” [2.54 mm] Contact Centers, Female Headers,Straight/Right Angle/SMT",
+15,1,J7,Conn_Coaxial,https://www.digikey.com/en/products/detail/samtec-inc/SMA-J-P-H-ST-EM1/2602450,CONN SMA JACK STR 50OHM EDGE MNT,SMA-J-P-H-ST-EM1
+19,1,L1,10u,https://katalog.we-online.com/pbs/datasheet/7447918.pdf,FIXED IND 10UH 25MA 600 MOHM SMD,7447918
+20,1,Q1,DMG2301L,https://www.diodes.com/assets/Datasheets/DMG2301L.pdf,MOSFET P-CH 20V 2.4A SOT23,DMG2301LK-7
+21,2,"R1, R7",1k,~,RES 1K OHM 1% 1/4W 1206,RMCF1206FT1K00
+22,1,R2,330,~,RES 330 OHM 1% 1/4W 1206,RMCF1206FT330R
+23,2,"R3, R4",1M,~,RES 1M OHM 1% 1/4W 1206,CR1206-FX-1004ELF
+24,1,R5,2.2k,~,RES 2.2K OHM 1% 1/4W 1206,RMCF1206FT2K20
+25,2,"R6, R11",10k,~,RES 10K OHM 1% 1/4W 1206,RMCF1206FT10K0
+26,2,"R8, R9",4.7k,~,RES 4.7K OHM 1% 1/4W 1206,CRG1206F4K7
+27,1,R10,2.0K,~,RES 2K OHM 1% 1/4W 1206,RMCF1206FT2K00
+28,1,SW1,SW_Push,https://www.ckswitches.com/media/1471/pts645.pdf,SWITCH TACTILE SPST-NO 0.05A 12V,PTS645SL50SMTR92 LFS
+29,1,U1,MCP1812A,https://www.mouser.com/datasheet/2/268/MCP1811A-11B-12A-12B-Family-Data-Sheet-DS20006088A-1488740.pdf,MCP1812AT-033/TT,MCP1812AT-033/TT
+30,1,U2,MCP73831T-2ACI/OT,http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf,IC BATT CNTL LI-ION 1CEL SOT23-5,MCP73831T-2ACI/OT
+31,1,U3,RFM95W-915S2,http://www.hoperf.com/upload/rf/RFM95_96_97_98W.pdf,,
+32,1,U4,ATSAML21E18B-AUT,http://ww1.microchip.com/downloads/en/DeviceDoc/SAM_L21_Family_DataSheet_DS60001477C.pdf,IC MCU 32BIT 256KB FLASH 32TQFP,ATSAML21E18B-AUT
+33,1,Y1,32.768kHz,https://abracon.com/Resonators/ABS10.pdf,CRYSTAL 32.7680KHZ 9PF SMD,ABS10-32.768KHZ-9-T
