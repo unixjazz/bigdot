@@ -2,7 +2,7 @@
 	"packages": [
 	{
 		"name": "librelab",
-		"maintainer": "SDS librelab",
+		"maintainer": "UVA SDS librelab",
 		"websiteURL": "https://github.com/UVA-DSI/bigdot",
 		"email": "lfr6d@virginia.edu",
 		"help": {
@@ -12,15 +12,15 @@
 		{
 			"name": "librelab::Big Dot",
 			"architecture": "samd",
-			"version": "1.8.13",
+			"version": "1.0.0",
 			"category": "Contributed",
 			"help": {
 				"online": "https://github.com/UVA-DSI/bigdot"
 			},
-			"url": "https://unixjazz.org/pub/software/bigdot-1.0.zip",
-			"archiveFileName": "bigdot-1.0.zip",
-			"checksum": "SHA-256:4fc2b8e2f818df6cd8892987d555687983726bc4739bba1a47d9e44083891c2e",
-			"size": "471937",
+			"url": "https://unixjazz.org/pub/software/bigdot-1.0.0.zip",
+			"archiveFileName": "bigdot-1.0.0.zip",
+			"checksum": "SHA-256:50a693d4fbab41c07a66a96b866018da344bc9d575b2216cf258e03be4ba8e85",
+			"size": "471401",
 			"boards": [
 			{"name": "librelab::Big Dot"}
 			],
@@ -56,6 +56,54 @@
             			"version": "1.2.0"
           		}
 			]
+		},
+		{
+			"name": "librelab::Big Dot",
+			"architecture": "samd",
+			"version": "1.1.0",
+			"category": "Contributed",
+			"help": {
+				"online": "https://github.com/UVA-DSI/bigdot"
+			},
+			"url": "https://unixjazz.org/pub/software/bigdot-1.1.0.zip",
+			"archiveFileName": "bigdot-1.1.0.zip",
+			"checksum": "SHA-256:bb235facd81d7c7ea6afd17b30154257be1f862050ce4a7c4a08030d53a6f952",
+			"size": "476193",
+			"boards": [
+			{"name": "librelab::Big Dot"}
+			],
+			"toolsDependencies": [
+			{
+				"packager": "arduino",
+				"name": "arm-none-eabi-gcc",
+				"version": "4.8.3-2014q1"
+			},
+			{
+				"packager": "librelab",
+				"name": "bossac",
+				"version": "1.9.1"
+			},
+			{
+				"packager": "arduino",
+				"name": "openocd",
+				"version": "0.9.0-arduino"
+			},
+			{
+				"packager": "arduino",
+				"name": "CMSIS",
+				"version": "4.5.0"
+			},
+			{
+		                "packager": "librelab",
+            			"name": "CMSIS-Atmel",
+            			"version": "1.0.0-mattairtech-2"
+          		},
+          		{
+            			"packager": "arduino",
+            			"name": "arduinoOTA",
+            			"version": "1.2.0"
+          		}
+			]			
 		}],
 		"tools":[
                 {
