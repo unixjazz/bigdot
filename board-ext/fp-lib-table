@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name lowpowerlab-BME680)(type KiCad)(uri ${KIPRJMOD}/lowpowerlab-BME680.pretty)(options "")(descr ""))
+)
