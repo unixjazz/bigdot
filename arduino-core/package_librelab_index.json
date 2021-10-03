@@ -112,10 +112,10 @@
                         "systems": [
                   	{
                     		"host": "i686-mingw32",
-                    		"url": "https://unixjazz.org/pub/software/BOSSA-1.9.1.tar.gz",
-                    		"archiveFileName": "BOSSA-1.9.1.tar.gz",
-                    		"checksum": "SHA-256:97ac3109b1b467024da3081454202f867815a2bbf0b86b06fb3509eff97dc7ad",
-                    		"size": "537988"
+                    		"url": "https://unixjazz.org/pub/software/BOSSA-1.9.1-mingw32.zip",
+                    		"archiveFileName": "BOSSA-1.9.1-mingw32.zip",
+                    		"checksum": "SHA-256:57b19b89851484c7b91d35dc9dd0a5b05d86edd72d046793f1ba85d2728dc1c7",
+                    		"size": "742138"
                   	},
                   	{
                     		"host": "x86_64-pc-linux-gnu",
