@@ -16,142 +16,142 @@ $EndDescr
 $Comp
 L Connector_Generic:Conn_01x14 J4
 U 1 1 5ED682BE
-P 2005 1803
-F 0 "J4" H 2085 1795 50  0000 L CNN
-F 1 "Conn_01x14" H 2085 1704 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical" H 2005 1803 50  0001 C CNN
-F 3 "~" H 2005 1803 50  0001 C CNN
-	1    2005 1803
+P 1976 1926
+F 0 "J4" H 2056 1918 50  0000 L CNN
+F 1 "Conn_01x14" H 2056 1827 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical" H 1976 1926 50  0001 C CNN
+F 3 "~" H 1976 1926 50  0001 C CNN
+	1    1976 1926
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector_Generic:Conn_01x14 J6
 U 1 1 5ED6A910
-P 3769 1800
-F 0 "J6" H 3849 1842 50  0000 L CNN
-F 1 "Conn_01x14" H 3849 1751 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical" H 3769 1800 50  0001 C CNN
-F 3 "~" H 3769 1800 50  0001 C CNN
-	1    3769 1800
+P 3790 1902
+F 0 "J6" H 3870 1944 50  0000 L CNN
+F 1 "Conn_01x14" H 3870 1853 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical" H 3790 1902 50  0001 C CNN
+F 3 "~" H 3790 1902 50  0001 C CNN
+	1    3790 1902
 	1    0    0    -1  
 $EndComp
-Text Label 1655 1403 0    50   ~ 0
+Text Label 1626 1526 0    50   ~ 0
 A1
 Wire Wire Line
-	1805 1503 1655 1503
-Text Label 1655 1503 0    50   ~ 0
+	1776 1626 1626 1626
+Text Label 1626 1626 0    50   ~ 0
 A2
 Wire Wire Line
-	1805 1603 1655 1603
-Text Label 1655 1603 0    50   ~ 0
+	1776 1726 1626 1726
+Text Label 1626 1726 0    50   ~ 0
 A3
 Wire Wire Line
-	1805 1703 1655 1703
-Text Label 1655 1703 0    50   ~ 0
+	1776 1826 1626 1826
+Text Label 1626 1826 0    50   ~ 0
 A4
 Wire Wire Line
-	1805 1803 1655 1803
-Text Label 1655 1803 0    50   ~ 0
+	1776 1926 1626 1926
+Text Label 1626 1926 0    50   ~ 0
 A5
-Text Notes 1505 993  0    50   ~ 0
+Text Notes 1426 950  0    50   ~ 0
 Analog I/O Header
-Text Notes 3254 1000 0    50   ~ 0
+Text Notes 3326 993  0    50   ~ 0
 Digital I/O Header
 Wire Notes Line
 	4672 7682 4672 7677
-Text Label 1714 1203 2    50   ~ 0
+Text Label 1685 1326 2    50   ~ 0
 +3V3
 Wire Wire Line
-	1805 1903 1655 1903
-Text Label 1655 1903 0    50   ~ 0
+	1776 2026 1626 2026
+Text Label 1626 2026 0    50   ~ 0
 A6
-Text Label 1655 2403 0    50   ~ 0
+Text Label 1626 2526 0    50   ~ 0
 D5
 Wire Wire Line
-	1655 2403 1805 2403
-Text Label 1655 2303 0    50   ~ 0
+	1626 2526 1776 2526
+Text Label 1626 2426 0    50   ~ 0
 D4
 Wire Wire Line
-	1655 2303 1805 2303
-Text Label 1655 2203 0    50   ~ 0
+	1626 2426 1776 2426
+Text Label 1626 2326 0    50   ~ 0
 D3
 Wire Wire Line
-	1655 2203 1805 2203
-Text Label 1655 2103 0    50   ~ 0
+	1626 2326 1776 2326
+Text Label 1626 2226 0    50   ~ 0
 D2
 Wire Wire Line
-	1655 2103 1805 2103
-Text Label 1655 2003 0    50   ~ 0
+	1626 2226 1776 2226
+Text Label 1626 2126 0    50   ~ 0
 D1
 Wire Wire Line
-	1655 2003 1805 2003
+	1626 2126 1776 2126
 $Comp
 L power:GND #PWR0114
 U 1 1 613F6FCA
-P 3170 2500
-F 0 "#PWR0114" H 3170 2250 50  0001 C CNN
-F 1 "GND" H 3175 2327 50  0000 C CNN
-F 2 "" H 3170 2500 50  0001 C CNN
-F 3 "" H 3170 2500 50  0001 C CNN
-	1    3170 2500
+P 3191 2602
+F 0 "#PWR0114" H 3191 2352 50  0001 C CNN
+F 1 "GND" H 3196 2429 50  0000 C CNN
+F 2 "" H 3191 2602 50  0001 C CNN
+F 3 "" H 3191 2602 50  0001 C CNN
+	1    3191 2602
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3419 1500 3569 1500
-Text Label 3419 1500 0    50   ~ 0
+	3440 1602 3590 1602
+Text Label 3440 1602 0    50   ~ 0
 D7
 Wire Wire Line
-	3419 1600 3569 1600
-Text Label 3419 1600 0    50   ~ 0
+	3440 1702 3590 1702
+Text Label 3440 1702 0    50   ~ 0
 D8
 Wire Wire Line
-	3419 1700 3569 1700
-Text Label 3419 1700 0    50   ~ 0
+	3440 1802 3590 1802
+Text Label 3440 1802 0    50   ~ 0
 D9
 Wire Wire Line
-	3419 1900 3569 1900
-Text Label 3419 1900 0    50   ~ 0
+	3440 2002 3590 2002
+Text Label 3440 2002 0    50   ~ 0
 D11
 Wire Wire Line
-	3419 2000 3569 2000
-Text Label 3419 2000 0    50   ~ 0
+	3440 2102 3590 2102
+Text Label 3440 2102 0    50   ~ 0
 D12
-Text Label 3419 1800 0    50   ~ 0
+Text Label 3440 1902 0    50   ~ 0
 D10
 Wire Wire Line
-	3419 1800 3569 1800
+	3440 1902 3590 1902
 Wire Wire Line
-	3170 2500 3569 2500
-Text Label 3419 2100 0    50   ~ 0
+	3191 2602 3590 2602
+Text Label 3440 2202 0    50   ~ 0
 D13
 Wire Wire Line
-	3419 2100 3569 2100
+	3440 2202 3590 2202
 Wire Wire Line
-	3419 1400 3569 1400
+	3440 1502 3590 1502
 Wire Wire Line
-	1391 1303 1805 1303
+	1362 1426 1776 1426
 $Comp
 L power:GND #PWR0113
 U 1 1 613CC684
-P 1391 1303
-F 0 "#PWR0113" H 1391 1053 50  0001 C CNN
-F 1 "GND" H 1396 1130 50  0000 C CNN
-F 2 "" H 1391 1303 50  0001 C CNN
-F 3 "" H 1391 1303 50  0001 C CNN
-	1    1391 1303
+P 1362 1426
+F 0 "#PWR0113" H 1362 1176 50  0001 C CNN
+F 1 "GND" H 1367 1253 50  0000 C CNN
+F 2 "" H 1362 1426 50  0001 C CNN
+F 3 "" H 1362 1426 50  0001 C CNN
+	1    1362 1426
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1391 2503 1805 2503
+	1362 2626 1776 2626
 $Comp
 L power:GND #PWR0112
 U 1 1 5FC0C7B6
-P 1391 2503
-F 0 "#PWR0112" H 1391 2253 50  0001 C CNN
-F 1 "GND" H 1396 2330 50  0000 C CNN
-F 2 "" H 1391 2503 50  0001 C CNN
-F 3 "" H 1391 2503 50  0001 C CNN
-	1    1391 2503
+P 1362 2626
+F 0 "#PWR0112" H 1362 2376 50  0001 C CNN
+F 1 "GND" H 1367 2453 50  0000 C CNN
+F 2 "" H 1362 2626 50  0001 C CNN
+F 3 "" H 1362 2626 50  0001 C CNN
+	1    1362 2626
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -190,7 +190,7 @@ Wire Wire Line
 	1614 4061 1339 4061
 Wire Wire Line
 	1339 4061 1339 4111
-Text Notes 5316 1482 0    50   ~ 0
+Text Notes 7137 1472 0    50   ~ 0
 OLED Header (I2C)
 Text Notes 1288 3493 0    50   ~ 0
 PM7003 Sensor Header
@@ -210,7 +210,7 @@ L Sensor:lowpowerlab_BME680 U2
 U 1 1 61484132
 P 9653 1636
 F 0 "U2" H 9653 1661 50  0000 C CNN
-F 1 "lowpowerlab_BME680" H 9653 1570 50  0000 C CNN
+F 1 "lowpowerlab_BME280" H 9653 1570 50  0000 C CNN
 F 2 "lowpowerlab-BME680:LowPowerLab_BME680" H 9653 1586 50  0001 C CNN
 F 3 "" H 9653 1586 50  0001 C CNN
 	1    9653 1636
@@ -242,124 +242,124 @@ NoConn ~ 10403 1936
 $Comp
 L Connector_Generic:Conn_01x04 J3
 U 1 1 614B5104
-P 5466 2057
-F 0 "J3" H 5384 1632 50  0000 C CNN
-F 1 "Conn_01x04" H 5384 1723 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 5466 2057 50  0001 C CNN
-F 3 "~" H 5466 2057 50  0001 C CNN
-	1    5466 2057
+P 5407 2048
+F 0 "J3" H 5325 1623 50  0000 C CNN
+F 1 "Conn_01x04" H 5325 1714 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 5407 2048 50  0001 C CNN
+F 3 "~" H 5407 2048 50  0001 C CNN
+	1    5407 2048
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 614DE921
-P 5666 2157
-F 0 "#PWR07" H 5666 1907 50  0001 C CNN
-F 1 "GND" H 5671 1984 50  0000 C CNN
-F 2 "" H 5666 2157 50  0001 C CNN
-F 3 "" H 5666 2157 50  0001 C CNN
-	1    5666 2157
+P 5607 2148
+F 0 "#PWR07" H 5607 1898 50  0001 C CNN
+F 1 "GND" H 5612 1975 50  0000 C CNN
+F 2 "" H 5607 2148 50  0001 C CNN
+F 3 "" H 5607 2148 50  0001 C CNN
+	1    5607 2148
 	1    0    0    -1  
 $EndComp
-Text Label 5666 2057 0    50   ~ 0
+Text Label 5607 2048 0    50   ~ 0
 +3V3
-Text Label 5666 1857 0    50   ~ 0
+Text Label 5607 1848 0    50   ~ 0
 D7
-Text Label 5666 1957 0    50   ~ 0
+Text Label 5607 1948 0    50   ~ 0
 D8
 $Comp
 L Connector_Generic:Conn_01x04 J5
 U 1 1 614F5814
-P 6559 2050
-F 0 "J5" H 6477 1625 50  0000 C CNN
-F 1 "Conn_01x04" H 6477 1716 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 6559 2050 50  0001 C CNN
-F 3 "~" H 6559 2050 50  0001 C CNN
-	1    6559 2050
+P 6315 2046
+F 0 "J5" H 6233 1621 50  0000 C CNN
+F 1 "Conn_01x04" H 6233 1712 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 6315 2046 50  0001 C CNN
+F 3 "~" H 6315 2046 50  0001 C CNN
+	1    6315 2046
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR08
 U 1 1 614F581A
-P 6759 2150
-F 0 "#PWR08" H 6759 1900 50  0001 C CNN
-F 1 "GND" H 6764 1977 50  0000 C CNN
-F 2 "" H 6759 2150 50  0001 C CNN
-F 3 "" H 6759 2150 50  0001 C CNN
-	1    6759 2150
+P 6515 2146
+F 0 "#PWR08" H 6515 1896 50  0001 C CNN
+F 1 "GND" H 6520 1973 50  0000 C CNN
+F 2 "" H 6515 2146 50  0001 C CNN
+F 3 "" H 6515 2146 50  0001 C CNN
+	1    6515 2146
 	1    0    0    -1  
 $EndComp
-Text Label 6759 2050 0    50   ~ 0
+Text Label 6515 2046 0    50   ~ 0
 +3V3
-Text Label 6759 1850 0    50   ~ 0
+Text Label 6515 1846 0    50   ~ 0
 D7
-Text Label 6759 1950 0    50   ~ 0
+Text Label 6515 1946 0    50   ~ 0
 D8
-Text Notes 6760 1505 0    50   ~ 0
+Text Notes 5597 1486 0    50   ~ 0
 Extra I2C Headers
 $Comp
 L power:GND #PWR03
 U 1 1 61549CDC
-P 3005 1200
-F 0 "#PWR03" H 3005 950 50  0001 C CNN
-F 1 "GND" H 3010 1027 50  0000 C CNN
-F 2 "" H 3005 1200 50  0001 C CNN
-F 3 "" H 3005 1200 50  0001 C CNN
-	1    3005 1200
+P 3026 1302
+F 0 "#PWR03" H 3026 1052 50  0001 C CNN
+F 1 "GND" H 3031 1129 50  0000 C CNN
+F 2 "" H 3026 1302 50  0001 C CNN
+F 3 "" H 3026 1302 50  0001 C CNN
+	1    3026 1302
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3005 1200 3569 1200
+	3026 1302 3590 1302
 Wire Wire Line
-	3229 1300 3228 1301
+	3250 1402 3249 1403
 $Comp
 L power:GND #PWR04
 U 1 1 61555ADD
-P 3228 1301
-F 0 "#PWR04" H 3228 1051 50  0001 C CNN
-F 1 "GND" H 3233 1128 50  0000 C CNN
-F 2 "" H 3228 1301 50  0001 C CNN
-F 3 "" H 3228 1301 50  0001 C CNN
-	1    3228 1301
+P 3249 1403
+F 0 "#PWR04" H 3249 1153 50  0001 C CNN
+F 1 "GND" H 3254 1230 50  0000 C CNN
+F 2 "" H 3249 1403 50  0001 C CNN
+F 3 "" H 3249 1403 50  0001 C CNN
+	1    3249 1403
 	1    0    0    -1  
 $EndComp
-Text Label 3419 1400 0    50   ~ 0
+Text Label 3440 1502 0    50   ~ 0
 D6
 Wire Wire Line
-	3229 1300 3569 1300
-Text Label 3569 2200 2    50   ~ 0
+	3250 1402 3590 1402
+Text Label 3590 2302 2    50   ~ 0
 VBATT
-Text Label 3569 2300 2    50   ~ 0
+Text Label 3590 2402 2    50   ~ 0
 5v
-Text Label 3569 2400 2    50   ~ 0
+Text Label 3590 2502 2    50   ~ 0
 +3V3
 $Comp
 L Connector_Generic:Conn_01x04 J7
 U 1 1 6156A0FC
-P 7401 2060
-F 0 "J7" H 7319 1635 50  0000 C CNN
-F 1 "Conn_01x04" H 7319 1726 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 7401 2060 50  0001 C CNN
-F 3 "~" H 7401 2060 50  0001 C CNN
-	1    7401 2060
+P 7359 2054
+F 0 "J7" H 7277 1629 50  0000 C CNN
+F 1 "Conn_01x04" H 7277 1720 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 7359 2054 50  0001 C CNN
+F 3 "~" H 7359 2054 50  0001 C CNN
+	1    7359 2054
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR09
 U 1 1 6156A102
-P 7601 2160
-F 0 "#PWR09" H 7601 1910 50  0001 C CNN
-F 1 "GND" H 7606 1987 50  0000 C CNN
-F 2 "" H 7601 2160 50  0001 C CNN
-F 3 "" H 7601 2160 50  0001 C CNN
-	1    7601 2160
+P 7559 2154
+F 0 "#PWR09" H 7559 1904 50  0001 C CNN
+F 1 "GND" H 7564 1981 50  0000 C CNN
+F 2 "" H 7559 2154 50  0001 C CNN
+F 3 "" H 7559 2154 50  0001 C CNN
+	1    7559 2154
 	1    0    0    -1  
 $EndComp
-Text Label 7601 2060 0    50   ~ 0
+Text Label 7559 2054 0    50   ~ 0
 +3V3
-Text Label 7601 1860 0    50   ~ 0
+Text Label 7559 1854 0    50   ~ 0
 D7
-Text Label 7601 1960 0    50   ~ 0
+Text Label 7559 1954 0    50   ~ 0
 D8
 Text Label 1614 3961 2    50   ~ 0
 5v
@@ -408,11 +408,11 @@ NoConn ~ 2023 5323
 Text Label 1523 5423 2    50   ~ 0
 D3
 NoConn ~ 2023 5423
-Text Label 1523 5523 2    50   ~ 0
+Text Label 2023 5523 0    50   ~ 0
 D4
 Text Label 1464 4361 2    50   ~ 0
 D4
-Text Label 2023 5523 0    50   ~ 0
+Text Label 1523 5523 2    50   ~ 0
 A4
 Text Label 1464 4461 2    50   ~ 0
 A4
@@ -646,21 +646,21 @@ ESP programming \n(GPIO0 -> GND)
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 6186ED14
-P 1804 1203
-F 0 "#FLG0101" H 1804 1278 50  0001 C CNN
-F 1 "PWR_FLAG" H 1804 1376 50  0000 C CNN
-F 2 "" H 1804 1203 50  0001 C CNN
-F 3 "~" H 1804 1203 50  0001 C CNN
-	1    1804 1203
+P 1775 1326
+F 0 "#FLG0101" H 1775 1401 50  0001 C CNN
+F 1 "PWR_FLAG" H 1775 1499 50  0000 C CNN
+F 2 "" H 1775 1326 50  0001 C CNN
+F 3 "~" H 1775 1326 50  0001 C CNN
+	1    1775 1326
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1805 1203 1804 1203
-Connection ~ 1804 1203
+	1776 1326 1775 1326
+Connection ~ 1775 1326
 Wire Wire Line
-	1804 1203 1714 1203
+	1775 1326 1685 1326
 Wire Wire Line
-	1655 1403 1805 1403
+	1626 1526 1776 1526
 Wire Notes Line
 	776  3183 776  613 
 Wire Notes Line
@@ -676,8 +676,8 @@ Wire Notes Line
 Wire Notes Line
 	10954 610  8136 610 
 Text Notes 9041 1333 0    50   ~ 0
-lowpowerlabs - BME680 sensor
-Text Notes 6297 1029 0    50   ~ 0
+lowpowerlabs - BME280 sensor
+Text Notes 6282 963  0    50   ~ 0
 I2C HEADERS
 $Comp
 L Connector_Generic:Conn_01x01 J9
