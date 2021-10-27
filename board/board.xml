@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/fido/code/hardware/bigdot/board/board.sch</source>
-    <date>Sat 03 Jul 2021 04:25:41 PM EDT</date>
+    <date>Mon 18 Oct 2021 11:45:36 AM EDT</date>
     <tool>Eeschema 5.1.9+dfsg1-1~bpo10+1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -89,7 +89,7 @@
       <tstamp>5EB1A232</tstamp>
     </comp>
     <comp ref="J4">
-      <value>Conn_01x08</value>
+      <value>Conn_01x14</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x14_P2.54mm_Vertical</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Connector_Generic" part="Conn_01x14" description="Generic connector, single row, 01x14, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
