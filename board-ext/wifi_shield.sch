@@ -476,67 +476,67 @@ TXD_ESP
 $Comp
 L Jumper:SolderJumper_2_Open JP6
 U 1 1 6163F481
-P 5126 4584
-F 0 "JP6" H 5126 4789 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 5126 4698 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5126 4584 50  0001 C CNN
-F 3 "~" H 5126 4584 50  0001 C CNN
-	1    5126 4584
+P 5133 4584
+F 0 "JP6" H 5133 4789 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 5133 4698 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5133 4584 50  0001 C CNN
+F 3 "~" H 5133 4584 50  0001 C CNN
+	1    5133 4584
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP7
 U 1 1 6164023D
-P 5178 5495
-F 0 "JP7" H 5178 5700 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 5178 5609 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5178 5495 50  0001 C CNN
-F 3 "~" H 5178 5495 50  0001 C CNN
-	1    5178 5495
+P 5158 5488
+F 0 "JP7" H 5158 5693 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 5158 5602 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5158 5488 50  0001 C CNN
+F 3 "~" H 5158 5488 50  0001 C CNN
+	1    5158 5488
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP5
 U 1 1 61640A01
-P 5126 4184
-F 0 "JP5" H 5126 4389 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 5126 4298 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5126 4184 50  0001 C CNN
-F 3 "~" H 5126 4184 50  0001 C CNN
-	1    5126 4184
+P 5133 4184
+F 0 "JP5" H 5133 4389 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 5133 4298 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5133 4184 50  0001 C CNN
+F 3 "~" H 5133 4184 50  0001 C CNN
+	1    5133 4184
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP8
 U 1 1 616413E7
-P 5178 5762
-F 0 "JP8" H 5178 5967 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 5178 5876 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5178 5762 50  0001 C CNN
-F 3 "~" H 5178 5762 50  0001 C CNN
-	1    5178 5762
+P 5165 5859
+F 0 "JP8" H 5165 6064 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 5165 5973 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5165 5859 50  0001 C CNN
+F 3 "~" H 5165 5859 50  0001 C CNN
+	1    5165 5859
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP2
 U 1 1 616519A0
-P 3814 4159
-F 0 "JP2" H 3814 4364 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 3814 4273 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3814 4159 50  0001 C CNN
-F 3 "~" H 3814 4159 50  0001 C CNN
-	1    3814 4159
+P 3834 4193
+F 0 "JP2" H 3834 4398 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 3834 4307 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3834 4193 50  0001 C CNN
+F 3 "~" H 3834 4193 50  0001 C CNN
+	1    3834 4193
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP3
 U 1 1 616530F1
-P 3814 4580
-F 0 "JP3" H 3814 4785 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 3814 4694 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3814 4580 50  0001 C CNN
-F 3 "~" H 3814 4580 50  0001 C CNN
-	1    3814 4580
+P 3834 4614
+F 0 "JP3" H 3834 4819 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 3834 4728 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3834 4614 50  0001 C CNN
+F 3 "~" H 3834 4614 50  0001 C CNN
+	1    3834 4614
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -547,30 +547,30 @@ Wire Notes Line
 	2740 3184 2740 6159
 Wire Notes Line
 	2740 6159 10954 6159
-Text Label 3664 4159 2    50   ~ 0
+Text Label 3684 4193 2    50   ~ 0
 +3V3
 $Comp
 L power:GND #PWR06
 U 1 1 61770B5C
-P 3664 4580
-F 0 "#PWR06" H 3664 4330 50  0001 C CNN
-F 1 "GND" H 3669 4407 50  0000 C CNN
-F 2 "" H 3664 4580 50  0001 C CNN
-F 3 "" H 3664 4580 50  0001 C CNN
-	1    3664 4580
+P 3684 4614
+F 0 "#PWR06" H 3684 4364 50  0001 C CNN
+F 1 "GND" H 3689 4441 50  0000 C CNN
+F 2 "" H 3684 4614 50  0001 C CNN
+F 3 "" H 3684 4614 50  0001 C CNN
+	1    3684 4614
 	0    1    1    0   
 $EndComp
 Text Label 9382 4486 2    50   ~ 0
 VCC_ESP
 Text Label 9382 4986 2    50   ~ 0
 VCC_ESP
-Text Label 3964 4159 0    50   ~ 0
+Text Label 3984 4193 0    50   ~ 0
 VCC_ESP
 Text Label 9882 4586 0    50   ~ 0
 GND_ESP
 Text Label 7441 5592 3    50   ~ 0
 GND_ESP
-Text Label 3964 4580 0    50   ~ 0
+Text Label 3984 4614 0    50   ~ 0
 GND_ESP
 Text Notes 3321 3503 0    50   ~ 0
 ESP-12E module (optional)
@@ -580,68 +580,68 @@ Wire Notes Line
 	777  3185 777  6159
 Wire Notes Line
 	777  6159 2738 6159
-Text Label 5276 4184 0    50   ~ 0
+Text Label 5283 4184 0    50   ~ 0
 TXD_ESP
-Text Label 5276 4584 0    50   ~ 0
+Text Label 5283 4584 0    50   ~ 0
 RXD_ESP
-Text Label 5328 5495 0    50   ~ 0
+Text Label 5308 5488 0    50   ~ 0
 TXD_ESP
-Text Label 5328 5762 0    50   ~ 0
+Text Label 5315 5859 0    50   ~ 0
 RXD_ESP
-Text Notes 4803 5179 0    50   ~ 0
+Text Notes 4833 5145 0    50   ~ 0
 SAML21 - Serial2\n(TX:  D5,  RX: D6)
-Text Notes 4775 3887 0    50   ~ 0
+Text Notes 4811 3824 0    50   ~ 0
 SAML21 - Serial1\n(TX:  D3,  RX: D4) 
 Text Notes 3526 3825 0    50   ~ 0
 Disconnect PWR
-Text Label 4976 4584 2    50   ~ 0
+Text Label 4983 4584 2    50   ~ 0
 D3
-Text Label 4976 4184 2    50   ~ 0
+Text Label 4983 4184 2    50   ~ 0
 D4
-Text Label 5028 5762 2    50   ~ 0
+Text Label 5015 5859 2    50   ~ 0
 D5
-Text Label 5028 5495 2    50   ~ 0
+Text Label 5008 5488 2    50   ~ 0
 D6
 $Comp
 L Jumper:SolderJumper_2_Open JP4
 U 1 1 618352BB
-P 3831 5024
-F 0 "JP4" H 3831 5229 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 3831 5138 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3831 5024 50  0001 C CNN
-F 3 "~" H 3831 5024 50  0001 C CNN
-	1    3831 5024
+P 3851 5058
+F 0 "JP4" H 3851 5263 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 3851 5172 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3851 5058 50  0001 C CNN
+F 3 "~" H 3851 5058 50  0001 C CNN
+	1    3851 5058
 	1    0    0    -1  
 $EndComp
 $Comp
 L Jumper:SolderJumper_2_Open JP1
 U 1 1 61835E1E
-P 3810 5762
-F 0 "JP1" H 3810 5967 50  0000 C CNN
-F 1 "SolderJumper_2_Open" H 3810 5876 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3810 5762 50  0001 C CNN
-F 3 "~" H 3810 5762 50  0001 C CNN
-	1    3810 5762
+P 3852 5858
+F 0 "JP1" H 3852 6063 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 3852 5972 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3852 5858 50  0001 C CNN
+F 3 "~" H 3852 5858 50  0001 C CNN
+	1    3852 5858
 	1    0    0    -1  
 $EndComp
-Text Label 3981 5024 0    50   ~ 0
+Text Label 4001 5058 0    50   ~ 0
 RST_ESP
-Text Label 3960 5762 0    50   ~ 0
+Text Label 4002 5858 0    50   ~ 0
 GPIO0_ESP
 $Comp
 L power:GND #PWR05
 U 1 1 61846901
-P 3660 5762
-F 0 "#PWR05" H 3660 5512 50  0001 C CNN
-F 1 "GND" H 3665 5589 50  0000 C CNN
-F 2 "" H 3660 5762 50  0001 C CNN
-F 3 "" H 3660 5762 50  0001 C CNN
-	1    3660 5762
+P 3702 5858
+F 0 "#PWR05" H 3702 5608 50  0001 C CNN
+F 1 "GND" H 3707 5685 50  0000 C CNN
+F 2 "" H 3702 5858 50  0001 C CNN
+F 3 "" H 3702 5858 50  0001 C CNN
+	1    3702 5858
 	0    1    1    0   
 $EndComp
-Text Label 3681 5024 2    50   ~ 0
+Text Label 3701 5058 2    50   ~ 0
 +3V3
-Text Notes 3519 5462 0    50   ~ 0
+Text Notes 3540 5531 0    50   ~ 0
 ESP programming \n(GPIO0 -> GND)
 $Comp
 L power:PWR_FLAG #FLG0101
@@ -791,7 +791,6 @@ NoConn ~ 6841 5192
 NoConn ~ 6841 5292
 NoConn ~ 6841 5392
 NoConn ~ 8041 5292
-NoConn ~ 8041 5192
 NoConn ~ 8041 5092
 NoConn ~ 8041 4992
 NoConn ~ 8041 4892
@@ -802,4 +801,6 @@ Text Label 7441 4092 1    50   ~ 0
 VCC_ESP
 Text Label 6841 4492 2    50   ~ 0
 VCC_ESP
+Text Label 8041 5192 0    50   ~ 0
+GND_ESP
 $EndSCHEMATC
