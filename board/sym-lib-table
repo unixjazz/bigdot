@@ -1,6 +1,6 @@
 (sym_lib_table
   (version 7)
-  (lib (name "sensenet_board_part_subs")(type "Legacy")(uri "${KIPRJMOD}/sensenet_board_part_subs.lib")(options "")(descr ""))
+  (lib (name "sensenet_board_part_subs")(type "KiCad")(uri "${KIPRJMOD}/sensenet_board_part_subs.kicad_sym")(options "")(descr ""))
   (lib (name "rfm95w-868s2")(type "Legacy")(uri "${KIPRJMOD}/lib/sch_symbol/rfm95w-868s2.lib")(options "")(descr ""))
   (lib (name "board-rescue")(type "KiCad")(uri "${KIPRJMOD}/board-rescue.kicad_sym")(options "")(descr ""))
 )
