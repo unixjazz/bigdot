@@ -36,7 +36,7 @@ Item,Qty,Reference(s),Value,Datasheet,Description,Manufacturer_part_number
 26,2,"R8, R9",4.7k,~,RES 4.7K OHM 1% 1/4W 1206,CRG1206F4K7
 27,1,R10,2.0K,~,RES 2K OHM 1% 1/4W 1206,RMCF1206FT2K00
 28,1,SW1,SW_Push,https://www.ckswitches.com/media/1471/pts645.pdf,SWITCH TACTILE SPST-NO 0.05A 12V,PTS645SL50SMTR92 LFS
-29,1,U1,MCP1812A,https://www.mouser.com/datasheet/2/268/MCP1811A-11B-12A-12B-Family-Data-Sheet-DS20006088A-1488740.pdf,MCP1812AT-033/TT,MCP1812AT-033/TT
+29,1,U1,MCP1700,https://ww1.microchip.com/downloads/en/DeviceDoc/MCP1700-Data-Sheet-20001826F.pdf,MCP1812AT-033/TT,MCP1812AT-033/TT
 30,1,U2,MCP73831T-2ACI/OT,http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf,IC BATT CNTL LI-ION 1CEL SOT23-5,MCP73831T-2ACI/OT
 31,1,U3,RFM95W-915S2,http://www.hoperf.com/upload/rf/RFM95_96_97_98W.pdf,,
 32,1,U4,ATSAML21E18B-AUT,http://ww1.microchip.com/downloads/en/DeviceDoc/SAM_L21_Family_DataSheet_DS60001477C.pdf,IC MCU 32BIT 256KB FLASH 32TQFP,ATSAML21E18B-AUT
