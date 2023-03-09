@@ -1633,7 +1633,7 @@
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp da7c16c5-e74c-45c1-b9e3-ab74f1174a89)
     )
-    (fp_text value "MCP1700" (at 3.11 0.112) (layer "F.SilkS")
+    (fp_text value "TPS7A05" (at 3.11 0.112) (layer "F.SilkS")
         (effects (font (size 0.6 0.6) (thickness 0.125)))
       (tstamp 743548d7-92b5-4988-9b76-8d9052362d0a)
     )
