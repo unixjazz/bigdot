@@ -1,0 +1,101 @@
+# Copyright (c) 2014-2017 Arduino LLC.  All right reserved.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+menu.timer=Timer PWM Frequency
+menu.float=Floating Point
+menu.config=Build Options
+
+# Big Dot
+bigdot.name=Big Dot
+bigdot.vid.0=0x1209
+bigdot.pid.0=0xBD00
+bigdot.build.mcu=cortex-m0plus
+bigdot.build.mathlib=arm_cortexM0l_math
+bigdot.build.f_cpu=48000000L
+bigdot.build.usb_product="librelab::Big Dot"
+bigdot.build.usb_manufacturer="UVA-SDS librelab"
+bigdot.build.board=SAML21
+bigdot.build.core=arduino
+bigdot.build.variant=bigdot
+bigdot.build.variant_system_lib=
+bigdot.build.vid=0x1209
+bigdot.build.pid=0xBD00
+bigdot.upload.tool=librelab:bossac
+bigdot.upload.protocol=sam-ba
+bigdot.bootloader.tool=arduino:openocd
+bigdot.menu.float.default=Print & String use auto-promoted doubles only
+bigdot.menu.float.default.build.floatconfig=FLOAT_BOTH_DOUBLES_ONLY
+bigdot.menu.float.print=Print uses separate singles and doubles
+bigdot.menu.float.print.build.floatconfig=FLOAT_PRINT_SINGLES_DOUBLES
+bigdot.menu.float.string=String uses separate singles and doubles
+bigdot.menu.float.string.build.floatconfig=FLOAT_STRING_SINGLES_DOUBLES
+bigdot.menu.float.both=Print & String use separate singles and doubles
+bigdot.menu.float.both.build.floatconfig=FLOAT_BOTH_SINGLES_DOUBLES
+bigdot.menu.config.disabled=config.h disabled
+bigdot.menu.config.disabled.build.buildconfig=CONFIG_H_DISABLED
+bigdot.menu.config.enabled=config.h enabled (mostly code size reductions)
+bigdot.menu.config.enabled.build.buildconfig=CONFIG_H_ENABLED
+bigdot.menu.timer.timer_732Hz=732.4Hz (16-bit)
+bigdot.menu.timer.timer_732Hz.build.timerconfig=TIMER_732Hz
+bigdot.menu.timer.timer_366Hz=366.2Hz (16-bit)
+bigdot.menu.timer.timer_366Hz.build.timerconfig=TIMER_366Hz
+bigdot.menu.timer.timer_244Hz=244.1Hz (16-bit)
+bigdot.menu.timer.timer_244Hz.build.timerconfig=TIMER_244Hz
+bigdot.menu.timer.timer_183Hz=183.1Hz (16-bit)
+bigdot.menu.timer.timer_183Hz.build.timerconfig=TIMER_183Hz
+bigdot.menu.timer.timer_146Hz=146.5Hz (16-bit)
+bigdot.menu.timer.timer_146Hz.build.timerconfig=TIMER_146Hz
+bigdot.menu.timer.timer_122Hz=122.1Hz (16-bit)
+bigdot.menu.timer.timer_122Hz.build.timerconfig=TIMER_122Hz
+bigdot.menu.timer.timer_105Hz=104.6Hz (16-bit)
+bigdot.menu.timer.timer_105Hz.build.timerconfig=TIMER_105Hz
+bigdot.menu.timer.timer_81Hz=81.38Hz (16-bit)
+bigdot.menu.timer.timer_81Hz.build.timerconfig=TIMER_81Hz
+bigdot.menu.timer.timer_61Hz=61.04Hz (16-bit)
+bigdot.menu.timer.timer_61Hz.build.timerconfig=TIMER_61Hz
+bigdot.menu.timer.timer_31Hz=30.52Hz (16-bit)
+bigdot.menu.timer.timer_31Hz.build.timerconfig=TIMER_31Hz
+bigdot.menu.timer.timer_187500Hz=187500Hz (8-bit)
+bigdot.menu.timer.timer_187500Hz.build.timerconfig=TIMER_187500Hz
+bigdot.menu.timer.timer_93750Hz=93750Hz (8-bit)
+bigdot.menu.timer.timer_93750Hz.build.timerconfig=TIMER_93750Hz
+bigdot.menu.timer.timer_62500Hz=62500Hz (8-bit)
+bigdot.menu.timer.timer_62500Hz.build.timerconfig=TIMER_62500Hz
+bigdot.menu.timer.timer_37500Hz=37500Hz (8-bit)
+bigdot.menu.timer.timer_37500Hz.build.timerconfig=TIMER_37500Hz
+bigdot.menu.timer.timer_20833Hz=20833Hz (8-bit)
+bigdot.menu.timer.timer_20833Hz.build.timerconfig=TIMER_20833Hz
+bigdot.menu.timer.timer_12500Hz=12500Hz (8-bit)
+bigdot.menu.timer.timer_12500Hz.build.timerconfig=TIMER_12500Hz
+bigdot.menu.timer.timer_7500Hz=7500Hz (8-bit)
+bigdot.menu.timer.timer_7500Hz.build.timerconfig=TIMER_7500Hz
+bigdot.menu.timer.timer_4166Hz=4166Hz (8-bit)
+bigdot.menu.timer.timer_4166Hz.build.timerconfig=TIMER_4166Hz
+bigdot.menu.timer.timer_2930Hz=2930Hz (8-bit)
+bigdot.menu.timer.timer_2930Hz.build.timerconfig=TIMER_2930Hz
+bigdot.menu.cpu.saml21e18b=SAML21E18B
+bigdot.menu.cpu.saml21e18b.upload.maximum_size=253952
+bigdot.menu.cpu.saml21e18b.build.extra_flags=-DARDUINO_ARCH_SAML -D__SAML21E18B__ {build.usb_flags} -DARM_MATH_CM0PLUS
+bigdot.menu.cpu.saml21e18b.build.ldscript=flash_256KB.ld
+bigdot.menu.cpu.saml21e18b.build.openocdscript=openocd_scripts/SAML21E18B.cfg
+bigdot.menu.cpu.saml21e18b.bootloader.file=zero/sam_ba_bigdot_SAML21E18B.bin
+bigdot.menu.bootloader.8kb=8KB_BOOTLOADER
+bigdot.menu.bootloader.8kb.build.bootloader_size=__8KB_BOOTLOADER__
+bigdot.menu.bootloader.8kb.build.ldscript_path=linker_scripts/gcc/8KB_Bootloader
+bigdot.menu.bootloader.8kb.upload.tool=librelab:bossac
+bigdot.menu.bootloader.8kb.upload.use_1200bps_touch=true
+bigdot.menu.bootloader.8kb.upload.wait_for_upload_port=true
+bigdot.menu.bootloader.8kb.upload.native_usb=true
