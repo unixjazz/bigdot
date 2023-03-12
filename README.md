@@ -50,10 +50,6 @@ $ BOARD=bigdot make all
 
 If you are new to RIOT-OS, make sure to follow the [tutorials](https://github.com/RIOT-OS/Tutorials).
 
-### Micropython support
-
-_Coming up!_
-
 ## Prototyping
 
 If you do not have a Big Dot at hand, you can use a SAML21 Xplained board for testing purposes. The information on how to flash the bootloader we use can be found in the [bootloader directory](bootloader/README.md). For your convenience, we also included pre-compiled firmware files in this repository as well.
@@ -62,7 +58,7 @@ We recommend the usage of the UF2 bootloader included in the `bootloaders` direc
 
 ## Project info
 
-Our hardware kit was funded by the "Network Public Spaces" (NPS) project at University of Virginia. NPS is a collaborative project involving the School of Data Science and the School of Architecture for the study and implementation of community-based environmental sensor networks. For more info, check out the [project website](https://example.com).
+Big Dot was developed at librelab, School of Data Science (UVA) with funding from the "Network Public Spaces" (NPS) project between 2020-2021. Since then, it has been run as an independent project by Open Hardware enthusiasts.
 
 ## License
 
