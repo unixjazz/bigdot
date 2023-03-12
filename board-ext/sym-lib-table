@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "wifi_shield-rescue")(type "KiCad")(uri "${KIPRJMOD}/wifi_shield-rescue.kicad_sym")(options "")(descr ""))
+)
