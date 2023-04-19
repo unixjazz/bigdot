@@ -10,18 +10,11 @@ In this repository you will find the design and firmware files for librelab::Big
 
 ```bash
 ├── arduino-core (support files)
-│   ├── core
-│   └── tools
-├── board (hardware design)
-│   ├── lib
-│   └── output
+├── board (main board design)
+├── board-ext (extension board design)
 ├── bootloader (firmware files)
-│   ├── bootloaders
-│   ├── openocd-conf
-│   └── sketches
+├── docs (user documentation)
 └── examples (applications)
-    ├── fastled-ultrasonic
-    └── ttn-pm-co2
 ```
 
 ## Installation
@@ -36,11 +29,11 @@ https://raw.githubusercontent.com/UVA-DSI/bigdot/main/arduino-core/package_libre
 
 We are using the Arduino SAMD core (v1.6), but forked and modified by [MattairTech to add support for the chip SAML21](https://github.com/mattairtech/ArduinoCore-samd). You will need Arduino 1.8.13 or superior to use this core with our board.
 
-This core has been tested on Linux (64-bit) and Mac OS 10.15 (64-bit only). If you need further instructions on how to install the Arduino core, [follow this link](https://www.arduino.cc/en/guide/cores).
+This core has been tested on Linux (64-bit), Windows 10, and Mac OS 10.15 (64-bit only). If you need further instructions on how to install the Arduino core, [follow this link](https://www.arduino.cc/en/guide/cores).
 
 ### RIOT-OS support
 
-If Arduino is suitable for your project, it is OK. All the paths lead to the same destination, but some are more direct than others. You may want to use RIOT-OS! [Our board is supported and can be found here](https://github.com/UVA-DSI/RIOT).
+If Arduino is not suitable for your project, you can use better alternatives. All the paths lead to the same destination, but some are more direct than others. You may want to use RIOT-OS! [Our board is supported and the support can be found here](https://github.com/UVA-DSI/RIOT).
 
 To use RIOT-OS with librelab::Big Dot, just pass its name to `make`:
 
