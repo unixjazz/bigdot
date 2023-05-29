@@ -57,9 +57,10 @@ Big Dot was developed at librelab, School of Data Science (UVA) with funding fro
 
 All the documentation is released as CC-BY-4.0-International.
 All the hardware code is released under CERN-OHL-v2 Strongly Reciprocal.
-All software code is released under GPL v3, unless marked otherwise on the source file headers. 
-See LICENSE and AUTHORS files for further information.
+All software code is released under GPL v3, unless marked otherwise on the source file headers. See LICENSE and AUTHORS files for further information.
 
-OSHW certification: _pending_.
+Big Dot is Open Source Hardware-certified.
+
+![big-dot-cert-oshw](bigdot-cert-oshwa.png)
 
 __Happy hw hacking!__
