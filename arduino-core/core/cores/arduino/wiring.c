@@ -23,6 +23,8 @@
 #include "wiring_analog.h"
 #include "../../config.h"
 
+#define VERY_LOW_POWER
+
 #ifdef __cplusplus
 extern "C" {
 #endif

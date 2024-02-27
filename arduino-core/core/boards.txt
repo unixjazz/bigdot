@@ -14,6 +14,10 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+menu.cpu=Microcontroller
+menu.clock=Clock Source
+menu.usb=USB Config
+menu.bootloader=Bootloader Size
 menu.timer=Timer PWM Frequency
 menu.float=Floating Point
 menu.config=Build Options
@@ -48,6 +52,32 @@ bigdot.menu.config.disabled=config.h disabled
 bigdot.menu.config.disabled.build.buildconfig=CONFIG_H_DISABLED
 bigdot.menu.config.enabled=config.h enabled (mostly code size reductions)
 bigdot.menu.config.enabled.build.buildconfig=CONFIG_H_ENABLED
+bigdot.menu.clock.internal_usb=INTERNAL_USB_CALIBRATED_OSCILLATOR
+bigdot.menu.clock.internal_usb.build.clockconfig=CLOCKCONFIG_INTERNAL_USB
+bigdot.menu.clock.internal=INTERNAL_OSCILLATOR
+bigdot.menu.clock.internal.build.clockconfig=CLOCKCONFIG_INTERNAL
+bigdot.menu.clock.crystal_32k=32KHZ_CRYSTAL
+bigdot.menu.clock.crystal_32k.build.clockconfig=CLOCKCONFIG_32768HZ_CRYSTAL
+bigdot.menu.clock.crystal_hs=HIGH_SPEED_CRYSTAL
+bigdot.menu.clock.crystal_hs.build.clockconfig=CLOCKCONFIG_HS_CRYSTAL
+bigdot.menu.usb.cdc=CDC_ONLY
+bigdot.menu.usb.cdc.build.usbcom=CDC_ONLY
+bigdot.menu.usb.cdc.build.pid=0xBD00
+bigdot.menu.usb.cdc_hid=CDC_HID
+bigdot.menu.usb.cdc_hid.build.usbcom=CDC_HID
+bigdot.menu.usb.cdc_hid.build.pid=0xBD00
+bigdot.menu.usb.withcdc=WITH_CDC
+bigdot.menu.usb.withcdc.build.usbcom=WITH_CDC
+bigdot.menu.usb.withcdc.build.pid=0xBD00
+bigdot.menu.usb.hid=HID_ONLY
+bigdot.menu.usb.hid.build.usbcom=HID_ONLY
+bigdot.menu.usb.hid.build.pid=0xBD00
+bigdot.menu.usb.nocdc=WITHOUT_CDC
+bigdot.menu.usb.nocdc.build.usbcom=WITHOUT_CDC
+bigdot.menu.usb.nocdc.build.pid=0xBD00
+bigdot.menu.usb.none=USB_DISABLED
+bigdot.menu.usb.none.build.usbcom=USB_DISABLED
+bigdot.menu.usb.none.build.pid=0xBD00
 bigdot.menu.timer.timer_732Hz=732.4Hz (16-bit)
 bigdot.menu.timer.timer_732Hz.build.timerconfig=TIMER_732Hz
 bigdot.menu.timer.timer_366Hz=366.2Hz (16-bit)
