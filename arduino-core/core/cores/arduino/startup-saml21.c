@@ -172,8 +172,7 @@ void SystemInit(void) {
   OSCCTRL_DFLLCTRL_Type dfllCtrl = OSCCTRL->DFLLCTRL;
   dfllCtrl.bit.MODE = 1; // closed loop mode
   dfllCtrl.bit.LLAW = 0;
-      /** low power, we re-aquire lock after wake */ // low power, we re-aquire
-                                                     // lock after wake
+  /** low power, we re-aquire lock after wake */
   dfllCtrl.bit.STABLE =
       0; /** Keep tracking after the DFLL has gotten a fine lock */
   dfllCtrl.bit.QLDIS = 0;    /** Enable the QuickLock feature for looser lock
@@ -243,11 +242,8 @@ void SystemInit(void) {
   gclk_gen_sync(0);
   GCLK->GENCTRL[0].reg |= GCLK_GENCTRL_GENEN;
 
-  // OSC32KCTRL->XOSC32K.bit.ONDEMAND = 1; // enable xosc32k to be ondemand
-  //
   // prepare OSC16M to always run in 4MHz mode
   //  going to use it when we go to sleep
-
   OSCCTRL->OSC16MCTRL.bit.ENABLE = 0;
   OSCCTRL->OSC16MCTRL.bit.FSEL = OSCCTRL_OSC16MCTRL_FSEL_4_Val;
   OSCCTRL->OSC16MCTRL.bit.RUNSTDBY = 1;
