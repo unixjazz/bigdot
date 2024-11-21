@@ -1,3 +1,5 @@
 (fp_lib_table
-  (lib (name lowpowerlab-BME680)(type KiCad)(uri ${KIPRJMOD}/lowpowerlab-BME680.pretty)(options "")(descr ""))
+  (version 7)
+  (lib (name "lowpowerlab-BME680")(type "KiCad")(uri "${KIPRJMOD}/lowpowerlab-BME680.pretty")(options "")(descr ""))
+  (lib (name "taina-logo")(type "KiCad")(uri "${KIPRJMOD}/taina-logo/taina-logo.pretty")(options "")(descr ""))
 )
