@@ -23,6 +23,8 @@
 #include "wiring_analog.h"
 #include "../../config.h"
 
+#define VERY_LOW_POWER
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -121,18 +123,18 @@ void init( void )
   #error "wiring.c: Unsupported chip"
 #endif
 
-  #ifndef VERY_LOW_POWER
-  // Setup all pins (digital and analog) in STARTUP mode (enable INEN and set default pull direction to pullup (pullup will not be enabled))
-  for (uint32_t ul = 0 ; ul < NUM_DIGITAL_PINS ; ul++ )
-  {
-    pinMode( ul, PIO_STARTUP ) ;
-  }
-  #endif
+#ifndef VERY_LOW_POWER
+// Setup all pins in STARTUP mode (enable INEN and set default pull direction to pullup (pullup will not be enabled))
+for (uint32_t ul = 0 ; ul < NUM_DIGITAL_PINS ; ul++ )
+{
+  pinMode( ul, PIO_STARTUP ) ;
+}
+#endif
 
-  // At least on the L21, pin A31 must be set as an input. It is possible that debugger probe detection is being falsely
-  // detected (even with a pullup on A31 (SWCLK)), which would change the peripheral mux of A31 to COM.
-  // This might not normally be a problem, but one strange effect is that Serial2 (even when not using A31) may lose characters
-  // if pin A31 is not set as INPUT. This is done above.
+// At least on the L21, pin A31 must be set as an input. It is possible that debugger probe detection is being falsely
+// detected (even with a pullup on A31 (SWCLK)), which would change the peripheral mux of A31 to COM.
+// This might not normally be a problem, but one strange effect is that Serial2 (even when not using A31) may lose characters
+// if pin A31 is not set as INPUT. This is done above.
 
 // I/O mux table footnote for D21 and D11: enable pullups on PA24 and PA24 when using as GPIO to avoid excessive current
 //  Errata: disable pull resistors on PA24 or PA25 manually before switching to peripheral
