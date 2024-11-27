@@ -2,11 +2,11 @@
 	"packages": [
 	{
 		"name": "librelab",
-		"maintainer": "UVA SDS librelab",
-		"websiteURL": "https://github.com/UVA-DSI/bigdot",
+		"maintainer": "librelab",
+		"websiteURL": "https://github.com/unixjazz/bigdot",
 		"email": "lfr6d@virginia.edu",
 		"help": {
-			"online": "https://github.com/UVA-DSI/bigdot"
+			"online": "https://github.com/unixjazz/bigdot"
 		},
 		"platforms": [
 		{
@@ -15,7 +15,7 @@
 			"version": "1.0.0",
 			"category": "Contributed",
 			"help": {
-				"online": "https://github.com/UVA-DSI/bigdot"
+				"online": "https://github.com/unixjazz/bigdot"
 			},
 			"url": "https://unixjazz.org/pub/software/bigdot-1.0.0.zip",
 			"archiveFileName": "bigdot-1.0.0.zip",
@@ -63,7 +63,7 @@
 			"version": "1.1.0",
 			"category": "Contributed",
 			"help": {
-				"online": "https://github.com/UVA-DSI/bigdot"
+				"online": "https://github.com/unixjazz/bigdot"
 			},
 			"url": "https://unixjazz.org/pub/software/bigdot-1.1.0.zip",
 			"archiveFileName": "bigdot-1.1.0.zip",
@@ -103,7 +103,55 @@
             			"name": "arduinoOTA",
             			"version": "1.2.0"
           		}
-			]			
+			]
+		},
+		{
+			"name": "librelab::Big Dot",
+			"architecture": "samd",
+			"version": "1.2.0",
+			"category": "Contributed",
+			"help": {
+				"online": "https://github.com/unixjazz/bigdot"
+			},
+			"url": "https://unixjazz.org/pub/software/bigdot-1.2.0.zip",
+			"archiveFileName": "bigdot-1.2.0.zip",
+			"checksum": "SHA-256:debc46314fb8e6090cc9d78137b66a4485371a15ec6c768553c9779c705e2f25",
+			"size": "476303",
+			"boards": [
+			{"name": "librelab::Big Dot"}
+			],
+			"toolsDependencies": [
+			{
+				"packager": "arduino",
+				"name": "arm-none-eabi-gcc",
+				"version": "4.8.3-2014q1"
+			},
+			{
+				"packager": "librelab",
+				"name": "bossac",
+				"version": "1.9.1"
+			},
+			{
+				"packager": "arduino",
+				"name": "openocd",
+				"version": "0.9.0-arduino"
+			},
+			{
+				"packager": "arduino",
+				"name": "CMSIS",
+				"version": "4.5.0"
+			},
+			{
+		                "packager": "librelab",
+            			"name": "CMSIS-Atmel",
+            			"version": "1.0.0-mattairtech-2"
+          		},
+          		{
+            			"packager": "arduino",
+            			"name": "arduinoOTA",
+            			"version": "1.2.0"
+          		}
+			]
 		}],
 		"tools":[
                 {

@@ -14,6 +14,9 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+menu.cpu=Microcontroller
+menu.usb=USB Config
+menu.bootloader=Bootloader Size
 menu.timer=Timer PWM Frequency
 menu.float=Floating Point
 menu.config=Build Options
@@ -26,7 +29,7 @@ bigdot.build.mcu=cortex-m0plus
 bigdot.build.mathlib=arm_cortexM0l_math
 bigdot.build.f_cpu=48000000L
 bigdot.build.usb_product="librelab::Big Dot"
-bigdot.build.usb_manufacturer="UVA-SDS librelab"
+bigdot.build.usb_manufacturer="Librelab"
 bigdot.build.board=SAML21
 bigdot.build.core=arduino
 bigdot.build.variant=bigdot
@@ -48,6 +51,24 @@ bigdot.menu.config.disabled=config.h disabled
 bigdot.menu.config.disabled.build.buildconfig=CONFIG_H_DISABLED
 bigdot.menu.config.enabled=config.h enabled (mostly code size reductions)
 bigdot.menu.config.enabled.build.buildconfig=CONFIG_H_ENABLED
+bigdot.menu.usb.cdc=CDC_ONLY
+bigdot.menu.usb.cdc.build.usbcom=CDC_ONLY
+bigdot.menu.usb.cdc.build.pid=0xBD00
+bigdot.menu.usb.cdc_hid=CDC_HID
+bigdot.menu.usb.cdc_hid.build.usbcom=CDC_HID
+bigdot.menu.usb.cdc_hid.build.pid=0xBD00
+bigdot.menu.usb.withcdc=WITH_CDC
+bigdot.menu.usb.withcdc.build.usbcom=WITH_CDC
+bigdot.menu.usb.withcdc.build.pid=0xBD00
+bigdot.menu.usb.hid=HID_ONLY
+bigdot.menu.usb.hid.build.usbcom=HID_ONLY
+bigdot.menu.usb.hid.build.pid=0xBD00
+bigdot.menu.usb.nocdc=WITHOUT_CDC
+bigdot.menu.usb.nocdc.build.usbcom=WITHOUT_CDC
+bigdot.menu.usb.nocdc.build.pid=0xBD00
+bigdot.menu.usb.none=USB_DISABLED
+bigdot.menu.usb.none.build.usbcom=USB_DISABLED
+bigdot.menu.usb.none.build.pid=0xBD00
 bigdot.menu.timer.timer_732Hz=732.4Hz (16-bit)
 bigdot.menu.timer.timer_732Hz.build.timerconfig=TIMER_732Hz
 bigdot.menu.timer.timer_366Hz=366.2Hz (16-bit)

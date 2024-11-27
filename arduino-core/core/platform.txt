@@ -18,7 +18,7 @@
 # https://arduino.github.io/arduino-cli/latest/platform-specification 
 
 name=librelab::Big Dot
-version=1.1.0
+version=1.2.0
 
 # Compile variables
 # -----------------
@@ -55,18 +55,11 @@ compiler.readelf.cmd=arm-none-eabi-readelf
 # defaults for librelab::Big Dot
 # this can be overriden in boards.txt
 build.arch=SAML21
-#build.clockconfig=CLOCKCONFIG_INTERNAL_USB
-#build.clockconfig=CLOCKCONFIG_INTERNAL
+build.bootloader_size=__8KB_BOOTLOADER__
 build.clockconfig=CLOCKCONFIG_32768HZ_CRYSTAL
-#build.clockconfig=CLOCKCONFIG_HS_CRYSTAL
-build.usbcom=CDC_ONLY
-#build.usbcom=CDC_HID
-build.vid=0x1209
-build.pid=0xBD00
 build.serialcom_uart=ONE_UART
 build.serialcom_wire=ONE_WIRE
 build.serialcom_spi=ONE_SPI
-build.bootloader_size=__8KB_BOOTLOADER__
 build.extra_flags=
 
 # These can be overridden in platform.local.txt

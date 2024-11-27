@@ -1,7 +1,9 @@
 ## Changelog
+1.2.0:
+* Third release, librelab::Big Dot (v2) added Arduino v2 support, extended low-power support.
 
 1.1.0:
-* Second release, librelab::Big Dot (v1) includes an external crystal (XTAL).
+* Second release, librelab::Big Dot (v1) adjusted external crystal (XTAL).
  
 1.0.0:
 * First release, librelab::Big Dot (rev 2).
