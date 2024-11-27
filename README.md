@@ -24,7 +24,7 @@ In this repository you will find the design and firmware files for librelab::Big
 To install the support files for librelab::Big Dot on Arduino, just include the following line in the field 'Additional Boards Manager URL' (under 'Preferences' menu) of your Arduino IDE:
 
 ```
-https://raw.githubusercontent.com/UVA-DSI/bigdot/main/arduino-core/package_librelab_index.json
+https://unixjazz.org/pub/software/package_librelab_index.json
 ```
 
 We are using the Arduino SAMD core (v1.6), but forked and modified by [MattairTech to add support for the chip SAML21](https://github.com/mattairtech/ArduinoCore-samd). You will need Arduino 1.8.13 or superior to use this core with our board.
@@ -33,7 +33,7 @@ This core has been tested on Linux (64-bit), Windows 10, and Mac OS 10.15 (64-bi
 
 ### RIOT-OS support
 
-If Arduino is not suitable for your project, you can use better alternatives. All the paths lead to the same destination, but some are more direct than others. You may want to use RIOT-OS! [Our board is supported and the support can be found here](https://github.com/UVA-DSI/RIOT).
+If Arduino is not suitable for your project, you can use better alternatives. All the paths lead to the same destination (when it comes to our finitude as species), but some are more direct than others. You may want to use RIOT-OS! [Our board is supported and the support can be found here](https://github.com/unixjazz/RIOT).
 
 To use RIOT-OS with librelab::Big Dot, just pass its name to `make`:
 
