@@ -1,7 +1,6 @@
 # Arduino Zero Bootloader
 
-This bootloader is based on the Arduino Zero bootloader, which is a part of the Arduino SAMD core. 
-This version has support for the SAM L21 microcontroller, written by Justin Mattair.
+This bootloader is based on the Arduino Zero bootloader, which is a part of the Arduino SAMD core. This version has support for the SAML21 microcontroller, written by Justin Mattair.
 
 ## Features
 

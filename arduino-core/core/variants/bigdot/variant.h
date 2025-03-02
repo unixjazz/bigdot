@@ -46,7 +46,7 @@
  * defined), then PLL_FRACTIONAL_ENABLED can be defined, which will result in
  * a more accurate 48MHz output frequency at the expense of increased jitter.
  */
-//#define PLL_FRACTIONAL_ENABLED
+#define PLL_FRACTIONAL_ENABLED
 
 /* If both PLL_FAST_STARTUP and CLOCKCONFIG_HS_CRYSTAL are defined, the crystal
  * will be divided down to 1MHz - 2MHz, rather than 32KHz - 64KHz, before being
@@ -156,14 +156,14 @@ static const uint8_t DAC1 = PIN_DAC1;
 /*
  *  Digital pins
  */
-#define PIN_D1              (8ul)
+#define PIN_D1              (8ul)  // Bootloader active pin
 #define PIN_D2              (9ul)
 #define PIN_D3              (10ul) // Serial1: TX
 #define PIN_D4              (11ul) // Serial1: RX
 #define PIN_D5              (14ul) // RFM_reset
-#define PIN_D6				(15ul) // RFM_DIO0
-#define PIN_D7				(16ul) // SDA
-#define PIN_D8				(17ul) // SCL
+#define PIN_D6	       	    (15ul) // RFM_DIO0
+#define PIN_D7	            (16ul) // SDA
+#define PIN_D8	            (17ul) // SCL
 #define PIN_D9              (18ul) // SPI_MOSI
 #define PIN_D10             (19ul) // SPI_CLK
 #define PIN_D11             (22ul) // SPI_MISO

@@ -32,13 +32,13 @@
  * Then, type 'V#' to show version information. See README.md for more commands.
  * Size: ~228B. Enabled by default. Disable with 4KB bootloader.
  */
-#define TERMINAL_MODE_ENABLED
+//#define TERMINAL_MODE_ENABLED
 
 /* Set SAM_BA_INTERFACE to SAM_BA_USBCDC_ONLY, SAM_BA_UART_ONLY, SAM_BA_NONE, or
  * SAM_BA_BOTH_INTERFACES. With 4KB bootloaders, select only one interface (except
  * when using SDCARD_ENABLED, then set SAM_BA_INTERFACE to SAM_BA_NONE).
  */
-#define SAM_BA_INTERFACE		SAM_BA_USBCDC_ONLY
+#define SAM_BA_INTERFACE	SAM_BA_USBCDC_ONLY
 
 /* If ARDUINO_EXTENDED_CAPABILITIES is defined and set to 1, 3 additional commands
  * will become available which will speed up programming when using the Arduino
@@ -60,7 +60,7 @@
  * not suspended), where it will calibrate against the USB SOF signal.
  */
 #ifndef CLOCKCONFIG_CLOCK_SOURCE
-  #define CLOCKCONFIG_CLOCK_SOURCE	CLOCKCONFIG_INTERNAL_USB
+  #define CLOCKCONFIG_CLOCK_SOURCE	CLOCKCONFIG_32768HZ_CRYSTAL
 #endif
 
 /* If CLOCKCONFIG_HS_CRYSTAL is defined, then HS_CRYSTAL_FREQUENCY_HERTZ
@@ -72,7 +72,7 @@
  * defined), then PLL_FRACTIONAL_ENABLED can be defined, which will result in
  * a more accurate 48MHz output frequency at the expense of increased jitter.
  */
-//#define PLL_FRACTIONAL_ENABLED
+#define PLL_FRACTIONAL_ENABLED
 
 /* If both PLL_FAST_STARTUP and CLOCKCONFIG_HS_CRYSTAL are defined, the crystal
  * will be divided down to 1MHz - 2MHz, rather than 32KHz - 64KHz, before being
@@ -84,7 +84,7 @@
 //#define PLL_FAST_STARTUP
 
 /* Master clock frequency (also Fcpu frequency). */
-#define VARIANT_MCK                       (48000000ul)
+#define VARIANT_MCK	(48000000ul)
 
 /* The fine calibration value for DFLL open-loop mode is defined here.
  * The coarse calibration value is loaded from NVM OTP (factory calibration values).
@@ -96,7 +96,7 @@
  * Size: ~228B. By default, USB_VENDOR_STRINGS_ENABLED is defined (including 4KB).
  */
 #define USB_VENDOR_STRINGS_ENABLED
-#define STRING_MANUFACTURER "SDS librelab"
+#define STRING_MANUFACTURER "librelab"
 #define STRING_PRODUCT "Big Dot"
 
 /* If USB CDC is used, then the USB vendor ID (VID) and product ID (PID) must be set. */
@@ -134,10 +134,10 @@
  * PIN_POLARITY_ACTIVE_HIGH. Config can be INPUT, INPUT_PULLUP, or INPUT_PULLDOWN.
  * Size: ~84B. Disabled by default.
  */
-//#define BOOT_LOAD_PIN_ENABLED
+#define BOOT_LOAD_PIN_ENABLED
 #define BOOT_LOAD_PIN_POLARITY            PIN_POLARITY_ACTIVE_LOW
 #define BOOT_LOAD_PIN_PORT                (0)
-#define BOOT_LOAD_PIN                     (27)
+#define BOOT_LOAD_PIN                     (8)
 #define BOOT_LOAD_PIN_CONFIG              INPUT_PULLUP
 
 /*
@@ -155,6 +155,6 @@
  */
 #define BOARD_LED_PORT                    (0)
 #define BOARD_LED_PIN                     (6)
-#define BOARD_LED_POLARITY	LED_POLARITY_HIGH_ON
+#define BOARD_LED_POLARITY		  LED_POLARITY_HIGH_ON
 
 #endif // _BOARD_DEFINITIONS_H_
